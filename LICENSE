@@ -1,0 +1,12 @@
+KARIS OS™ Version 1.0.0-PROD-V1 — Commercial & Sovereign Enterprise License
+
+Copyright (c) 2026 KARIS OS™ Digital Economy Hub Ltd (Machakos & Nairobi, Kenya). All Rights Reserved.
+
+1. COMMERCIAL LICENSE GRANT
+Subject to the terms of a formal commercial licensing or white-label agreement executed by the Licensee ("Safaricom, Equity Bank, PalPlus, or Enterprise Partner") and KARIS OS™ Digital Economy Hub Ltd, Licensee is granted a non-exclusive, non-transferable right to deploy, brand (`Section 53`), and operate the KARIS OS™ Operating System Kernel across authorized regional cloud clusters (`Africa/Nairobi`).
+
+2. DOUBLE-ENTRY ACCOUNTING & INVARIANT PROTECTION
+Licensee agrees that all financial settlements, multi-asset wallet transfers (`Rule 5`), and domain state mutations (`Rule 1`) shall strictly execute through the Universal Double-Entry Ledger Engine (`UniversalLedgerEngine`), maintaining exact SHA-256 cryptographic hash chaining (`Rule 9`). Direct database balance mutations bypass or tampering with database immutability triggers (`prevent_ledger_mutation()`) voids all compliance attestations and software warranties.
+
+3. THIRD-PARTY DEPENDENCY PERMISSIVE ATTESTATION
+All third-party open-source dependencies bundled inside the runtime (`requirements.txt` / `SBOM_SOFTWARE_BILL_OF_MATERIALS.json`) are governed by their respective permissive open-source licenses (`MIT, BSD 3-Clause, Apache 2.0`). No viral General Public License (`GPL/AGPL/SSPL`) libraries are included in this software.

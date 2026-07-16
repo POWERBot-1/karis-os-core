@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="100%" height="100%">
+  <rect width="400" height="100" rx="16" fill="#F8FAFC"/>
+  <circle cx="50" cy="50" r="32" fill="#0B2545"/>
+  <path d="M40 34 L54 50 L40 66 M54 50 L68 34 M54 50 L68 66" stroke="#10B981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="96" y="58" font-family="Arial, -apple-system, sans-serif" font-weight="900" font-size="34" fill="#0B2545" letter-spacing="-1">KARIS <tspan fill="#1D4ED8">OS</tspan>™</text>
+  <text x="98" y="78" font-family="Arial, -apple-system, sans-serif" font-weight="600" font-size="11" fill="#64748B" letter-spacing="1.5">ENTERPRISE &amp; DIGITAL ECONOMY PLATFORM</text>
+</svg>

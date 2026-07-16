@@ -1,0 +1,29 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:6e8de0bc-1284-4bba-a5de-f886665bf18f",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-07-16T15:00:00Z",
+    "component": {
+      "type": "application",
+      "name": "KARIS OS™ Unified Enterprise & Digital Economy Platform",
+      "version": "1.0.0-PROD-V1",
+      "description": "54-Section / 19-Vertical Enterprise Operating System Kernel for East Africa (`Africa/Nairobi`)",
+      "licenses": [ { "license": { "name": "KARIS OS Commercial Enterprise License" } } ]
+    }
+  },
+  "components": [
+    { "type": "library", "name": "fastapi", "version": "0.139.2", "licenses": [ { "license": { "id": "MIT" } } ], "purl": "pkg:pypi/fastapi@0.139.2" },
+    { "type": "library", "name": "uvicorn", "version": "0.51.0", "licenses": [ { "license": { "id": "BSD-3-Clause" } } ], "purl": "pkg:pypi/uvicorn@0.51.0" },
+    { "type": "library", "name": "sqlalchemy", "version": "2.0.51", "licenses": [ { "license": { "id": "MIT" } } ], "purl": "pkg:pypi/sqlalchemy@2.0.51" },
+    { "type": "library", "name": "asyncpg", "version": "0.31.0", "licenses": [ { "license": { "id": "Apache-2.0" } } ], "purl": "pkg:pypi/asyncpg@0.31.0" },
+    { "type": "library", "name": "pydantic", "version": "2.13.4", "licenses": [ { "license": { "id": "MIT" } } ], "purl": "pkg:pypi/pydantic@2.13.4" },
+    { "type": "library", "name": "starlette", "version": "1.3.1", "licenses": [ { "license": { "id": "BSD-3-Clause" } } ], "purl": "pkg:pypi/starlette@1.3.1" },
+    { "type": "library", "name": "greenlet", "version": "3.5.3", "licenses": [ { "license": { "id": "MIT" } } ], "purl": "pkg:pypi/greenlet@3.5.3" },
+    { "type": "library", "name": "httpx", "version": "0.28.1", "licenses": [ { "license": { "id": "BSD-3-Clause" } } ], "purl": "pkg:pypi/httpx@0.28.1" },
+    { "type": "library", "name": "python-docx", "version": "1.1.2", "licenses": [ { "license": { "id": "MIT" } } ], "purl": "pkg:pypi/python-docx@1.1.2" },
+    { "type": "library", "name": "pytest", "version": "9.0.3", "licenses": [ { "license": { "id": "MIT" } } ], "purl": "pkg:pypi/pytest@9.0.3" }
+  ]
+}
