@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LOOP_AI_MODERATION_FLAGGED",
+  "description": "Event emitted when AI Moderation flags toxic or fraudulent content on Karis Loop, requiring human supervisor RBAC review (`Rule 10`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["LOOP_AI_MODERATION_FLAGGED"] },
+    "event_category": { "type": "string", "enum": ["SOCIAL", "GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "post_id": { "type": "string" },
+        "creator_identity_id": { "type": "string" },
+        "toxicity_score": { "type": "number", "minimum": 0 },
+        "flagged_reason": { "type": "string" },
+        "moderation_status": { "type": "string", "enum": ["FLAGGED_PENDING_HUMAN_REVIEW", "REJECTED_TOXIC", "APPEALED"] }
+      },
+      "required": ["post_id", "creator_identity_id", "toxicity_score", "moderation_status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

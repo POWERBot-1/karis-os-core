@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PAYMENT_LINK_CHECKOUT_COMPLETED",
+  "description": "Event emitted when a customer or farmer completes checkout via a PalPlus hosted temporary payment link (`https://link.palpluss.com/6e8de0bc-1284-4bba-a5de-f886665bf18f`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["PAYMENT_LINK_CHECKOUT_COMPLETED"] },
+    "event_category": { "type": "string", "enum": ["CHECKOUT", "PAYMENT", "COMMERCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "payment_link_id": { "type": "string" },
+        "external_link_url": { "type": "string" },
+        "payer_identity_id": { "type": "string" },
+        "amount_kes": { "type": "number", "minimum": 0 },
+        "payment_method": { "type": "string" },
+        "external_receipt_number": { "type": "string" },
+        "target_order_id": { "type": "string" }
+      },
+      "required": ["payment_link_id", "external_link_url", "payer_identity_id", "amount_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

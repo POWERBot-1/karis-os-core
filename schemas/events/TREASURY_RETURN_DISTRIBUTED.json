@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TREASURY_RETURN_DISTRIBUTED",
+  "description": "Event emitted when the Treasury Engine distributes ROI returns from an investment pool to eligible investor wallets.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["TREASURY_RETURN_DISTRIBUTED"] },
+    "event_category": { "type": "string", "enum": ["TREASURY"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["TREASURY_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "distribution_id": { "type": "string", "format": "uuid" },
+        "pool_id": { "type": "string", "format": "uuid" },
+        "allocation_id": { "type": "string", "format": "uuid" },
+        "investor_identity_id": { "type": "string", "format": "uuid" },
+        "return_amount_kes": { "type": "number", "exclusiveMinimum": 0 },
+        "krt_bonus_reward": { "type": "number", "minimum": 0 }
+      },
+      "required": ["distribution_id", "pool_id", "allocation_id", "investor_identity_id", "return_amount_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

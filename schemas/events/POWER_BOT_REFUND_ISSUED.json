@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "POWER_BOT_REFUND_ISSUED",
+  "description": "Event emitted when a fixture is canceled or postponed, issuing an automated KRT escrow refund (`Rule 9` double entry).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["POWER_BOT_REFUND_ISSUED"] },
+    "event_category": { "type": "string", "enum": ["POWER_BOT_X", "WALLET"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "prediction_id": { "type": "string" },
+        "user_id": { "type": "string" },
+        "fixture_id": { "type": "string" },
+        "refund_amount_krt": { "type": "number", "minimum": 0 },
+        "reason": { "type": "string" }
+      },
+      "required": ["prediction_id", "user_id", "fixture_id", "refund_amount_krt"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

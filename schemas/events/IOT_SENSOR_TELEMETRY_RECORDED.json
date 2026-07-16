@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IOT_SENSOR_TELEMETRY_RECORDED",
+  "description": "Event emitted when an agricultural IoT weather/soil sensor logs telemetry and triggers automated irrigation valves (`Section 28.5 & 34.4`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["IOT_SENSOR_TELEMETRY_RECORDED"] },
+    "event_category": { "type": "string", "enum": ["AGRICULTURE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["PARAMETRIC_CROP_INSURANCE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "telemetry_id": { "type": "string" },
+        "sensor_device_code": { "type": "string" },
+        "farm_id": { "type": "string" },
+        "soil_moisture_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "automated_action_triggered": { "type": "string" }
+      },
+      "required": ["telemetry_id", "sensor_device_code", "farm_id", "soil_moisture_pct"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

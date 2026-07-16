@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LEDGER_ENTRY_RECORDED",
+  "description": "Event emitted when the Universal Ledger Engine records an immutable double-entry movement.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["LEDGER_ENTRY_RECORDED"] },
+    "event_category": { "type": "string", "enum": ["TREASURY"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["LEDGER_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "transaction_type": { "type": "string" },
+        "asset_type": { "type": "string", "enum": ["KES", "KRT", "LOYALTY", "CREDIT", "INVESTMENT"] },
+        "debit_wallet_id": { "type": "string", "format": "uuid" },
+        "credit_wallet_id": { "type": "string", "format": "uuid" },
+        "amount": { "type": "number", "exclusiveMinimum": 0 },
+        "currency": { "type": "string" },
+        "audit_hash": { "type": "string" }
+      },
+      "required": ["transaction_id", "transaction_type", "asset_type", "debit_wallet_id", "credit_wallet_id", "amount", "currency", "audit_hash"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

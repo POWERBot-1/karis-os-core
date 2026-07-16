@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MARKETPLACE_SPLIT_SETTLED",
+  "description": "Event emitted when the Multi-Vendor B2B/B2C Marketplace Aggregation Engine executes split-commission double-entry transfers (`Section 14.3 & 17.2`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["MARKETPLACE_SPLIT_SETTLED"] },
+    "event_category": { "type": "string", "enum": ["PAYMENT"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["MULTI_VENDOR_MARKETPLACE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "cart_order_id": { "type": "string" },
+        "cart_order_code": { "type": "string" },
+        "total_cart_amount_kes": { "type": "number", "minimum": 0 },
+        "vendors_settled_count": { "type": "integer", "minimum": 1 },
+        "platform_commission_kes": { "type": "number", "minimum": 0 }
+      },
+      "required": ["cart_order_id", "cart_order_code", "total_cart_amount_kes", "vendors_settled_count", "platform_commission_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TAX_HOLIDAY_EXEMPTION_APPLIED",
+  "description": "Event emitted when the Declarative Tax Holiday & Dynamic Tariff Override Engine applies statutory tax exemptions (`Section 43.1 & 43.2`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["TAX_HOLIDAY_EXEMPTION_APPLIED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["TAX_OVERRIDE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "holiday_id": { "type": "string" },
+        "holiday_code": { "type": "string" },
+        "product_category": { "type": "string" },
+        "original_tax_pct": { "type": "number", "minimum": 0 },
+        "override_tax_pct": { "type": "number", "minimum": 0 },
+        "statutory_rationale": { "type": "string" }
+      },
+      "required": ["holiday_id", "holiday_code", "product_category", "original_tax_pct", "override_tax_pct", "statutory_rationale"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DELIVERY_COMPLETED",
+  "description": "Event emitted when a delivery rider confirms completion of an order delivery.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["DELIVERY_COMPLETED"] },
+    "event_category": { "type": "string", "enum": ["DELIVERY"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["LOGISTICS_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "delivery_id": { "type": "string", "format": "uuid" },
+        "order_id": { "type": "string", "format": "uuid" },
+        "rider_identity_id": { "type": "string", "format": "uuid" },
+        "recipient_identity_id": { "type": "string", "format": "uuid" },
+        "delivery_fee_kes": { "type": "number", "minimum": 0 },
+        "gps_confirmation": { "type": "string" },
+        "status": { "type": "string", "enum": ["COMPLETED"] }
+      },
+      "required": ["delivery_id", "order_id", "rider_identity_id", "recipient_identity_id", "delivery_fee_kes", "status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

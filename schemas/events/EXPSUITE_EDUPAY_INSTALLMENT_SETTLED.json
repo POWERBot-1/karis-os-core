@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EXPSUITE_EDUPAY_INSTALLMENT_SETTLED",
+  "description": "Event emitted when a student tuition fee installment is settled, awarding +150 KRT-EDU campus cafeteria reward tokens (`Rule 7 & Rule 9`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["EXPSUITE_EDUPAY_INSTALLMENT_SETTLED"] },
+    "event_category": { "type": "string", "enum": ["EDU_PAY", "PAYMENT"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "installment_id": { "type": "string" },
+        "plan_id": { "type": "string" },
+        "student_identity_id": { "type": "string" },
+        "amount_kes": { "type": "number", "minimum": 0 },
+        "bonus_krt_edu_awarded": { "type": "number", "minimum": 0 }
+      },
+      "required": ["installment_id", "plan_id", "student_identity_id", "amount_kes", "bonus_krt_edu_awarded"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SYSTEM_TELEMETRY_ALERT_TRIGGERED",
+  "description": "Event emitted when the Prometheus Observability Engine detects API latency or transaction anomalies.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["SYSTEM_TELEMETRY_ALERT_TRIGGERED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["PROMETHEUS_OBSERVABILITY_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "metric_name": { "type": "string" },
+        "threshold_exceeded": { "type": "number" },
+        "current_value": { "type": "number" },
+        "severity": { "type": "string", "enum": ["WARNING", "CRITICAL"] }
+      },
+      "required": ["metric_name", "threshold_exceeded", "current_value", "severity"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

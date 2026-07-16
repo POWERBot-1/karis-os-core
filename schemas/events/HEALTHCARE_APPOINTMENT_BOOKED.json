@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HEALTHCARE_APPOINTMENT_BOOKED",
+  "description": "Event emitted when a patient schedules a medical consultation or teleconsultation.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["HEALTHCARE_APPOINTMENT_BOOKED"] },
+    "event_category": { "type": "string", "enum": ["HEALTHCARE"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["HEALTHCARE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "appointment_id": { "type": "string", "format": "uuid" },
+        "facility_id": { "type": "string", "format": "uuid" },
+        "patient_id": { "type": "string", "format": "uuid" },
+        "doctor_identity_id": { "type": "string", "format": "uuid" },
+        "appointment_type": { "type": "string", "enum": ["IN_PERSON", "TELEMEDICINE", "HOME_VISIT", "EMERGENCY"] },
+        "scheduled_time": { "type": "string", "format": "date-time" },
+        "consultation_fee_kes": { "type": "number", "minimum": 0 }
+      },
+      "required": ["appointment_id", "facility_id", "patient_id", "doctor_identity_id", "appointment_type", "scheduled_time", "consultation_fee_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

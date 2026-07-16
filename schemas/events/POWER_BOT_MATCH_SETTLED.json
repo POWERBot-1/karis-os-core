@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "POWER_BOT_MATCH_SETTLED",
+  "description": "Event emitted when a fixture or match is settled, triggering automated escrow release and reputation updates.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["POWER_BOT_MATCH_SETTLED"] },
+    "event_category": { "type": "string", "enum": ["POWER_BOT_X", "PREDICTION"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "fixture_id": { "type": "string" },
+        "settlement_outcome": { "type": "string" },
+        "total_winning_predictions": { "type": "integer", "minimum": 0 },
+        "total_payout_krt": { "type": "number", "minimum": 0 },
+        "reputation_points_awarded": { "type": "integer" }
+      },
+      "required": ["fixture_id", "settlement_outcome", "total_winning_predictions", "total_payout_krt"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

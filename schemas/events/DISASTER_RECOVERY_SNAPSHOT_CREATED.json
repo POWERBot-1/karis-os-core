@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DISASTER_RECOVERY_SNAPSHOT_CREATED",
+  "description": "Event emitted when the Disaster Recovery Engine takes a verified cryptographic point-in-time snapshot (PITR).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["DISASTER_RECOVERY_SNAPSHOT_CREATED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["DISASTER_RECOVERY_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "snapshot_id": { "type": "string" },
+        "snapshot_type": { "type": "string" },
+        "latest_event_id": { "type": "string" },
+        "latest_ledger_hash": { "type": "string" },
+        "snapshot_file_path": { "type": "string" },
+        "sha256_checksum": { "type": "string" }
+      },
+      "required": ["snapshot_id", "snapshot_type", "latest_event_id", "latest_ledger_hash", "snapshot_file_path", "sha256_checksum"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

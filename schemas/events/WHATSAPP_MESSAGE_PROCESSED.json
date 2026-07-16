@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WHATSAPP_MESSAGE_PROCESSED",
+  "description": "Event emitted when the WhatsApp Cloud API Interactive Bot processes an inbound consumer/farmer command.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["WHATSAPP_MESSAGE_PROCESSED"] },
+    "event_category": { "type": "string", "enum": ["COMMERCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["WHATSAPP_CLOUD_BOT_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "message_id": { "type": "string" },
+        "sender_phone": { "type": "string" },
+        "inbound_text": { "type": "string" },
+        "detected_intent": { "type": "string" },
+        "bot_response_text": { "type": "string" }
+      },
+      "required": ["message_id", "sender_phone", "inbound_text", "detected_intent", "bot_response_text"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

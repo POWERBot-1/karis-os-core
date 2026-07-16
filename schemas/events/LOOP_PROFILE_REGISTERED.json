@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LOOP_PROFILE_REGISTERED",
+  "description": "Event emitted when a user, creator, or verified business registers a profile on Karis Loop (`Section 54`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["LOOP_PROFILE_REGISTERED"] },
+    "event_category": { "type": "string", "enum": ["SOCIAL"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "profile_id": { "type": "string" },
+        "user_identity_id": { "type": "string" },
+        "handle_username": { "type": "string" },
+        "display_name": { "type": "string" },
+        "account_type": { "type": "string" },
+        "verified_status": { "type": "string" }
+      },
+      "required": ["profile_id", "user_identity_id", "handle_username"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

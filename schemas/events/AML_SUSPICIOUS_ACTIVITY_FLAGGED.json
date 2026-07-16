@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AML_SUSPICIOUS_ACTIVITY_FLAGGED",
+  "description": "Event emitted when the Governance & Compliance Engine flags structuring or watchlist anomalies and issues a Suspicious Activity Report (SAR).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["AML_SUSPICIOUS_ACTIVITY_FLAGGED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["GOVERNANCE_COMPLIANCE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "sar_id": { "type": "string" },
+        "sar_code": { "type": "string" },
+        "flagged_identity_id": { "type": "string" },
+        "triggering_rule_code": { "type": "string" },
+        "flagged_amount_kes": { "type": "number" },
+        "risk_score": { "type": "number" },
+        "status": { "type": "string" }
+      },
+      "required": ["sar_id", "sar_code", "flagged_identity_id", "triggering_rule_code", "flagged_amount_kes", "status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

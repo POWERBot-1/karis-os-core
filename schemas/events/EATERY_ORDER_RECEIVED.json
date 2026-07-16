@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EATERY_ORDER_RECEIVED",
+  "description": "Event emitted when a restaurant or cloud kitchen receives a meal order in the Kitchen Display System (KDS).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["EATERY_ORDER_RECEIVED"] },
+    "event_category": { "type": "string", "enum": ["COMMERCE"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["EATERY_KDS_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "kds_id": { "type": "string", "format": "uuid" },
+        "eatery_id": { "type": "string", "format": "uuid" },
+        "order_id": { "type": "string", "format": "uuid" },
+        "table_number": { "type": "string" },
+        "preparation_state": { "type": "string", "enum": ["RECEIVED", "PREPARING"] }
+      },
+      "required": ["kds_id", "eatery_id", "order_id", "preparation_state"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

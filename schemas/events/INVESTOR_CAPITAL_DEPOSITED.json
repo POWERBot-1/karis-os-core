@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "INVESTOR_CAPITAL_DEPOSITED",
+  "description": "Event emitted when a KYC-verified investor deposits capital into a KARIS OS investment pool.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["INVESTOR_CAPITAL_DEPOSITED"] },
+    "event_category": { "type": "string", "enum": ["TREASURY"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["INVESTOR_CAPITAL_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "allocation_id": { "type": "string", "format": "uuid" },
+        "pool_id": { "type": "string", "format": "uuid" },
+        "investor_identity_id": { "type": "string", "format": "uuid" },
+        "capital_invested_kes": { "type": "number", "exclusiveMinimum": 0 },
+        "investment_units_owned": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "required": ["allocation_id", "pool_id", "investor_identity_id", "capital_invested_kes", "investment_units_owned"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

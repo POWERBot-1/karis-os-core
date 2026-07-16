@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EVENT_SOURCING_REPLAY_COMPLETED",
+  "description": "Event emitted when the Event Sourcing Engine reconstructs system state by replaying immutable domain events.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["EVENT_SOURCING_REPLAY_COMPLETED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["EVENT_SOURCING_REPLAY_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "replay_id": { "type": "string" },
+        "events_replayed_count": { "type": "integer", "minimum": 0 },
+        "target_timestamp": { "type": "string" },
+        "reconstructed_wallets_count": { "type": "integer", "minimum": 0 },
+        "status": { "type": "string", "enum": ["SUCCESS"] }
+      },
+      "required": ["replay_id", "events_replayed_count", "reconstructed_wallets_count", "status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

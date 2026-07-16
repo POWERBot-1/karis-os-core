@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NOTIFICATION_DISPATCHED",
+  "description": "Event emitted when the Declarative Notification Template Engine dispatches SMS, WhatsApp, or Email alerts to stakeholders.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["NOTIFICATION_DISPATCHED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["NOTIFICATION_TEMPLATE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "dispatch_id": { "type": "string" },
+        "template_code": { "type": "string" },
+        "recipient_identity_id": { "type": "string" },
+        "channel_type": { "type": "string" },
+        "delivery_status": { "type": "string" }
+      },
+      "required": ["dispatch_id", "template_code", "recipient_identity_id", "channel_type", "delivery_status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

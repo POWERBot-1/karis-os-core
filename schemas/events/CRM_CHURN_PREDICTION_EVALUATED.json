@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM_CHURN_PREDICTION_EVALUATED",
+  "description": "Event emitted when the AI CRM Intelligence Engine evaluates customer lifetime value (LTV) and churn risk.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["CRM_CHURN_PREDICTION_EVALUATED"] },
+    "event_category": { "type": "string", "enum": ["IDENTITY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["AI_CRM_INTELLIGENCE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "evaluation_id": { "type": "string" },
+        "identity_id": { "type": "string" },
+        "calculated_lifetime_value_kes": { "type": "number", "minimum": 0 },
+        "predicted_churn_risk_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "customer_segment_tier": { "type": "string" },
+        "retention_campaign_triggered": { "type": "boolean" }
+      },
+      "required": ["evaluation_id", "identity_id", "calculated_lifetime_value_kes", "predicted_churn_risk_pct", "customer_segment_tier"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

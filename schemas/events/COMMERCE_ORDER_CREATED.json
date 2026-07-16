@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COMMERCE_ORDER_CREATED",
+  "description": "Event emitted when a customer or sales agent creates a new order in KARIS OS.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["COMMERCE_ORDER_CREATED"] },
+    "event_category": { "type": "string", "enum": ["COMMERCE"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["COMMERCE_ENGINE", "POS_ENGINE", "AGRICULTURE_MARKETPLACE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "order_id": { "type": "string", "format": "uuid" },
+        "order_number": { "type": "string" },
+        "customer_identity_id": { "type": "string", "format": "uuid" },
+        "supplier_identity_id": { "type": "string", "format": "uuid" },
+        "delivery_method": { "type": "string", "enum": ["DELIVERY_RIDER", "SCHEDULED_PICKUP", "IN_STORE"] },
+        "total_kes_amount": { "type": "number", "minimum": 0 },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "product_id": { "type": "string", "format": "uuid" },
+              "sku": { "type": "string" },
+              "quantity": { "type": "number", "minimum": 0.0001 },
+              "unit_price": { "type": "number", "minimum": 0 },
+              "total_price": { "type": "number", "minimum": 0 }
+            },
+            "required": ["product_id", "sku", "quantity", "unit_price", "total_price"]
+          }
+        }
+      },
+      "required": ["order_id", "order_number", "customer_identity_id", "supplier_identity_id", "total_kes_amount", "items"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

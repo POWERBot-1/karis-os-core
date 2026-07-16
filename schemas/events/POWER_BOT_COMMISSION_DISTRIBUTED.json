@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "POWER_BOT_COMMISSION_DISTRIBUTED",
+  "description": "Event emitted when KRT commission is distributed to an agent in the Autonomous Agent Network.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["POWER_BOT_COMMISSION_DISTRIBUTED"] },
+    "event_category": { "type": "string", "enum": ["POWER_BOT_X", "PAYMENT"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "agent_user_id": { "type": "string" },
+        "referred_user_id": { "type": "string" },
+        "prediction_id": { "type": "string" },
+        "commission_amount_krt": { "type": "number", "minimum": 0 },
+        "commission_type": { "type": "string", "enum": ["ENTRY_REFERRAL", "WINNING_BONUS", "COACHING_TIER"] }
+      },
+      "required": ["agent_user_id", "referred_user_id", "commission_amount_krt"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

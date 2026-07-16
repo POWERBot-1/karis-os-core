@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "K8S_CONTAINER_REPLICAS_SCALED",
+  "description": "Event emitted when the Multi-Cloud Kubernetes Autonomous Container Orchestration Engine scales pod replicas via HPA (`Section 40.3 & 40.4`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["K8S_CONTAINER_REPLICAS_SCALED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["KUBERNETES_HPA_AUTOSCALING_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "hpa_log_id": { "type": "string" },
+        "cluster_node_code": { "type": "string" },
+        "target_microservice_deployment": { "type": "string" },
+        "previous_replicas": { "type": "integer", "minimum": 1 },
+        "new_replicas": { "type": "integer", "minimum": 1 },
+        "cpu_utilization_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "request_velocity_ops_per_sec": { "type": "number", "minimum": 0 },
+        "scaling_action": { "type": "string" }
+      },
+      "required": ["hpa_log_id", "cluster_node_code", "target_microservice_deployment", "previous_replicas", "new_replicas", "cpu_utilization_pct", "scaling_action"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

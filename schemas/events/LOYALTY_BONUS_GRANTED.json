@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LOYALTY_BONUS_GRANTED",
+  "description": "Event emitted when the Loyalty & Incentive Engine grants points or KRT tokens under an active promotional campaign.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["LOYALTY_BONUS_GRANTED"] },
+    "event_category": { "type": "string", "enum": ["TREASURY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["LOYALTY_INCENTIVE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "grant_id": { "type": "string" },
+        "campaign_id": { "type": "string" },
+        "recipient_identity_id": { "type": "string" },
+        "reward_type": { "type": "string" },
+        "points_or_tokens_awarded": { "type": "number", "exclusiveMinimum": 0 },
+        "trigger_reason": { "type": "string" }
+      },
+      "required": ["grant_id", "campaign_id", "recipient_identity_id", "reward_type", "points_or_tokens_awarded", "trigger_reason"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

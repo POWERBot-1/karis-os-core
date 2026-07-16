@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "REFERRAL_CONFIRMED",
+  "description": "Event emitted when a referred customer completes their first purchase, unlocking sales referral KRT incentives.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["REFERRAL_CONFIRMED"] },
+    "event_category": { "type": "string", "enum": ["COMMERCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["SALES_FORCE_AUTOMATION_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "referral_id": { "type": "string" },
+        "agent_id": { "type": "string" },
+        "referred_identity_id": { "type": "string" },
+        "referral_code": { "type": "string" },
+        "krt_bonus_granted": { "type": "number", "minimum": 0 }
+      },
+      "required": ["referral_id", "agent_id", "referred_identity_id", "referral_code", "krt_bonus_granted"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

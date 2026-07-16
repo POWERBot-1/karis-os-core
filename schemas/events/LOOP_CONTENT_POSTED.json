@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LOOP_CONTENT_POSTED",
+  "description": "Event emitted when short-form video, story, or shoppable product post is published on Karis Loop (`Rule 6`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["LOOP_CONTENT_POSTED"] },
+    "event_category": { "type": "string", "enum": ["SOCIAL"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "post_id": { "type": "string" },
+        "creator_identity_id": { "type": "string" },
+        "community_id": { "type": "string" },
+        "content_type": { "type": "string" },
+        "caption_text": { "type": "string" },
+        "linked_product_id": { "type": "string" },
+        "shoppable_price_kes": { "type": "number", "minimum": 0 }
+      },
+      "required": ["post_id", "creator_identity_id", "content_type"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

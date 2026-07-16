@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "POWER_BOT_NOTIFICATION_DELIVERED",
+  "description": "Event emitted when AI-generated WhatsApp Status poster or Match Card notification is delivered.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["POWER_BOT_NOTIFICATION_DELIVERED"] },
+    "event_category": { "type": "string", "enum": ["POWER_BOT_X"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string" },
+        "channel": { "type": "string", "enum": ["WHATSAPP", "ANDROID_PUSH", "WEB_SOCKET"] },
+        "content_type": { "type": "string", "enum": ["STATUS_POSTER", "MATCH_CARD", "COUNTDOWN_TIMER", "COMMUNITY_POLL", "DAILY_SUMMARY"] },
+        "language": { "type": "string" },
+        "delivery_status": { "type": "string", "enum": ["DELIVERED", "READ", "ENGAGED"] }
+      },
+      "required": ["user_id", "channel", "content_type"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

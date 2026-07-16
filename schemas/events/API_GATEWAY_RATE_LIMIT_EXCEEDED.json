@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "API_GATEWAY_RATE_LIMIT_EXCEEDED",
+  "description": "Event emitted when the API Gateway Rate Limiting Middleware blocks suspicious request velocity or brute-force attempts.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["API_GATEWAY_RATE_LIMIT_EXCEEDED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["API_GATEWAY_SECURITY_MIDDLEWARE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "client_ip": { "type": "string" },
+        "endpoint_requested": { "type": "string" },
+        "rate_limit_bucket": { "type": "string" },
+        "requests_seen_in_window": { "type": "integer" }
+      },
+      "required": ["client_ip", "endpoint_requested", "rate_limit_bucket", "requests_seen_in_window"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OPEN_BANKING_CONSENT_GRANTED",
+  "description": "Event emitted when a customer or institution grants Open Banking API (PSD2) consent to connect regional bank accounts.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["OPEN_BANKING_CONSENT_GRANTED"] },
+    "event_category": { "type": "string", "enum": ["IDENTITY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["CBDC_OPEN_BANKING_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "consent_id": { "type": "string" },
+        "identity_id": { "type": "string" },
+        "bank_institution_id": { "type": "string" },
+        "bank_name": { "type": "string" },
+        "account_masked": { "type": "string" },
+        "consent_type": { "type": "string" }
+      },
+      "required": ["consent_id", "identity_id", "bank_institution_id", "bank_name", "consent_type"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

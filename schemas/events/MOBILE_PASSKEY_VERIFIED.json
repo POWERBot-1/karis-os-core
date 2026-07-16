@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MOBILE_PASSKEY_VERIFIED",
+  "description": "Event emitted when the Mobile Super App verifies a FIDO2 / WebAuthn cryptographic passkey challenge, unlocking gamified campaign bonuses (`Section 41.2 & 26.5`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["MOBILE_PASSKEY_VERIFIED"] },
+    "event_category": { "type": "string", "enum": ["IDENTITY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["MOBILE_PASSKEY_PUSH_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "passkey_id": { "type": "string" },
+        "credential_id": { "type": "string" },
+        "identity_id": { "type": "string" },
+        "device_platform": { "type": "string" },
+        "sign_count": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["passkey_id", "credential_id", "identity_id", "device_platform", "sign_count"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

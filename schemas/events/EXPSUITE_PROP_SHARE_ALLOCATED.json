@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EXPSUITE_PROP_SHARE_ALLOCATED",
+  "description": "Event emitted when an investor is allocated fractional commercial property shares in KARIS PROP-SHARE.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["EXPSUITE_PROP_SHARE_ALLOCATED"] },
+    "event_category": { "type": "string", "enum": ["PROP_SHARE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "allocation_id": { "type": "string" },
+        "syndication_id": { "type": "string" },
+        "investor_identity_id": { "type": "string" },
+        "shares_owned": { "type": "integer", "minimum": 0 },
+        "total_invested_kes": { "type": "number", "minimum": 0 }
+      },
+      "required": ["allocation_id", "syndication_id", "investor_identity_id", "shares_owned"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

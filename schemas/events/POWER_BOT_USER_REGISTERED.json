@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "POWER_BOT_USER_REGISTERED",
+  "description": "Event emitted when a user discovers and registers for Power BOT X via WhatsApp, Android, or Web.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["POWER_BOT_USER_REGISTERED"] },
+    "event_category": { "type": "string", "enum": ["POWER_BOT_X", "IDENTITY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string" },
+        "phone_number": { "type": "string" },
+        "discovery_channel": { "type": "string", "enum": ["WHATSAPP", "ANDROID", "IOS", "WEB"] },
+        "referring_agent_id": { "type": "string" },
+        "initial_reputation_score": { "type": "integer" }
+      },
+      "required": ["user_id", "phone_number", "discovery_channel"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

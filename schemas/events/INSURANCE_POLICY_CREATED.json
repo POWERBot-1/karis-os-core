@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "INSURANCE_POLICY_CREATED",
+  "description": "Event emitted when a parametric crop, livestock, or health insurance policy is issued in KARIS OS (`Section 34.4`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["INSURANCE_POLICY_CREATED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["PARAMETRIC_CROP_INSURANCE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "policy_id": { "type": "string" },
+        "policy_code": { "type": "string" },
+        "insured_identity_id": { "type": "string" },
+        "policy_type": { "type": "string" },
+        "premium_paid_kes": { "type": "number", "minimum": 0 },
+        "max_coverage_payout_kes": { "type": "number", "minimum": 0 }
+      },
+      "required": ["policy_id", "policy_code", "insured_identity_id", "policy_type", "premium_paid_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

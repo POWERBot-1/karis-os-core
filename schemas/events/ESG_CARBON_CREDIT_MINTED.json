@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ESG_CARBON_CREDIT_MINTED",
+  "description": "Event emitted when the ESG & Carbon Footprint Engine awards KRT-GREEN tokens for carbon-neutral or low-emission agricultural production/logistics.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["ESG_CARBON_CREDIT_MINTED"] },
+    "event_category": { "type": "string", "enum": ["TREASURY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["ESG_CARBON_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "esg_record_id": { "type": "string" },
+        "target_resource_id": { "type": "string" },
+        "target_resource_type": { "type": "string" },
+        "total_carbon_footprint_kg_co2": { "type": "number" },
+        "sustainability_rating": { "type": "string" },
+        "krt_green_tokens_minted": { "type": "number", "minimum": 0 }
+      },
+      "required": ["esg_record_id", "target_resource_id", "target_resource_type", "total_carbon_footprint_kg_co2", "sustainability_rating", "krt_green_tokens_minted"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

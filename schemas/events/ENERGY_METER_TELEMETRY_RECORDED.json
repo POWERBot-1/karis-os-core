@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ENERGY_METER_TELEMETRY_RECORDED",
+  "description": "Event emitted when IoT smart meter telemetry arrives reporting daily solar kWh generation, battery charge %, and soil moisture.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["ENERGY_METER_TELEMETRY_RECORDED"] },
+    "event_category": { "type": "string", "enum": ["ENERGY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "telemetry_id": { "type": "string" },
+        "installation_id": { "type": "string" },
+        "kwh_generated_today": { "type": "number", "minimum": 0 },
+        "kwh_consumed_today": { "type": "number", "minimum": 0 },
+        "battery_voltage_v": { "type": "number", "minimum": 0 },
+        "soil_moisture_pct": { "type": "number", "minimum": 0 },
+        "microgrid_feed_in_kwh": { "type": "number", "minimum": 0 }
+      },
+      "required": ["telemetry_id", "installation_id", "kwh_generated_today"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

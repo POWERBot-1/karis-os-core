@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HEALTHCARE_PRESCRIPTION_CREATED",
+  "description": "Event emitted when a doctor issues a digital prescription linked to an EMR clinical note.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["HEALTHCARE_PRESCRIPTION_CREATED"] },
+    "event_category": { "type": "string", "enum": ["HEALTHCARE"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["HEALTHCARE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "prescription_id": { "type": "string", "format": "uuid" },
+        "emr_note_id": { "type": "string", "format": "uuid" },
+        "patient_id": { "type": "string", "format": "uuid" },
+        "doctor_identity_id": { "type": "string", "format": "uuid" },
+        "medication_product_id": { "type": "string", "format": "uuid" },
+        "quantity_prescribed": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "required": ["prescription_id", "emr_note_id", "patient_id", "doctor_identity_id", "medication_product_id", "quantity_prescribed"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

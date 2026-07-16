@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AGRICULTURE_HARVEST_COMPLETED",
+  "description": "Event emitted when a farmer or cooperative logs a completed crop harvest in KARIS FARM.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["AGRICULTURE_HARVEST_COMPLETED"] },
+    "event_category": { "type": "string", "enum": ["AGRICULTURE"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["KARIS_FARM_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "harvest_id": { "type": "string", "format": "uuid" },
+        "farm_id": { "type": "string", "format": "uuid" },
+        "plan_id": { "type": "string", "format": "uuid" },
+        "crop_type": { "type": "string" },
+        "quantity_kg": { "type": "number", "exclusiveMinimum": 0 },
+        "quality_grade": { "type": "string", "enum": ["GRADE_A", "GRADE_B", "REJECTED"] },
+        "batch_number": { "type": "string" },
+        "traceability_qr_code": { "type": "string" }
+      },
+      "required": ["harvest_id", "farm_id", "plan_id", "crop_type", "quantity_kg", "quality_grade", "batch_number", "traceability_qr_code"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

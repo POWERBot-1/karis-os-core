@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CROSS_MERCHANT_NETWORK_REDEMPTION_SETTLED",
+  "description": "Event emitted when KRT tokens earned at one merchant are redeemed at another with inter-org double-entry reconciliation (`Section 18.2 & 6.1`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["CROSS_MERCHANT_NETWORK_REDEMPTION_SETTLED"] },
+    "event_category": { "type": "string", "enum": ["CURRENCY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["LOYALTY_NETWORK_TIER_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "redemption_id": { "type": "string" },
+        "redemption_code": { "type": "string" },
+        "customer_identity_id": { "type": "string" },
+        "source_organization_id": { "type": "string" },
+        "target_organization_id": { "type": "string" },
+        "krt_tokens_redeemed": { "type": "number", "exclusiveMinimum": 0 },
+        "kes_equivalent_value": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "required": ["redemption_id", "redemption_code", "customer_identity_id", "source_organization_id", "target_organization_id", "krt_tokens_redeemed", "kes_equivalent_value"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LOGISTICS_RIDER_ASSIGNED",
+  "description": "Event emitted when the AI Dispatch Engine matches and assigns a delivery partner to an order.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["LOGISTICS_RIDER_ASSIGNED"] },
+    "event_category": { "type": "string", "enum": ["DELIVERY"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["AI_DISPATCH_ENGINE", "LOGISTICS_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "dispatch_id": { "type": "string", "format": "uuid" },
+        "order_id": { "type": "string", "format": "uuid" },
+        "rider_identity_id": { "type": "string", "format": "uuid" },
+        "vehicle_type": { "type": "string" },
+        "estimated_distance_km": { "type": "number", "minimum": 0 },
+        "delivery_fee_kes": { "type": "number", "minimum": 0 }
+      },
+      "required": ["dispatch_id", "order_id", "rider_identity_id", "estimated_distance_km", "delivery_fee_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OFFLINE_BATCH_SYNCHRONIZED",
+  "description": "Event emitted when the Mobile App & POS Offline Synchronization Engine reconciles offline transactions and executes double-entry transfers (`Section 41.5`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["OFFLINE_BATCH_SYNCHRONIZED"] },
+    "event_category": { "type": "string", "enum": ["COMMERCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["OFFLINE_SYNCHRONIZATION_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "offline_batch_id": { "type": "string" },
+        "device_terminal_code": { "type": "string" },
+        "total_transactions_in_batch": { "type": "integer", "minimum": 1 },
+        "sync_status": { "type": "string" }
+      },
+      "required": ["offline_batch_id", "device_terminal_code", "total_transactions_in_batch", "sync_status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

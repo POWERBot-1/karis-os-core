@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PAYMENT_CONFIRMED",
+  "description": "Event emitted when a payment (M-Pesa, Bank, Mixed KES+KRT) is confirmed.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["PAYMENT_CONFIRMED"] },
+    "event_category": { "type": "string", "enum": ["PAYMENT"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["PAYMENT_ENGINE", "API_GATEWAY"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "payment_id": { "type": "string", "format": "uuid" },
+        "order_id": { "type": "string", "format": "uuid" },
+        "payer_identity_id": { "type": "string", "format": "uuid" },
+        "payment_method": { "type": "string", "enum": ["M_PESA", "BANK_TRANSFER", "CARD", "CASH", "KES_WALLET", "MIXED_PAYMENT"] },
+        "external_reference": { "type": "string" },
+        "amount_kes": { "type": "number", "minimum": 0 },
+        "amount_krt": { "type": "number", "minimum": 0 },
+        "status": { "type": "string", "enum": ["PAYMENT_CONFIRMED"] }
+      },
+      "required": ["payment_id", "order_id", "payer_identity_id", "payment_method", "amount_kes", "status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

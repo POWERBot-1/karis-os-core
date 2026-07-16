@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BI_EXECUTIVE_REPORT_COMPILED",
+  "description": "Event emitted when the Unified BI Executive & Leadership Dashboard Aggregation Pipeline Engine compiles multi-vertical C-suite intelligence reports (`Section 27.2 & 27.3`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["BI_EXECUTIVE_REPORT_COMPILED"] },
+    "event_category": { "type": "string", "enum": ["TREASURY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["BI_EXECUTIVE_AGGREGATION_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "snapshot_id": { "type": "string" },
+        "dashboard_category": { "type": "string" },
+        "total_orders_tracked": { "type": "integer", "minimum": 0 },
+        "total_revenue_kes": { "type": "number", "minimum": 0 },
+        "treasury_reserve_ratio_pct": { "type": "number", "minimum": 0 }
+      },
+      "required": ["snapshot_id", "dashboard_category", "total_orders_tracked", "total_revenue_kes", "treasury_reserve_ratio_pct"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

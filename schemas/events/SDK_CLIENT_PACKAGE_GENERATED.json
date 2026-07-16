@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SDK_CLIENT_PACKAGE_GENERATED",
+  "description": "Event emitted when the Enterprise API SDK Client & Scaffolding Generator Engine compiles type-hinted Python or TypeScript client SDK packages (`Section 46.2`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["SDK_CLIENT_PACKAGE_GENERATED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["SDK_GENERATOR_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "generation_id": { "type": "string" },
+        "sdk_language": { "type": "string" },
+        "platform_version": { "type": "string" },
+        "total_endpoints_wrapped": { "type": "integer", "minimum": 1 },
+        "package_filename": { "type": "string" }
+      },
+      "required": ["generation_id", "sdk_language", "platform_version", "total_endpoints_wrapped", "package_filename"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

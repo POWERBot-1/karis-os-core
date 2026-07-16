@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SALES_VISIT_COMPLETED",
+  "description": "Event emitted when a field sales representative completes an outreach or onboarding visit.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["SALES_VISIT_COMPLETED"] },
+    "event_category": { "type": "string", "enum": ["COMMERCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["SALES_FORCE_AUTOMATION_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "visit_id": { "type": "string" },
+        "agent_id": { "type": "string" },
+        "customer_identity_id": { "type": "string" },
+        "visit_type": { "type": "string" },
+        "notes": { "type": "string" },
+        "order_id": { "type": "string" }
+      },
+      "required": ["visit_id", "agent_id", "visit_type"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

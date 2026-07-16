@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "POWER_BOT_REWARD_UNLOCKED",
+  "description": "Event emitted when a user unlocks a reputation badge, promotional KRT grant, or staking reward.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["POWER_BOT_REWARD_UNLOCKED"] },
+    "event_category": { "type": "string", "enum": ["POWER_BOT_X", "TREASURY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string" },
+        "reward_type": { "type": "string", "enum": ["REPUTATION_TIER_UPGRADE", "STAKING_BONUS", "COMMUNITY_LEAGUE_PRIZE"] },
+        "reward_amount_krt": { "type": "number", "minimum": 0 },
+        "reputation_points_added": { "type": "integer" },
+        "badge_name": { "type": "string" }
+      },
+      "required": ["user_id", "reward_type", "reward_amount_krt"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

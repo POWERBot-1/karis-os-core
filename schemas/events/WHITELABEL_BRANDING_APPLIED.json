@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WHITELABEL_BRANDING_APPLIED",
+  "description": "Event emitted when a white-label client profile (`Safaricom`, `Equity Bank`, `PalPlus`) is applied to KARIS OS (`Rule 6 & Rule 7`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["WHITELABEL_BRANDING_APPLIED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "profile_code": { "type": "string" },
+        "platform_name": { "type": "string" },
+        "primary_color_hex": { "type": "string" },
+        "default_currency": { "type": "string" },
+        "active_payment_link_id": { "type": "string" }
+      },
+      "required": ["profile_code", "platform_name", "primary_color_hex", "default_currency"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

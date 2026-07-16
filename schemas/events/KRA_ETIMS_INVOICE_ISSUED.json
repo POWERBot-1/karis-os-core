@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KRA_ETIMS_INVOICE_ISSUED",
+  "description": "Event emitted when the Governance Engine generates a digital KRA eTIMS tax invoice per commercial checkout.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["KRA_ETIMS_INVOICE_ISSUED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["GOVERNANCE_COMPLIANCE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "etims_invoice_id": { "type": "string" },
+        "etims_control_number": { "type": "string" },
+        "order_id": { "type": "string" },
+        "seller_kra_pin": { "type": "string" },
+        "taxable_amount_kes": { "type": "number", "minimum": 0 },
+        "vat_amount_kes": { "type": "number", "minimum": 0 },
+        "total_invoice_amount_kes": { "type": "number", "minimum": 0 }
+      },
+      "required": ["etims_invoice_id", "etims_control_number", "order_id", "seller_kra_pin", "taxable_amount_kes", "vat_amount_kes", "total_invoice_amount_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

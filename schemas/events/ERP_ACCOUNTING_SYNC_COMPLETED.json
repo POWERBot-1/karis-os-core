@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ERP_ACCOUNTING_SYNC_COMPLETED",
+  "description": "Event emitted when the ERP/Accounting Sync Engine pushes confirmed double-entry ledger batches to external accounting systems (SAP S/4HANA, QuickBooks).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["ERP_ACCOUNTING_SYNC_COMPLETED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["ERP_ACCOUNTING_SYNC_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "sync_id": { "type": "string" },
+        "target_system_name": { "type": "string" },
+        "fiscal_period": { "type": "string" },
+        "total_ledger_entries_synced": { "type": "integer", "minimum": 0 },
+        "total_debit_volume_kes": { "type": "number", "minimum": 0 },
+        "sync_status": { "type": "string" }
+      },
+      "required": ["sync_id", "target_system_name", "fiscal_period", "total_ledger_entries_synced", "sync_status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

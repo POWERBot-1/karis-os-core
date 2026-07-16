@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TOKEN_MINTED",
+  "description": "Event emitted when the Treasury Engine mints KARIS Tokens (KRT) based on configured rules.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["TOKEN_MINTED"] },
+    "event_category": { "type": "string", "enum": ["CURRENCY"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["TREASURY_ENGINE", "RULE_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "token_operation_id": { "type": "string", "format": "uuid" },
+        "treasury_reserve_id": { "type": "string", "format": "uuid" },
+        "target_wallet_id": { "type": "string", "format": "uuid" },
+        "recipient_identity_id": { "type": "string", "format": "uuid" },
+        "trigger_reason": { "type": "string", "enum": ["PURCHASE_COMPLETED", "DELIVERY_COMPLETED", "REFERRAL_CONFIRMED", "LOAN_REPAID"] },
+        "amount": { "type": "number", "exclusiveMinimum": 0 },
+        "audit_hash": { "type": "string" }
+      },
+      "required": ["token_operation_id", "treasury_reserve_id", "target_wallet_id", "recipient_identity_id", "trigger_reason", "amount", "audit_hash"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

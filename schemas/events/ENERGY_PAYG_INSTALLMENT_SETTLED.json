@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ENERGY_PAYG_INSTALLMENT_SETTLED",
+  "description": "Event emitted when a user pays their PAYG solar token unlocking fee via KRT or mixed KES payment (`Rule 2 & Rule 9`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["ENERGY_PAYG_INSTALLMENT_SETTLED"] },
+    "event_category": { "type": "string", "enum": ["ENERGY", "PAYMENT"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "installment_id": { "type": "string" },
+        "installation_id": { "type": "string" },
+        "payer_user_id": { "type": "string" },
+        "amount_krt": { "type": "number", "minimum": 0 },
+        "amount_kes": { "type": "number", "minimum": 0 },
+        "days_unlocked": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["installment_id", "installation_id", "payer_user_id", "days_unlocked"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ESCROW_DISPUTE_RESOLVED",
+  "description": "Event emitted when the Unified Escrow Clearing House & Dispute Resolution Engine resolves multi-party disputes and splits held escrow (`Section 31.1 & 11.2`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["ESCROW_DISPUTE_RESOLVED"] },
+    "event_category": { "type": "string", "enum": ["GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["ESCROW_DISPUTE_CLEARING_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "dispute_id": { "type": "string" },
+        "dispute_code": { "type": "string" },
+        "escrow_id": { "type": "string" },
+        "seller_payout_kes": { "type": "number", "minimum": 0 },
+        "buyer_refund_kes": { "type": "number", "minimum": 0 },
+        "status": { "type": "string" }
+      },
+      "required": ["dispute_id", "dispute_code", "escrow_id", "seller_payout_kes", "buyer_refund_kes", "status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

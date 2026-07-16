@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ENERGY_MICROGRID_SURPLUS_MINTED",
+  "description": "Event emitted when surplus solar generation (`battery > 90%` & `feed_in > 0`) automatically mints KRT-GREEN / KRT-JOULE token rewards (`Rule 7 & Rule 9`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["ENERGY_MICROGRID_SURPLUS_MINTED"] },
+    "event_category": { "type": "string", "enum": ["ENERGY", "CURRENCY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "installation_id": { "type": "string" },
+        "owner_user_id": { "type": "string" },
+        "microgrid_feed_in_kwh": { "type": "number", "minimum": 0 },
+        "minted_krt_joule_amount": { "type": "number", "minimum": 0 },
+        "reference_transaction_id": { "type": "string" }
+      },
+      "required": ["installation_id", "owner_user_id", "microgrid_feed_in_kwh", "minted_krt_joule_amount"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

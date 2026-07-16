@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CUSTOMER_LOYALTY_TIER_UPGRADED",
+  "description": "Event emitted when the Loyalty Network Tier Engine evaluates spend and auto-upgrades a customer membership (`Section 23.2 & 26.4`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["CUSTOMER_LOYALTY_TIER_UPGRADED"] },
+    "event_category": { "type": "string", "enum": ["IDENTITY"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["LOYALTY_NETWORK_TIER_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "tier_record_id": { "type": "string" },
+        "identity_id": { "type": "string" },
+        "previous_tier": { "type": "string" },
+        "new_tier": { "type": "string" },
+        "total_lifetime_spend_kes": { "type": "number", "minimum": 0 },
+        "rebate_delivery_fee_pct": { "type": "number", "minimum": 0 }
+      },
+      "required": ["tier_record_id", "identity_id", "previous_tier", "new_tier", "total_lifetime_spend_kes", "rebate_delivery_fee_pct"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MOBILITY_TRIP_COMPLETED",
+  "description": "Event emitted when a driver arrives at dropoff location and confirms completion of a mobility trip.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["MOBILITY_TRIP_COMPLETED"] },
+    "event_category": { "type": "string", "enum": ["MOBILITY"] },
+    "actor_identity_id": { "type": "string", "format": "uuid" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "source_module": { "type": "string", "enum": ["MOBILITY_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "trip_id": { "type": "string", "format": "uuid" },
+        "driver_id": { "type": "string", "format": "uuid" },
+        "passenger_identity_id": { "type": "string", "format": "uuid" },
+        "total_fare_kes": { "type": "number", "minimum": 0 },
+        "driver_payout_kes": { "type": "number", "minimum": 0 }
+      },
+      "required": ["trip_id", "driver_id", "passenger_identity_id", "total_fare_kes", "driver_payout_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

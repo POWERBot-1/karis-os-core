@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HOSPITALITY_BOOKING_CONFIRMED",
+  "description": "Event emitted when a guest confirms an eco-lodge safari booking in KARIS Safari & Stays.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["HOSPITALITY_BOOKING_CONFIRMED"] },
+    "event_category": { "type": "string", "enum": ["COMMERCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["FUTURE_INDUSTRIES_HOSPITALITY_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "booking_id": { "type": "string" },
+        "booking_code": { "type": "string" },
+        "guest_identity_id": { "type": "string" },
+        "lodge_or_hotel_name": { "type": "string" },
+        "number_of_nights": { "type": "integer", "minimum": 1 },
+        "total_booking_price_kes": { "type": "number", "minimum": 0 },
+        "krt_green_carbon_offset_tokens": { "type": "number", "minimum": 0 }
+      },
+      "required": ["booking_id", "booking_code", "guest_identity_id", "lodge_or_hotel_name", "number_of_nights", "total_booking_price_kes"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

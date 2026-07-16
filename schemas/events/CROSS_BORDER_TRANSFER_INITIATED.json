@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CROSS_BORDER_TRANSFER_INITIATED",
+  "description": "Event emitted when a cross-border East African Community (EAC) multi-currency settlement is initiated.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["CROSS_BORDER_TRANSFER_INITIATED"] },
+    "event_category": { "type": "string", "enum": ["PAYMENT"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string", "enum": ["CBDC_OPEN_BANKING_ENGINE"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "transfer_id": { "type": "string" },
+        "sender_identity_id": { "type": "string" },
+        "recipient_identity_id": { "type": "string" },
+        "source_country": { "type": "string" },
+        "destination_country": { "type": "string" },
+        "source_currency": { "type": "string" },
+        "destination_currency": { "type": "string" },
+        "source_amount": { "type": "number", "exclusiveMinimum": 0 },
+        "destination_amount": { "type": "number", "exclusiveMinimum": 0 },
+        "exchange_rate_used": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "required": ["transfer_id", "sender_identity_id", "recipient_identity_id", "source_country", "destination_country", "source_amount", "destination_amount"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "organization_id", "correlation_id", "source_module", "timestamp", "payload"]
+}

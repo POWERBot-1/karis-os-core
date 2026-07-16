@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EXPSUITE_PHARMA_COLD_CHAIN_BREACHED",
+  "description": "Event emitted when IoT temperature telemetry detects a cold-chain breach (`> 8°C`), alerting Logistics AI and locking dispensary checkout.",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["EXPSUITE_PHARMA_COLD_CHAIN_BREACHED"] },
+    "event_category": { "type": "string", "enum": ["PHARMA", "GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "telemetry_id": { "type": "string" },
+        "batch_id": { "type": "string" },
+        "temperature_celsius": { "type": "number" },
+        "storage_max_celsius": { "type": "number" },
+        "gps_location": { "type": "string" }
+      },
+      "required": ["telemetry_id", "batch_id", "temperature_celsius"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

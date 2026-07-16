@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LOOP_CREATOR_TIPPED",
+  "description": "Event emitted when a user tips a creator in KRT via Universal Double-Entry Ledger (`Rule 5 & Rule 9`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["LOOP_CREATOR_TIPPED"] },
+    "event_category": { "type": "string", "enum": ["SOCIAL", "PAYMENT"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "tip_id": { "type": "string" },
+        "post_id": { "type": "string" },
+        "tipper_identity_id": { "type": "string" },
+        "creator_identity_id": { "type": "string" },
+        "amount_krt": { "type": "number", "minimum": 0 },
+        "reference_transaction_id": { "type": "string" }
+      },
+      "required": ["tip_id", "post_id", "tipper_identity_id", "creator_identity_id", "amount_krt"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}
