@@ -1,0 +1,62 @@
+{
+  "events": [
+    {
+      "actor_identity_id": "SYSTEM_HA_ORCHESTRATOR",
+      "correlation_id": "FAILOVER-7D8048AD",
+      "cryptographic_hash": "66701d18934f1439673da278ee792c6034ab9a880d1ad749d1deca128751e740",
+      "event_category": "GOVERNANCE",
+      "event_id": "188e9a35-a64a-455a-990d-4300fe050b87",
+      "event_type": "HA_GEOGRAPHIC_FAILOVER_EXECUTED",
+      "organization_id": "ORG-CORE",
+      "payload": {
+        "failed_node_id": "NODE-05CF56",
+        "failover_code": "FAILOVER-2026-951D1B",
+        "failover_id": "FAILOVER-7D8048AD",
+        "promoted_node_id": "NODE-B598F7",
+        "traffic_rerouted_pct": 100.0,
+        "trigger_reason": "Simulated primary data center heartbeat timeout during high-throughput drill"
+      },
+      "source_module": "HA_GEOGRAPHIC_FAILOVER_ENGINE",
+      "timestamp": "2026-07-16T15:29:01.433129Z"
+    }
+  ],
+  "latest_event_id": "188e9a35-a64a-455a-990d-4300fe050b87",
+  "latest_ledger_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "ledger_entries": [],
+  "organization_id": "ORG-CORE",
+  "snapshot_id": "PITR-SNAP-1CAF8B2E",
+  "snapshot_type": "POINT_IN_TIME_PITR",
+  "timestamp": "2026-07-16T15:29:01.433220+00:00",
+  "wallets": [
+    {
+      "asset_type": "KRT",
+      "balance": 1500000.0,
+      "identity_id": "ORG-TREASURY-MAIN",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-CORE",
+      "status": "ACTIVE",
+      "wallet_id": "e6b60dfe-d558-4342-9a29-c437102b3779",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 500.0,
+      "identity_id": "USER-KAMAU-01",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "6caca8fc-4198-4e0c-8488-ab67f344f21e",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 1200.0,
+      "identity_id": "USER-CLINIC-MACHAKOS",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-HEALTH",
+      "status": "ACTIVE",
+      "wallet_id": "f7d84507-d713-413b-9559-51f2a8b911d6",
+      "wallet_type": "KRT_WALLET"
+    }
+  ]
+}

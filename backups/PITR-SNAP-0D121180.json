@@ -1,0 +1,495 @@
+{
+  "events": [
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "4be2693a-5fd5-4b0c-936f-4443995f414c",
+      "cryptographic_hash": "0ed62ddc02fee319449e654ef7d620fc26e70ec1bea1c149d7920ab826893ac3",
+      "event_category": "TREASURY",
+      "event_id": "a00d757e-27fe-4c04-a05e-bde45a56a53a",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARIS-FARM",
+      "payload": {
+        "amount": 50.0,
+        "asset_type": "KRT",
+        "audit_hash": "73b49affd8c714342d2f79c0c816dd5c2768348eb4593fe7ed20c60f4fac456b",
+        "credit_wallet_id": "296e11ac-905c-4cf9-934b-51154bf23003",
+        "currency": "KRT",
+        "debit_wallet_id": "56bbcc2b-f588-4cff-87a5-8d02adc8a220",
+        "description": "ESG Carbon Credit KRT-GREEN Minting (CARBON_NEGATIVE)",
+        "entry_id": "0e6c977b-7deb-43e0-8629-774ccd37a319",
+        "transaction_id": "4be2693a-5fd5-4b0c-936f-4443995f414c"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.153715Z"
+    },
+    {
+      "actor_identity_id": "ESG_CARBON_ENGINE",
+      "correlation_id": "ESG-CO2-FBD0AE",
+      "cryptographic_hash": "fe796796155dc246999a305b7ff3bb66695f33a432d1ddd8ae35be4db547fa5b",
+      "event_category": "TREASURY",
+      "event_id": "8f50c403-c69d-40a7-b363-ef0e2b2dd957",
+      "event_type": "ESG_CARBON_CREDIT_MINTED",
+      "organization_id": "ORG-KARIS-FARM",
+      "payload": {
+        "esg_record_id": "ESG-CO2-FBD0AE",
+        "krt_green_tokens_minted": 50.0,
+        "organization_id": "ORG-KARIS-FARM",
+        "scope_1_emissions_kg_co2": 0.5,
+        "scope_2_emissions_kg_co2": 0.3,
+        "scope_3_emissions_kg_co2": 0.2,
+        "sustainability_rating": "CARBON_NEGATIVE",
+        "target_resource_id": "BATCH-FARM-HAS-1BF01C",
+        "target_resource_type": "PRODUCE_BATCH",
+        "total_carbon_footprint_kg_co2": 1.0
+      },
+      "source_module": "ESG_CARBON_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.153749Z"
+    },
+    {
+      "actor_identity_id": "USER-WA-101",
+      "correlation_id": "f76c0643-0fd4-415f-9690-6078bcdad5eb",
+      "cryptographic_hash": "c61a6b6243e9bae4325e99a632962c279d1021cea962535b5cc19ce2a71fe5b4",
+      "event_category": "AGRICULTURE",
+      "event_id": "751a5a11-c4b2-4d18-a0bc-4a4ff456a584",
+      "event_type": "FARM_REGISTERED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "certification_status": "GAP_CERTIFIED",
+        "cooperative_identity_id": null,
+        "farm_id": "f76c0643-0fd4-415f-9690-6078bcdad5eb",
+        "farm_name": "WA Orchards",
+        "farmer_identity_id": "USER-WA-101",
+        "organization_id": "ORG-KARIS-RETAIL",
+        "region_county": "Machakos County",
+        "total_acreage": 10.0
+      },
+      "source_module": "KARIS_FARM_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.154673Z"
+    },
+    {
+      "actor_identity_id": "USER-WA-101",
+      "correlation_id": "79572e2a-cbdb-4e6e-ab90-43263e542da2",
+      "cryptographic_hash": "a0bc6f5655ac8845f2afb6e033f276fa22f0aa461806b91a1fd963a310210c44",
+      "event_category": "AGRICULTURE",
+      "event_id": "3a0068f2-4995-4455-92c8-a40801d2e081",
+      "event_type": "AGRICULTURE_HARVEST_COMPLETED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "batch_number": "BATCH-FARM-HAS-FB0D6A",
+        "crop_type": "HASS_AVOCADO",
+        "farm_id": "f76c0643-0fd4-415f-9690-6078bcdad5eb",
+        "harvest_id": "9c056f7f-5df9-41a5-9246-7760e2aaab37",
+        "plan_id": "116bd18a-2838-4b86-98cf-2a11b78264b5",
+        "quality_grade": "GRADE_A",
+        "quantity_kg": 500.0,
+        "traceability_qr_code": "KARIS-TRACE-QR-79572E2A"
+      },
+      "source_module": "KARIS_FARM_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.154749Z"
+    },
+    {
+      "actor_identity_id": "USER-WA-101",
+      "correlation_id": "WA-MSG-7FC1A829",
+      "cryptographic_hash": "12f107783425c5ef25ceb0a437fcedf6f414b5e3bed8387628df7011358e6eb4",
+      "event_category": "COMMERCE",
+      "event_id": "ccba2e19-1eb3-4631-bff2-36414f58a6d1",
+      "event_type": "WHATSAPP_MESSAGE_PROCESSED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "bot_response_text": "\ud83d\udcb0 *KARIS OS\u2122 Multi-Asset Wallet Balances*\n\u2022 *Fiat KES Balance:* KES 45,000.00\n\u2022 *KARIS Tokens:* 320.00 KRT\n\u2022 *Status:* ACTIVE (Rule 5 Protected)",
+        "detected_intent": "WALLET_BALANCE_CHECK",
+        "inbound_text": "2 Balance",
+        "message_id": "WA-MSG-7FC1A829",
+        "sender_phone": "+254711223344"
+      },
+      "source_module": "WHATSAPP_CLOUD_BOT_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.154795Z"
+    },
+    {
+      "actor_identity_id": "USER-WA-101",
+      "correlation_id": "WA-MSG-D68A5EC8",
+      "cryptographic_hash": "b52030aa15e81e5613e3608f8f777260a785d09ec395d313ec68dcf745e1feb8",
+      "event_category": "COMMERCE",
+      "event_id": "be65fa86-8ec3-4e43-9df1-39d73e2fc79a",
+      "event_type": "WHATSAPP_MESSAGE_PROCESSED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "bot_response_text": "\ud83c\udf3f *KARIS FARM\u2122 Traceability Report*\n\u2022 *Farm Origin:* WA Orchards (Machakos County)\n\u2022 *Crop:* HASS_AVOCADO (GRADE_A)\n\u2022 *Quantity:* 500.0 KG | Verified GAP_CERTIFIED\n\u2022 *QR Code:* KARIS-TRACE-QR-79572E2A",
+        "detected_intent": "PRODUCE_TRACEABILITY_LOOKUP",
+        "inbound_text": "1 Trace KARIS-TRACE-QR-79572E2A",
+        "message_id": "WA-MSG-D68A5EC8",
+        "sender_phone": "+254711223344"
+      },
+      "source_module": "WHATSAPP_CLOUD_BOT_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.154835Z"
+    },
+    {
+      "actor_identity_id": "USER-WA-101",
+      "correlation_id": "WA-MSG-9293AF48",
+      "cryptographic_hash": "4b3096d915bd250509d38058a99165fbb2c3778a2bdcc593eab5cf02674818fd",
+      "event_category": "COMMERCE",
+      "event_id": "68c8479d-d11f-4ee6-ae55-35f219094b0e",
+      "event_type": "WHATSAPP_MESSAGE_PROCESSED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "bot_response_text": "\ud83e\udd16 *KARIS Agriculture AI Response*\n\nAgriculture AI (Grounded via RAG [AGRI-001]): In Machakos County (Mlolongo, Kangundo, Ikombe), Hass Avocados thrive in well-drained red volcanic soils with pH 5.5 to 6.5. During dry periods in July and August, supplemental drip irrigation of 20-30 liters per tree twice weekly prevents fruit drop. For Grade-A export certification (GAP_CERTIFIED), avocados must be harvested with clippers leaving 5mm of stem, moisture content around 70-75%, and dry matter above 21%. Reject bruised or sunburned fruits as Grade-B.",
+        "detected_intent": "AI_RAG_CONVERSATIONAL_QUERY",
+        "inbound_text": "3 Ask Agri: Avocado soil pH requirements",
+        "message_id": "WA-MSG-9293AF48",
+        "sender_phone": "+254711223344"
+      },
+      "source_module": "WHATSAPP_CLOUD_BOT_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.154935Z"
+    },
+    {
+      "actor_identity_id": "268e1e85-a0b3-445d-827b-98e327af3bee",
+      "correlation_id": "POL-F9BD6400",
+      "cryptographic_hash": "0051337e87684dd3b78de7ee4de62f071857bec3140c6ca0c6c532e52e5db8be",
+      "event_category": "GOVERNANCE",
+      "event_id": "d56a242b-6783-4483-b703-951d7b245e78",
+      "event_type": "INSURANCE_POLICY_CREATED",
+      "organization_id": "ORG-KARIS-FARM",
+      "payload": {
+        "insured_identity_id": "268e1e85-a0b3-445d-827b-98e327af3bee",
+        "max_coverage_payout_kes": 50000.0,
+        "policy_code": "POL-AGRI-2026-409C51",
+        "policy_id": "POL-F9BD6400",
+        "policy_type": "CROP_DROUGHT_INDEX",
+        "premium_paid_kes": 5000.0
+      },
+      "source_module": "PARAMETRIC_CROP_INSURANCE_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.156824Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "6f99846e-7db3-4339-b2a2-fdb5f40df8b2",
+      "cryptographic_hash": "58599ed131590bf456b360ac0d0fc68547b6678f8902485404bbe86b555cceb9",
+      "event_category": "TREASURY",
+      "event_id": "be056e88-476d-4ebc-bf14-393bf642c071",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARIS-FARM",
+      "payload": {
+        "amount": 50000.0,
+        "asset_type": "KES",
+        "audit_hash": "fed4e40e71dba19e06bff933722bb948abdc18fee5e232770afa70a299da6107",
+        "credit_wallet_id": "10cb8900-b783-4bf1-a19c-0ae190dd1b09",
+        "currency": "KES",
+        "debit_wallet_id": "008f6573-6f49-4605-8a8a-890c176e0239",
+        "description": "Automated Parametric Crop Drought Insurance Payout (CLAIM-AGRI-2026-C97188)",
+        "entry_id": "8f08fba3-4a7c-4a57-851e-dd5c05d01fda",
+        "transaction_id": "6f99846e-7db3-4339-b2a2-fdb5f40df8b2"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.156923Z"
+    },
+    {
+      "actor_identity_id": "268e1e85-a0b3-445d-827b-98e327af3bee",
+      "correlation_id": "6f99846e-7db3-4339-b2a2-fdb5f40df8b2",
+      "cryptographic_hash": "a325da6aba541fd700401042a371820a2a7f58a01ef9b4a6b7cad712ef70eed9",
+      "event_category": "PAYMENT",
+      "event_id": "0a81721d-db34-4fcd-a49d-d90c749ca332",
+      "event_type": "INSURANCE_CLAIM_SETTLED",
+      "organization_id": "ORG-KARIS-FARM",
+      "payload": {
+        "claim_amount_kes": 50000.0,
+        "claim_id": "CLAIM-575F7014",
+        "claim_status": "CLAIM_APPROVED_PAID",
+        "insured_identity_id": "268e1e85-a0b3-445d-827b-98e327af3bee",
+        "policy_id": "POL-F9BD6400",
+        "triggering_telemetry_id": "IOT-TEL-8C90CE52"
+      },
+      "source_module": "PARAMETRIC_CROP_INSURANCE_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.156984Z"
+    },
+    {
+      "actor_identity_id": "IOT_SENSOR_DEVICE",
+      "correlation_id": "IOT-TEL-8C90CE52",
+      "cryptographic_hash": "ae955d508797693ffc51dc37a809bfbb31676aa99e310f4e205cfb068bde8f67",
+      "event_category": "AGRICULTURE",
+      "event_id": "46f6defb-08f3-43a0-ba33-7d3cf2e7ca67",
+      "event_type": "IOT_SENSOR_TELEMETRY_RECORDED",
+      "organization_id": "ORG-KARIS-FARM",
+      "payload": {
+        "automated_action_triggered": "ALERT: Drought detected (<20% moisture). Smart irrigation VALVE-MLO-12 opened, dispensing 2,500L water.",
+        "farm_id": "FARM-ID-MACHAKOS-01",
+        "sensor_device_code": "IOT-MACHAKOS-SN-01",
+        "soil_moisture_pct": 14.5,
+        "telemetry_id": "IOT-TEL-8C90CE52"
+      },
+      "source_module": "PARAMETRIC_CROP_INSURANCE_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.157023Z"
+    },
+    {
+      "actor_identity_id": "ADMIN-USER-01",
+      "correlation_id": "KEY-C69164D2",
+      "cryptographic_hash": "d943d79a9e0d373f1c6c008e98e0d447db34cb33bd1a8b9236ce0a7391136754",
+      "event_category": "GOVERNANCE",
+      "event_id": "c2d75802-68ca-49b4-ab44-16f9cf26bd45",
+      "event_type": "API_KEY_ISSUED_OR_REVOKED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "identity_id": "ADMIN-USER-01",
+        "key_id": "KEY-C69164D2",
+        "key_name": "POS Terminal Key",
+        "key_prefix": "KARIS_LIVE_30A723FD",
+        "status": "ACTIVE"
+      },
+      "source_module": "OPERATIONAL_POLICY_AND_KEY_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.157928Z"
+    },
+    {
+      "actor_identity_id": "ADMIN-USER-01",
+      "correlation_id": "KEY-C69164D2",
+      "cryptographic_hash": "67274be087e6bfe64808d153f853b4d6cdcf4b929c4527052ae8e2478f7c3be3",
+      "event_category": "GOVERNANCE",
+      "event_id": "19e71770-0de8-48ce-b5f4-758e71182500",
+      "event_type": "API_KEY_ISSUED_OR_REVOKED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "identity_id": "ADMIN-USER-01",
+        "key_id": "KEY-C69164D2",
+        "key_name": "POS Terminal Key",
+        "key_prefix": "KARIS_LIVE_30A723FD",
+        "status": "REVOKED"
+      },
+      "source_module": "OPERATIONAL_POLICY_AND_KEY_ENGINE",
+      "timestamp": "2026-07-16T10:27:55.157995Z"
+    }
+  ],
+  "latest_event_id": "19e71770-0de8-48ce-b5f4-758e71182500",
+  "latest_ledger_hash": "fed4e40e71dba19e06bff933722bb948abdc18fee5e232770afa70a299da6107",
+  "ledger_entries": [
+    {
+      "amount": 50.0,
+      "asset_type": "KRT",
+      "audit_hash": "73b49affd8c714342d2f79c0c816dd5c2768348eb4593fe7ed20c60f4fac456b",
+      "credit_wallet_id": "296e11ac-905c-4cf9-934b-51154bf23003",
+      "currency": "KRT",
+      "debit_wallet_id": "56bbcc2b-f588-4cff-87a5-8d02adc8a220",
+      "entry_id": "0e6c977b-7deb-43e0-8629-774ccd37a319",
+      "event_id": "4be2693a-5fd5-4b0c-936f-4443995f414c",
+      "organization_id": "ORG-KARIS-FARM",
+      "timestamp": "2026-07-16T10:27:55.153668Z",
+      "transaction_id": "4be2693a-5fd5-4b0c-936f-4443995f414c"
+    },
+    {
+      "amount": 50000.0,
+      "asset_type": "KES",
+      "audit_hash": "fed4e40e71dba19e06bff933722bb948abdc18fee5e232770afa70a299da6107",
+      "credit_wallet_id": "10cb8900-b783-4bf1-a19c-0ae190dd1b09",
+      "currency": "KES",
+      "debit_wallet_id": "008f6573-6f49-4605-8a8a-890c176e0239",
+      "entry_id": "8f08fba3-4a7c-4a57-851e-dd5c05d01fda",
+      "event_id": "6f99846e-7db3-4339-b2a2-fdb5f40df8b2",
+      "organization_id": "ORG-KARIS-FARM",
+      "timestamp": "2026-07-16T10:27:55.156889Z",
+      "transaction_id": "6f99846e-7db3-4339-b2a2-fdb5f40df8b2"
+    }
+  ],
+  "organization_id": "ORG-KARIS-RETAIL",
+  "snapshot_id": "PITR-SNAP-0D121180",
+  "snapshot_type": "POINT_IN_TIME_PITR",
+  "timestamp": "2026-07-16T10:27:55.159888+00:00",
+  "wallets": [
+    {
+      "asset_type": "KES",
+      "balance": 50200.0,
+      "identity_id": "3308932f-4141-44d4-b42c-e055081bd188",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "cca47a80-f668-4382-baaa-100d85443215",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 440.0,
+      "identity_id": "3308932f-4141-44d4-b42c-e055081bd188",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "aca5d291-f889-449f-ad44-bed4a10ae508",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 0.0,
+      "identity_id": "f86a673d-871f-4969-ab47-0808b6eae178",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "a8a9cafe-2b5e-4d7f-ac30-7a4cce584543",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 170.0,
+      "identity_id": "3683623d-a24c-4d14-ace2-f98f6b914254",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "f623649d-bcf2-4c8b-9c04-1e7ab8a1b14b",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 1999800.0,
+      "identity_id": "TREASURY_IDENTITY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "b3c5fe3a-7ef6-4f53-9a46-e8874c07bb36",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 998060.0,
+      "identity_id": "TREASURY_IDENTITY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "4d0cadb2-92f6-4b1c-9134-340e57cdd15f",
+      "wallet_type": "REWARD_POOL"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 99830.0,
+      "identity_id": "OPERATIONS_IDENTITY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "2b46e0a3-1d81-4400-9e6a-38d03ad99edd",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "CREDIT",
+      "balance": 100000.0,
+      "identity_id": "f86a673d-871f-4969-ab47-0808b6eae178",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "aecc1d73-d51a-43fb-bea9-417890c5cf92",
+      "wallet_type": "CREDIT_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 950000.0,
+      "identity_id": "TREASURY_IDENTITY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "008f6573-6f49-4605-8a8a-890c176e0239",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "CREDIT",
+      "balance": 9900000.0,
+      "identity_id": "TREASURY_IDENTITY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "1ffbf362-f4b4-4188-b54e-325837834582",
+      "wallet_type": "CREDIT_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 500.0,
+      "identity_id": "USER-CRM-101",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "1e26f7fd-5c82-4202-916e-ac634ee42b26",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "INVESTMENT",
+      "balance": 9999950.0,
+      "identity_id": "TREASURY_IDENTITY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "78bf0822-f6cb-4855-981d-270b8ee1d7f6",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 1500.0,
+      "identity_id": "USER-STUD-01",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "a5bab00e-7ca5-49bb-bd7e-9ece55217591",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "INVESTMENT",
+      "balance": 50.0,
+      "identity_id": "USER-INV-01",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "bf39f5ab-6d1f-41bd-9188-2e69b1bfec29",
+      "wallet_type": "INVESTMENT_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 100000.0,
+      "identity_id": "USER-FRAUD-101",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "FROZEN",
+      "wallet_id": "f76bc9fd-d58a-41e7-b99d-f35895e26693",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 499950.0,
+      "identity_id": "TREASURY_IDENTITY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "56bbcc2b-f588-4cff-87a5-8d02adc8a220",
+      "wallet_type": "REWARD_POOL"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 50.0,
+      "identity_id": "SYSTEM_ESG_HOLDER",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "296e11ac-905c-4cf9-934b-51154bf23003",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 45000.0,
+      "identity_id": "USER-WA-101",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "f2f74715-6532-4726-bb38-2c1b56c3f6ef",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 320.0,
+      "identity_id": "USER-WA-101",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "2fdbfe66-d1ad-4196-a2a0-1c8f134545d1",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 50000.0,
+      "identity_id": "268e1e85-a0b3-445d-827b-98e327af3bee",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "10cb8900-b783-4bf1-a19c-0ae190dd1b09",
+      "wallet_type": "KES_WALLET"
+    }
+  ]
+}

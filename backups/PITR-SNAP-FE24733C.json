@@ -1,0 +1,163 @@
+{
+  "events": [
+    {
+      "actor_identity_id": "USER-FARMER-KAMAU",
+      "correlation_id": "94fd7ebc-b713-4bd6-a310-09196b6b5ff4",
+      "cryptographic_hash": "b29c4a1490d8c5b9ff3b5d055ef2cce834f0083e4316b0b5309f685433ec4c7c",
+      "event_category": "ENERGY",
+      "event_id": "f8f69300-b57b-42fb-8b6a-44ac4d887a39",
+      "event_type": "ENERGY_SOLAR_UNIT_REGISTERED",
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "payload": {
+        "daily_token_rate_krt": 30.0,
+        "device_serial_number": "SN-SOLAR-HOME-2026-8802",
+        "device_type": "SOLAR_HOME_SYSTEM",
+        "installation_id": "a1a51ad5-66ba-4fe8-97b2-71c7562b677c",
+        "organization_id": "ORG-KARIS-FARM-MAIN",
+        "owner_user_id": "USER-FARMER-KAMAU",
+        "rated_capacity_watts": 800.0
+      },
+      "source_module": "KARIS_ENERGY_GRID",
+      "timestamp": "2026-07-16T14:30:32.443998Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "51a39c4c-2c03-44d5-9bf1-ab8434a77b06",
+      "cryptographic_hash": "8fa29ac34a29c6c83a808b1b019478e1ec63003ae3f051b5fad3e8c4835e0e7b",
+      "event_category": "TREASURY",
+      "event_id": "f4a21783-b85b-47d9-b36a-99a0a0d68bc6",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "payload": {
+        "amount": 150.0,
+        "asset_type": "KRT",
+        "audit_hash": "8ab0e32d6458810167e7a48334e357ade6720a548208c5734cc5eeb7b7a3d761",
+        "credit_wallet_id": "de35ef3e-ba88-4fd2-8b8f-455f964f70da",
+        "currency": "KRT",
+        "debit_wallet_id": "b9707d25-b819-4f39-a587-21be242408ce",
+        "description": "PAYG Solar Token Installment (150.0 KRT -> Unlocked 5 Days)",
+        "entry_id": "1fe7d5cb-51e7-4d2e-bbfc-ab249e045bcd",
+        "transaction_id": "51a39c4c-2c03-44d5-9bf1-ab8434a77b06"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-16T14:30:32.444101Z"
+    },
+    {
+      "actor_identity_id": "USER-FARMER-KAMAU",
+      "correlation_id": "49e77a11-2a36-4125-b893-98ada1f764a6",
+      "cryptographic_hash": "bbcc4f8b3b58cc8f54792b231205247e922c9b78ac00a3d86680a7dc80f9ec72",
+      "event_category": "ENERGY",
+      "event_id": "d3b8ea22-e6b7-470e-8128-840b368b40ca",
+      "event_type": "ENERGY_PAYG_INSTALLMENT_SETTLED",
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "payload": {
+        "amount_kes": 150.0,
+        "amount_krt": 150.0,
+        "days_unlocked": 5,
+        "installation_id": "a1a51ad5-66ba-4fe8-97b2-71c7562b677c",
+        "installment_id": "af090fa8-86ba-49af-9214-7d40f75a679c",
+        "payer_user_id": "USER-FARMER-KAMAU"
+      },
+      "source_module": "KARIS_ENERGY_GRID",
+      "timestamp": "2026-07-16T14:30:32.444157Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "893a1987-bbf1-4920-a1e6-db29afe02255",
+      "cryptographic_hash": "68ccf15b44b86ec87120c221e49e6f586c5b6ade7ce45a9f413e7406053bda84",
+      "event_category": "TREASURY",
+      "event_id": "929a4821-376e-4631-95b6-581d0e7fb391",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "payload": {
+        "amount": 120.0,
+        "asset_type": "KRT",
+        "audit_hash": "79f0e9a4a6daa3c1c35d9f963871c881ebfb29ef95b3fc2872e7ad307079c27e",
+        "credit_wallet_id": "b9707d25-b819-4f39-a587-21be242408ce",
+        "currency": "KRT",
+        "debit_wallet_id": "11e782d4-beb5-4a7d-ae11-3a06a677b379",
+        "description": "Peer-to-Peer Microgrid Solar Trade (10.0 kWh at 12.0 KRT/kWh)",
+        "entry_id": "b6bf683e-a89c-4e1a-bc95-c23a7889fa5d",
+        "transaction_id": "893a1987-bbf1-4920-a1e6-db29afe02255"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-16T14:30:32.444244Z"
+    }
+  ],
+  "latest_event_id": "929a4821-376e-4631-95b6-581d0e7fb391",
+  "latest_ledger_hash": "79f0e9a4a6daa3c1c35d9f963871c881ebfb29ef95b3fc2872e7ad307079c27e",
+  "ledger_entries": [
+    {
+      "amount": 150.0,
+      "asset_type": "KRT",
+      "audit_hash": "8ab0e32d6458810167e7a48334e357ade6720a548208c5734cc5eeb7b7a3d761",
+      "credit_wallet_id": "de35ef3e-ba88-4fd2-8b8f-455f964f70da",
+      "currency": "KRT",
+      "debit_wallet_id": "b9707d25-b819-4f39-a587-21be242408ce",
+      "entry_id": "1fe7d5cb-51e7-4d2e-bbfc-ab249e045bcd",
+      "event_id": "PAYG-UNLOCK-a1a51ad5",
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "timestamp": "2026-07-16T14:30:32.444069Z",
+      "transaction_id": "51a39c4c-2c03-44d5-9bf1-ab8434a77b06"
+    },
+    {
+      "amount": 120.0,
+      "asset_type": "KRT",
+      "audit_hash": "79f0e9a4a6daa3c1c35d9f963871c881ebfb29ef95b3fc2872e7ad307079c27e",
+      "credit_wallet_id": "b9707d25-b819-4f39-a587-21be242408ce",
+      "currency": "KRT",
+      "debit_wallet_id": "11e782d4-beb5-4a7d-ae11-3a06a677b379",
+      "entry_id": "b6bf683e-a89c-4e1a-bc95-c23a7889fa5d",
+      "event_id": "P2P-SOLAR-USER-F-USER-C",
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "timestamp": "2026-07-16T14:30:32.444216Z",
+      "transaction_id": "893a1987-bbf1-4920-a1e6-db29afe02255"
+    }
+  ],
+  "organization_id": "ORG-KARIS-RETAIL",
+  "snapshot_id": "PITR-SNAP-FE24733C",
+  "snapshot_type": "POINT_IN_TIME_PITR",
+  "timestamp": "2026-07-16T14:30:32.446211+00:00",
+  "wallets": [
+    {
+      "asset_type": "KRT",
+      "balance": 1000000.0,
+      "identity_id": "ORG-TREASURY-MAIN",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "b27854a9-cfc7-48cf-89d4-2901a32e5775",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 150.0,
+      "identity_id": "ORG-KARIS-ENERGY-MAIN",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "de35ef3e-ba88-4fd2-8b8f-455f964f70da",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 270.0,
+      "identity_id": "USER-FARMER-KAMAU",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "b9707d25-b819-4f39-a587-21be242408ce",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 80.0,
+      "identity_id": "USER-CLINIC-MACHAKOS",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-FARM-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "11e782d4-beb5-4a7d-ae11-3a06a677b379",
+      "wallet_type": "KRT_WALLET"
+    }
+  ]
+}

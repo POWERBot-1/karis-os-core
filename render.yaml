@@ -1,0 +1,43 @@
+# KARIS OS™ Version 1.0.0-PROD-V1 — Render One-Click Cloud Deployment Blueprint (`render.yaml`)
+# Enables instant deployment of the entire 52-Section operating system kernel via one simple URL:
+# https://render.com/deploy?repo=https://github.com/karis-os/karis-os-core
+
+services:
+  - type: web
+    name: karis-api-gateway
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard
+    numInstances: 4
+    healthCheckPath: /docs
+    envVars:
+      - key: PLATFORM_NAME
+        value: "KARIS OS™"
+      - key: PLATFORM_VERSION
+        value: "1.0.0-PROD-V1"
+      - key: DEFAULT_CURRENCY
+        value: "KES"
+      - key: DEFAULT_COUNTRY
+        value: "KE"
+      - key: PALPLUS_PAYMENT_LINK_ID
+        value: "6e8de0bc-1284-4bba-a5de-f886665bf18f"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: karis-postgres
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: karis-redis
+          property: connectionString
+
+databases:
+  - name: karis-postgres
+    plan: standard
+    databaseName: karis_os_prod
+    user: karis_admin
+
+  - type: redis
+    name: karis-redis
+    plan: standard
+    ipAllowList: []

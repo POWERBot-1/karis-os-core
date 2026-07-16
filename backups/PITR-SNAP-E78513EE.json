@@ -1,0 +1,62 @@
+{
+  "events": [
+    {
+      "actor_identity_id": "SYSTEM_HA_ORCHESTRATOR",
+      "correlation_id": "FAILOVER-EF6CA861",
+      "cryptographic_hash": "0abd4cc64ff2e81987e7e6e7b3f63a76e00e5704cae4ccc4fe11a8abbc9c4e0e",
+      "event_category": "GOVERNANCE",
+      "event_id": "ac384f76-b66c-441e-b150-877aac8646f3",
+      "event_type": "HA_GEOGRAPHIC_FAILOVER_EXECUTED",
+      "organization_id": "ORG-CORE",
+      "payload": {
+        "failed_node_id": "NODE-99995C",
+        "failover_code": "FAILOVER-2026-08DE20",
+        "failover_id": "FAILOVER-EF6CA861",
+        "promoted_node_id": "NODE-6C611E",
+        "traffic_rerouted_pct": 100.0,
+        "trigger_reason": "Simulated catastrophic data center partition during Stage 6.3 SRE drill"
+      },
+      "source_module": "HA_GEOGRAPHIC_FAILOVER_ENGINE",
+      "timestamp": "2026-07-16T19:17:27.099863Z"
+    }
+  ],
+  "latest_event_id": "ac384f76-b66c-441e-b150-877aac8646f3",
+  "latest_ledger_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "ledger_entries": [],
+  "organization_id": "ORG-CORE",
+  "snapshot_id": "PITR-SNAP-E78513EE",
+  "snapshot_type": "POINT_IN_TIME_PITR",
+  "timestamp": "2026-07-16T19:17:27.099969+00:00",
+  "wallets": [
+    {
+      "asset_type": "KRT",
+      "balance": 2500000.0,
+      "identity_id": "ORG-TREASURY-MAIN",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-CORE",
+      "status": "ACTIVE",
+      "wallet_id": "f4b11340-8a10-4e95-b22c-fbc92849f7ec",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 500.0,
+      "identity_id": "USER-KAMAU-01",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-FARM",
+      "status": "ACTIVE",
+      "wallet_id": "39f668a2-78c0-4208-aa32-2898cfc95db1",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 1200.0,
+      "identity_id": "USER-CLINIC-MACHAKOS",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-HEALTH",
+      "status": "ACTIVE",
+      "wallet_id": "79341fd4-766f-49b2-8d9c-864982e49ce8",
+      "wallet_type": "KRT_WALLET"
+    }
+  ]
+}

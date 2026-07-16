@@ -1,0 +1,232 @@
+{
+  "events": [
+    {
+      "actor_identity_id": "USER-INV-KAMAU",
+      "correlation_id": "4c8ba326-2efc-484d-bc1b-265ebef37034",
+      "cryptographic_hash": "d011fc6a475bf95e51686c31b8a1a67a607117d77fe10b020047ea50fe397624",
+      "event_category": "PROP_SHARE",
+      "event_id": "91e8faea-4c91-4556-92b0-499cff317fd9",
+      "event_type": "EXPSUITE_PROP_SHARE_ALLOCATED",
+      "organization_id": "ORG-KARIS-PROP",
+      "payload": {
+        "allocation_id": "4c8ba326-2efc-484d-bc1b-265ebef37034",
+        "investor_identity_id": "USER-INV-KAMAU",
+        "shares_owned": 100,
+        "syndication_id": "6f6bee25-7202-469f-8288-44e33e76cd51",
+        "total_invested_kes": 1000000.0
+      },
+      "source_module": "KARIS_PROP_SHARE",
+      "timestamp": "2026-07-16T15:26:42.041933Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "818e1693-06c9-475b-9e75-ed5638a05c2f",
+      "cryptographic_hash": "b3acb794337a2d90c1f9360b6fba7714e6a9273aee14efac7c2cdc1621fc61cc",
+      "event_category": "TREASURY",
+      "event_id": "b6378bb0-695d-4c9c-835e-f901e886fe7f",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARIS-PROP",
+      "payload": {
+        "amount": 10000.0,
+        "asset_type": "KRT",
+        "audit_hash": "f7d8b3cfb185d98e1cef066b6bb6f50a1b9c88a6f98b2783c24870b10e8cd53c",
+        "credit_wallet_id": "20fd4373-27e5-4713-a1a5-d028c6c73d86",
+        "currency": "KRT",
+        "debit_wallet_id": "3d2c2f9d-5c21-40f2-acf8-96efc69f3d78",
+        "description": "Monthly rental dividend (10000.0 KRT) for Machakos Commercial Hub",
+        "entry_id": "c6c4092d-7307-4254-9c95-ac3f324604f9",
+        "transaction_id": "818e1693-06c9-475b-9e75-ed5638a05c2f"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-16T15:26:42.042057Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM-PROP-SHARE",
+      "correlation_id": "818e1693-06c9-475b-9e75-ed5638a05c2f",
+      "cryptographic_hash": "783bfcf4063d1d1f2ec23c8622dd686ad86a0f147b08d2d2f65dcd229e419376",
+      "event_category": "PROP_SHARE",
+      "event_id": "6fc9cddb-2768-4812-9ce0-6e05be2ecad3",
+      "event_type": "EXPSUITE_PROP_SHARE_DIVIDEND_DISTRIBUTED",
+      "organization_id": "ORG-KARIS-PROP",
+      "payload": {
+        "dividend_amount_krt": 10000.0,
+        "investor_identity_id": "USER-INV-KAMAU",
+        "reference_transaction_id": "818e1693-06c9-475b-9e75-ed5638a05c2f",
+        "syndication_id": "6f6bee25-7202-469f-8288-44e33e76cd51"
+      },
+      "source_module": "KARIS_PROP_SHARE",
+      "timestamp": "2026-07-16T15:26:42.042086Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "ca493c71-942f-4977-8149-d2a7d307475b",
+      "cryptographic_hash": "4301f89db9042f50acbc842d228f6f63a3122012656de8930c5327b6ba9f3ceb",
+      "event_category": "TREASURY",
+      "event_id": "f7795df5-470e-4140-9fb4-3428dde201b7",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "payload": {
+        "amount": 15000.0,
+        "asset_type": "KES",
+        "audit_hash": "d76f09048bdf2f952aab195c17574d171e5aa3c71879c580f4767d79f6d535e1",
+        "credit_wallet_id": "40f8ea07-5567-4b31-aa49-b5e06b31ec1e",
+        "currency": "KES",
+        "debit_wallet_id": "9f8d3d91-1795-463e-97e7-3863aaa67c52",
+        "description": "Edu-Pay Tuition Installment (15000.0 KES) for student USER-STUDENT-01",
+        "entry_id": "fa39b19b-d586-4194-a457-9365d8221af0",
+        "transaction_id": "ca493c71-942f-4977-8149-d2a7d307475b"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-16T15:26:42.042210Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "e8d0159f-afc4-4cd0-9ec7-6952543db959",
+      "cryptographic_hash": "b5842aa02189ed8b69caaa1277362b3350efa33055b06d22b091c6cb768d2f6f",
+      "event_category": "TREASURY",
+      "event_id": "d3020abc-3dd3-443e-ae41-633badd9dff4",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "payload": {
+        "amount": 150.0,
+        "asset_type": "KRT",
+        "audit_hash": "75873eb94a34e21d4d889ebeeee264186b36550082681813f732df771c3f73d9",
+        "credit_wallet_id": "667145f6-2f28-4f5a-a540-8098e04306a5",
+        "currency": "KRT",
+        "debit_wallet_id": "773b39d1-f2c9-4216-8123-f7a42d2aa9cc",
+        "description": "Edu-Pay Scholarship & Cafeteria Bonus (+150 KRT-EDU)",
+        "entry_id": "9dcc751c-0925-4e25-8be6-f6cb0a760862",
+        "transaction_id": "e8d0159f-afc4-4cd0-9ec7-6952543db959"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-16T15:26:42.042283Z"
+    },
+    {
+      "actor_identity_id": "USER-PARENT-01",
+      "correlation_id": "PALPLUS-EDU-01",
+      "cryptographic_hash": "e663dac2e21c441b4fb86e045174f9e40433f21fbc1cd4bc336962e64c56d922",
+      "event_category": "EDU_PAY",
+      "event_id": "56f25856-8224-4fe2-9a8a-070437c0c4f5",
+      "event_type": "EXPSUITE_EDUPAY_INSTALLMENT_SETTLED",
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "payload": {
+        "amount_kes": 15000.0,
+        "bonus_krt_edu_awarded": 150.0,
+        "installment_id": "c22d30c9-f2ce-490f-bab8-d18b1700696a",
+        "plan_id": "fd5fe6ff-3c1a-4b95-b4d7-778b1f234aa3",
+        "student_identity_id": "USER-STUDENT-01"
+      },
+      "source_module": "KARIS_EDU_PAY",
+      "timestamp": "2026-07-16T15:26:42.042320Z"
+    }
+  ],
+  "latest_event_id": "56f25856-8224-4fe2-9a8a-070437c0c4f5",
+  "latest_ledger_hash": "75873eb94a34e21d4d889ebeeee264186b36550082681813f732df771c3f73d9",
+  "ledger_entries": [
+    {
+      "amount": 10000.0,
+      "asset_type": "KRT",
+      "audit_hash": "f7d8b3cfb185d98e1cef066b6bb6f50a1b9c88a6f98b2783c24870b10e8cd53c",
+      "credit_wallet_id": "20fd4373-27e5-4713-a1a5-d028c6c73d86",
+      "currency": "KRT",
+      "debit_wallet_id": "3d2c2f9d-5c21-40f2-acf8-96efc69f3d78",
+      "entry_id": "c6c4092d-7307-4254-9c95-ac3f324604f9",
+      "event_id": "PROP-DIV-6f6bee25",
+      "organization_id": "ORG-KARIS-PROP",
+      "timestamp": "2026-07-16T15:26:42.042023Z",
+      "transaction_id": "818e1693-06c9-475b-9e75-ed5638a05c2f"
+    },
+    {
+      "amount": 15000.0,
+      "asset_type": "KES",
+      "audit_hash": "d76f09048bdf2f952aab195c17574d171e5aa3c71879c580f4767d79f6d535e1",
+      "credit_wallet_id": "40f8ea07-5567-4b31-aa49-b5e06b31ec1e",
+      "currency": "KES",
+      "debit_wallet_id": "9f8d3d91-1795-463e-97e7-3863aaa67c52",
+      "entry_id": "fa39b19b-d586-4194-a457-9365d8221af0",
+      "event_id": "PALPLUS-EDU-01",
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "timestamp": "2026-07-16T15:26:42.042173Z",
+      "transaction_id": "ca493c71-942f-4977-8149-d2a7d307475b"
+    },
+    {
+      "amount": 150.0,
+      "asset_type": "KRT",
+      "audit_hash": "75873eb94a34e21d4d889ebeeee264186b36550082681813f732df771c3f73d9",
+      "credit_wallet_id": "667145f6-2f28-4f5a-a540-8098e04306a5",
+      "currency": "KRT",
+      "debit_wallet_id": "773b39d1-f2c9-4216-8123-f7a42d2aa9cc",
+      "entry_id": "9dcc751c-0925-4e25-8be6-f6cb0a760862",
+      "event_id": "EDU-BONUS-fd5fe6ff",
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "timestamp": "2026-07-16T15:26:42.042257Z",
+      "transaction_id": "e8d0159f-afc4-4cd0-9ec7-6952543db959"
+    }
+  ],
+  "organization_id": "ORG-KARIS-RETAIL",
+  "snapshot_id": "PITR-SNAP-5B47AFF4",
+  "snapshot_type": "POINT_IN_TIME_PITR",
+  "timestamp": "2026-07-16T15:26:42.044295+00:00",
+  "wallets": [
+    {
+      "asset_type": "KRT",
+      "balance": 990000.0,
+      "identity_id": "ORG-TREASURY-MAIN",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-PROP",
+      "status": "ACTIVE",
+      "wallet_id": "3d2c2f9d-5c21-40f2-acf8-96efc69f3d78",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 10000.0,
+      "identity_id": "USER-INV-KAMAU",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-PROP",
+      "status": "ACTIVE",
+      "wallet_id": "20fd4373-27e5-4713-a1a5-d028c6c73d86",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 0.0,
+      "identity_id": "USER-PARENT-01",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "status": "ACTIVE",
+      "wallet_id": "9f8d3d91-1795-463e-97e7-3863aaa67c52",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 15000.0,
+      "identity_id": "ORG-COLLEGE-MACHAKOS",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "status": "ACTIVE",
+      "wallet_id": "40f8ea07-5567-4b31-aa49-b5e06b31ec1e",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 999850.0,
+      "identity_id": "ORG-TREASURY-MAIN",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "status": "ACTIVE",
+      "wallet_id": "773b39d1-f2c9-4216-8123-f7a42d2aa9cc",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 150.0,
+      "identity_id": "USER-STUDENT-01",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-COLLEGE-MACHAKOS",
+      "status": "ACTIVE",
+      "wallet_id": "667145f6-2f28-4f5a-a540-8098e04306a5",
+      "wallet_type": "KRT_WALLET"
+    }
+  ]
+}
