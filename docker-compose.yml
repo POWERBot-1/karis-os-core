@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  karis-postgres:
+    image: postgres:16-alpine
+    container_name: karis-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: karis_os_prod
+      POSTGRES_USER: karis_admin
+      POSTGRES_PASSWORD: SecureKarisPassword2026!
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U karis_admin -d karis_os_prod"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  karis-redis:
+    image: redis:7-alpine
+    container_name: karis-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  karis-migrator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: karis-migrator
+    depends_on:
+      karis-postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://karis_admin:SecureKarisPassword2026!@karis-postgres:5432/karis_os_prod
+    command: ["python3", "-m", "src.db.migrator", "--migrate"]
+
+  karis-seeder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: karis-seeder
+    depends_on:
+      karis-migrator:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: postgresql://karis_admin:SecureKarisPassword2026!@karis-postgres:5432/karis_os_prod
+    command: ["python3", "-m", "src.db.seed_data", "--seed"]
+
+  karis-api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: karis-api-gateway
+    restart: always
+    depends_on:
+      karis-seeder:
+        condition: service_completed_successfully
+      karis-redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://karis_admin:SecureKarisPassword2026!@karis-postgres:5432/karis_os_prod
+      REDIS_URL: redis://karis-redis:6379/0
+    ports:
+      - "8000:8000"
+    command: ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+
+volumes:
+  postgres_data:
+  redis_data:
