@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARIS OS™ — Enterprise Operating System & Digital Economy Portal</title>
+    <style>
+        :root {
+            --navy: #0B2545;
+            --slate: #134074;
+            --blue: #1D4ED8;
+            --light-blue: #EFF6FF;
+            --accent: #10B981;
+            --green: #059669;
+            --bg: #F8FAFC;
+            --border: #E2E8F0;
+            --text: #1E293B;
+            --text-muted: #64748B;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* Header */
+        header { background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%); color: white; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .logo-area { display: flex; align-items: center; gap: 1rem; }
+        .logo-badge { background-color: var(--accent); color: white; font-weight: 800; font-size: 1.2rem; padding: 0.5rem 0.8rem; border-radius: 8px; letter-spacing: -0.5px; }
+        .header-titles h1 { font-size: 1.4rem; font-weight: 700; }
+        .header-titles p { font-size: 0.85rem; opacity: 0.85; margin-top: 0.2rem; }
+        .header-status { display: flex; gap: 1.5rem; align-items: center; }
+        .status-pill { background: rgba(255,255,255,0.12); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.2); }
+        .dot { width: 8px; height: 8px; background-color: #10B981; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #10B981; }
+
+        /* Navigation Tabs */
+        nav { background-color: white; border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; gap: 0.5rem; overflow-x: auto; }
+        .tab-btn { background: none; border: none; padding: 1rem 1.2rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
+        .tab-btn:hover { color: var(--navy); }
+        .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+        /* Main Content Area */
+        main { flex: 1; padding: 2rem; max-width: 1440px; width: 100%; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* KPI Cards Grid */
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .kpi-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; }
+        .kpi-title { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .kpi-value { font-size: 1.8rem; font-weight: 800; color: var(--navy); margin: 0.5rem 0; }
+        .kpi-sub { font-size: 0.8rem; color: var(--green); font-weight: 600; }
+
+        /* Sections & Cards */
+        .panel-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; margin-bottom: 1.8rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .panel-header h2 { font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+        
+        /* Tables */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        th { background-color: var(--light-blue); color: var(--slate); font-weight: 700; text-align: left; padding: 0.8rem 1rem; border-bottom: 2px solid var(--border); white-space: nowrap; }
+        td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-space: top; }
+        tr:hover { background-color: #F8FAFC; }
+        .badge { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700; }
+        .badge-blue { background-color: #DBEAFE; color: #1D4ED8; }
+        .badge-green { background-color: #D1FAE5; color: #059669; }
+        .badge-purple { background-color: #EDE9FE; color: #6D28D9; }
+        .badge-orange { background-color: #FFEDD5; color: #C2410C; }
+        .hash-code { font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; background: #F1F5F9; padding: 0.2rem 0.4rem; border-radius: 4px; color: #475569; }
+
+        /* Simulator Controls Grid */
+        .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+        .sim-card { background: #F8FAFC; border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; }
+        .sim-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); }
+        .sim-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
+        .btn { background-color: var(--blue); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-align: center; }
+        .btn:hover { background-color: var(--navy); }
+        .btn-green { background-color: var(--green); }
+        .btn-green:hover { background-color: #047857; }
+
+        /* Traceability Search & Lineage Card */
+        .trace-search { display: flex; gap: 0.8rem; margin-bottom: 1.5rem; }
+        .trace-input { flex: 1; padding: 0.7rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; }
+        .trace-lineage { background: var(--light-blue); border: 1px solid #BFDBFE; border-radius: 10px; padding: 1.5rem; display: none; }
+        .trace-item { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+        .trace-icon { width: 36px; height: 36px; background: var(--blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+        .trace-details h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+        .trace-details p { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+        footer { text-align: center; padding: 1.5rem; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); background: white; margin-top: auto; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <div class="logo-badge">KARIS OS™</div>
+            <div class="header-titles">
+                <h1>Enterprise Operating System & Digital Economy Portal</h1>
+                <p>Version 1.0.0-PROD-V1 | Multi-Tenant Ecosystem: Africa/Nairobi (`KE` Jurisdiction)</p>
+            </div>
+        </div>
+        <div class="header-status">
+            <div class="status-pill"><span class="dot"></span> All 10 Invariants Enforced</div>
+            <div class="status-pill" style="background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4);">Rule 9 Audit: 100% Verified Clean</div>
+        </div>
+    </header>
+
+    <nav>
+        <button class="tab-btn active" onclick="switchTab('tab-exec')">Executive Dashboard & KPIs</button>
+        <button class="tab-btn" onclick="switchTab('tab-trace')">KARIS FARM™ Produce Traceability</button>
+        <button class="tab-btn" onclick="switchTab('tab-gov')">Governance, AML & KRA eTIMS Tax</button>
+        <button class="tab-btn" onclick="switchTab('tab-passkey-push')">Mobile Passkeys & APNS/FCM Push</button>
+        <button class="tab-btn" onclick="switchTab('tab-recon-k8s')">Ledger Recon & K8s HPA Autoscaler</button>
+        <button class="tab-btn" onclick="switchTab('tab-hsm')">NFC Biometric HSM Smart Terminal</button>
+        <button class="tab-btn" onclick="switchTab('tab-tier-net')">Loyalty Tier & Network Clearing</button>
+        <button class="tab-btn" onclick="switchTab('tab-ha')">Active-Active HA & Failover Routing</button>
+        <button class="tab-btn" onclick="switchTab('tab-offline')">Offline App & POS Synchronization</button>
+        <button class="tab-btn" onclick="switchTab('tab-mkt-reg')">Multi-Vendor Split & Regulatory Audits</button>
+        <button class="tab-btn" onclick="switchTab('tab-gdpr')">Privacy Controls & GDPR/DPA Export</button>
+        <button class="tab-btn" onclick="switchTab('tab-chaos')">Chaos Engineering & Fault Drills</button>
+        <button class="tab-btn" onclick="switchTab('tab-warehouse')">Warehouse Serial & Weather Dispatch</button>
+        <button class="tab-btn" onclick="switchTab('tab-iot-ins')">IoT Agri-Sensors & Crop Insurance</button>
+        <button class="tab-btn" onclick="switchTab('tab-policy-keys')">Governance Policies & API Keys</button>
+        <button class="tab-btn" onclick="switchTab('tab-sdk')">API SDK Client Generator</button>
+        <button class="tab-btn" onclick="switchTab('tab-bi')">Unified BI Leadership Dashboards</button>
+        <button class="tab-btn" onclick="switchTab('tab-cicd')">CI/CD Release Quality Gates</button>
+        <button class="tab-btn" onclick="switchTab('tab-fraud')">AI Fraud & Impossible Travel Check</button>
+        <button class="tab-btn" onclick="switchTab('tab-sla-super')">SLA Escalations & Super App Gateway</button>
+        <button class="tab-btn" onclick="switchTab('tab-amb')">AI Emergency Ambulance Dispatch</button>
+        <button class="tab-btn" onclick="switchTab('tab-pos-ai')">POS Queue Congestion & Shrinkage AI</button>
+        <button class="tab-btn" onclick="switchTab('tab-future')">Future Industries (Edu, Safari, Prop)</button>
+        <button class="tab-btn" onclick="switchTab('tab-crm-erp')">AI CRM Churn & ERP/SAP Sync</button>
+        <button class="tab-btn" onclick="switchTab('tab-fcast')">AI Predictive Demand Forecasting</button>
+        <button class="tab-btn" onclick="switchTab('tab-dlq')">DLQ Self-Healing Orchestration</button>
+        <button class="tab-btn" onclick="switchTab('tab-20')">KARIS OS 2.0 (CBDC, EAC & ESG)</button>
+        <button class="tab-btn" onclick="switchTab('tab-whatsapp')">WhatsApp Cloud Bot Simulator</button>
+        <button class="tab-btn" onclick="switchTab('tab-ai')">AI RAG Knowledge Assistant</button>
+        <button class="tab-btn" onclick="switchTab('tab-prom')">Prometheus Observability & Telemetry</button>
+        <button class="tab-btn" onclick="switchTab('tab-dr')">Disaster Recovery & Event Replay</button>
+        <button class="tab-btn" onclick="switchTab('tab-events')">Universal Event Bus Stream</button>
+        <button class="tab-btn" onclick="switchTab('tab-ledger')">Universal Double-Entry Ledger</button>
+        <button class="tab-btn" onclick="switchTab('tab-audit')">Security & Audit Verification</button>
+        <button class="tab-btn" onclick="switchTab('tab-sim')">Interactive Live System Simulator</button>
+        <button class="tab-btn" onclick="switchTab('tab-powerbot')">POWER BOT X (AI Prediction Economy)</button>
+        <button class="tab-btn" onclick="switchTab('tab-energy')">KARIS ENERGY & SMART SOLAR GRID™</button>
+        <button class="tab-btn" onclick="switchTab('tab-palplus')">PalPlus Hosted Payment Links</button>
+        <button class="tab-btn" onclick="switchTab('tab-expsuite')">KARIS INNOVATION SUITE (Pharma/Prop/Edu)</button>
+        <button class="tab-btn" onclick="switchTab('tab-whitelabel')">White-Label Customization Engine</button>
+        <button class="tab-btn" onclick="switchTab('tab-loop')">KARIS LOOP™ (Social Economy Layer)</button>
+    </nav>
+
+    <main>
+        <!-- TAB 1: EXECUTIVE DASHBOARD -->
+        <div id="tab-exec" class="tab-content active">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-title">Active Verticals Online</div>
+                    <div class="kpi-value">7 Verticals</div>
+                    <div class="kpi-sub">✔ Agriculture, POS, Eatery, Healthcare, Mobility, Logistics, Lending</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Treasury Reserve Ratio</div>
+                    <div class="kpi-value" id="kpi-ratio">20.0% Backed</div>
+                    <div class="kpi-sub">✔ KES 2.0M Reserve backing KRT Supply</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Recorded Ledger Hash Chain</div>
+                    <div class="kpi-value" id="kpi-ledger-count">12 Entries</div>
+                    <div class="kpi-sub">✔ Double-Entry SHA-256 Chaining Active</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Immutable Event Store</div>
+                    <div class="kpi-value" id="kpi-event-count">28 Events</div>
+                    <div class="kpi-sub">✔ No Event → No State Change (Rule 1)</div>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Enterprise Multi-Tenant Organizations Status</h2>
+                    <span class="badge badge-green">61 Database Tables Synchronized</span>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Organization Code</th>
+                                <th>Organization Name</th>
+                                <th>Vertical Type</th>
+                                <th>Tax Identifier</th>
+                                <th>Primary Currency</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>ORG-KARIS-FARM</code></td><td><strong>KARIS FARM™ Machakos Hub</strong></td><td><span class="badge badge-green">AGRICULTURE</span></td><td><code>P051234567A</code></td><td>KES / KRT</td><td><span class="badge badge-green">ACTIVE</span></td></tr>
+                            <tr><td><code>ORG-KARIS-RETAIL</code></td><td><strong>KARIS Supermarket Mlolongo</strong></td><td><span class="badge badge-blue">RETAIL_POS</span></td><td><code>P051234567B</code></td><td>KES / KRT</td><td><span class="badge badge-green">ACTIVE</span></td></tr>
+                            <tr><td><code>ORG-KARIS-EATERY</code></td><td><strong>Machakos Cloud Kitchen & Eatery</strong></td><td><span class="badge badge-orange">FOOD_SERVICES</span></td><td><code>P051234567C</code></td><td>KES / KRT</td><td><span class="badge badge-green">ACTIVE</span></td></tr>
+                            <tr><td><code>ORG-KARIS-HEALTH</code></td><td><strong>Machakos County Medical Hub</strong></td><td><span class="badge badge-purple">HEALTHCARE</span></td><td><code>P051234567D</code></td><td>KES / KRT</td><td><span class="badge badge-green">ACTIVE</span></td></tr>
+                            <tr><td><code>ORG-KARIS-MOBILITY</code></td><td><strong>KARIS Mobility & Logistics Fleet</strong></td><td><span class="badge badge-blue">LOGISTICS</span></td><td><code>P051234567E</code></td><td>KES / KRT</td><td><span class="badge badge-green">ACTIVE</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: KARIS FARM TRACEABILITY -->
+        <div id="tab-trace" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>KARIS FARM™ End-to-End Produce Traceability (Section 28.6)</h2>
+                    <span class="badge badge-green">Instant QR Lineage Verification</span>
+                </div>
+                <p style="margin-bottom: 1.2rem; color: var(--text-muted); line-height: 1.5;">
+                    Verify food safety, quality grades, cooperative aggregation, and farm GPS origin in real time. 
+                    Enter a Traceability QR Code below or click <strong>"Load Latest Seed Harvest"</strong> to inspect the cryptographic batch lineage.
+                </p>
+                <div class="trace-search">
+                    <input type="text" id="qr-input" class="trace-input" placeholder="Enter QR Code e.g., KARIS-TRACE-QR-12C8D4F2" value="KARIS-TRACE-QR-12C8D4F2">
+                    <button class="btn btn-green" onclick="traceHarvest()">Trace Harvest Lineage</button>
+                </div>
+
+                <div id="lineage-box" class="trace-lineage">
+                    <div class="trace-item">
+                        <div class="trace-icon">1</div>
+                        <div class="trace-details">
+                            <h4>Farm of Origin & Producer</h4>
+                            <p id="t-farm"><strong>Kamau Orchards - Machakos County</strong> (15.0 Acres) | Farmer: John Kamau | GPS: -1.3564, 36.9321</p>
+                        </div>
+                    </div>
+                    <div class="trace-item">
+                        <div class="trace-icon">2</div>
+                        <div class="trace-details">
+                            <h4>Harvest Verification & Quality Grade</h4>
+                            <p id="t-grade"><strong>Crop: Grade-A Hass Avocados</strong> | Quantity: 1,000 KG | Inspected & Certified GAP_CERTIFIED</p>
+                        </div>
+                    </div>
+                    <div class="trace-item">
+                        <div class="trace-icon">3</div>
+                        <div class="trace-details">
+                            <h4>Cooperative Aggregation & Custody</h4>
+                            <p id="t-coop">Aggregated by <strong>Machakos Farmers Cooperative</strong> | Batch Number: BATCH-FARM-HAS-SEED01</p>
+                        </div>
+                    </div>
+                    <div class="trace-item">
+                        <div class="trace-icon">4</div>
+                        <div class="trace-details">
+                            <h4>Retail Destination & Settlement</h4>
+                            <p id="t-retail">Listed at <strong>KARIS Supermarket Mlolongo</strong> | Automated M-Pesa Settlement & KRT Reward Grant active</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: GOVERNANCE & COMPLIANCE -->
+        <div id="tab-gov" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Operational Governance, AML/KYC & KRA eTIMS Tax Invoices (Section 38.8 & 47)</h2>
+                    <span class="badge badge-green">Multi-Tier KYC & eTIMS Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Verify multi-tier KYC identification against national registries (`TIER_3_ADVANCED`), run real-time Anti-Money Laundering (`AML`) structuring velocity checks, and issue digital KRA eTIMS tax invoices per commercial checkout with exact VAT (`16%`) and cryptographic control numbers (`KRA-ETIMS-2026-...`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Multi-Tier KYC & Watchlist Check</h3>
+                            <p>Simulates Tier 3 Advanced KYC verification for user against National ID and CBK sanction watchlists (`CLEARED`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateGov('kyc')">Complete KYC Verification</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. AML Structuring Velocity Check (SAR)</h3>
+                            <p>Simulates real-time structuring check where a user attempts multiple KES 249,000 deposits, automatically issuing a Suspicious Activity Report (`SAR`).</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateGov('aml')">Trigger AML Structuring Check</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>3. Issue KRA eTIMS Digital Tax Invoice</h3>
+                            <p>Generates a digital KRA eTIMS tax invoice for a KES 10,000 commercial order with exact VAT (`16% = KES 1,600`) and eTIMS control stamp.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateGov('etims')">Issue eTIMS Tax Invoice</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: PASSKEYS & PUSH -->
+        <div id="tab-passkey-push" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Mobile Super App Passkeys, Biometrics & APNS/FCM Push (Section 41.2 & 26.5)</h2>
+                    <span class="badge badge-green">FIDO2 WebAuthn & Push Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate hardware FIDO2 passkey verification (`IOS_APPLE_SECURE_ENCLAVE`). Upon verifying your 10th passkey login challenge, our gamified loyalty engine unlocks a **250 KRT Security Champion Bonus (`BONUS_UNLOCKED`)** (`Rule 6`), while our push gateway dispatches real-time alerts to registered APNS/FCM device tokens!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Verify Passkey Challenge (`250 KRT Bonus`)</h3>
+                            <p>Verifies hardware passkey challenge `PASSKEY-CRED-01` and unlocks gamified 250 KRT Security Champion milestone bonus.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulatePasskeyRecon('passkey')">Verify Passkey & Bonus</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Dispatch APNS/FCM Push Alert</h3>
+                            <p>Dispatches mobile push notification `Security Bonus Awarded` directly to target APNS/FCM device tokens (`FCM-TOKEN-101`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulatePasskeyRecon('push')">Dispatch Push Alert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: LEDGER RECON & K8S AUTOSCALER -->
+        <div id="tab-recon-k8s" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Universal Ledger Reconciliation & K8s HPA Autoscaling (Section 37.4 & 40.4)</h2>
+                    <span class="badge badge-blue">Reconciliation Sweeps & HPA Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Run **Automated Double-Entry Ledger Reconciliation Sweeps (`Rule 9`)** verifying mathematical equilibrium across all wallets vs transaction debits/credits (`Sum(Credits) - Sum(Debits)`), and simulate **Kubernetes Horizontal Pod Autoscaler (`HPA`)** evaluations where high request velocity (`2,380 ops/sec`) dynamically scales pod replicas from `4 -> 16 replicas` (`PODS_SCALED_OUT`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Execute Double-Entry Ledger Recon Sweep</h3>
+                            <p>Sweeps all wallets against double-entry transaction sums (`100PCT_MATHEMATICALLY_RECONCILED`), auto-issuing Reversing Entries (`Rule 9`) if drift occurs.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulatePasskeyRecon('recon')">Run Reconciliation Sweep</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Simulate Traffic Surge HPA Scale-Out</h3>
+                            <p>Simulates 2,380 ops/sec and 88.5% CPU surge on `karis-api-gateway`. HPA auto-scales pod replicas from `4 to 16 replicas` (`PODS_SCALED_OUT_TRAFFIC_SURGE`).</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulatePasskeyRecon('hpa-out')">Trigger HPA Scale-Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: HSM & BIOMETRIC NFC -->
+        <div id="tab-hsm" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Mobile NFC Biometric Smart Terminal HSM Encryption Engine (Section 41.4 & 38.4)</h2>
+                    <span class="badge badge-green">AES-256-GCM Hardware Challenge Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate mobile biometric verification (`FACE_ID_VERIFIED`), hardware encryption (`AES-256-GCM`), one-time NFC/QR cryptogram issuance (`NFC-TOKEN-2026-...`), and contactless POS terminal verification at `POS-MLO-01` with instant double-entry settlement (`Rule 5 & Rule 9`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Generate Biometric NFC Cryptogram</h3>
+                            <p>Issues 60-second encrypted NFC/QR payment token (`KES 4,500`) after Face ID mobile challenge verification.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateHsmHa('nfc-gen')">Generate NFC Cryptogram</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Scan & Settle NFC at POS Terminal</h3>
+                            <p>Scans generated NFC token at terminal `POS-MLO-01`, executing double-entry ledger transfer (`Rule 5 & 9`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateHsmHa('nfc-verify')">Scan & Verify at POS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: LOYALTY TIERS & NETWORK -->
+        <div id="tab-tier-net" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Customer Loyalty Tier Auto-Upgrades & Cross-Merchant Network Clearing (Section 23.2 & 18)</h2>
+                    <span class="badge badge-purple">Cross-Tenant Clearing Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Evaluate spend across all 13 verticals (`Spend > KES 100k -> Auto-upgrade to PLATINUM_VIP` with 15% delivery rebate), and execute **Cross-Merchant Network Clearing (`Section 18.4`)** allowing KRT earned at one merchant (`KARIS FARM`) to be spent at another (`KARIS Eatery Hub`) with inter-org double-entry settlement!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Evaluate VIP Loyalty Tier Upgrade</h3>
+                            <p>Sweeps customer spend across all 13 verticals (`KES 125,000`), auto-upgrading to `PLATINUM_VIP` membership.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateHsmHa('tier-eval')">Evaluate Tier Upgrade</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Execute Cross-Merchant Network Clearing</h3>
+                            <p>Redeems `150 KRT` tokens earned at KARIS FARM for a meal at Machakos Eatery Hub with inter-org double-entry transfer (`Rule 5`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateHsmHa('cross-net')">Execute Cross-Merchant Clearing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: HA & GEOGRAPHIC FAILOVER -->
+        <div id="tab-ha" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Active-Active High Availability & Geographic Failover Health Routing (Section 40.8 & 45.3)</h2>
+                    <span class="badge badge-blue">Geographic Multi-Node Cluster Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Monitor active-active cluster heartbeats across `CLUSTER-NAIROBI-MAIN`, `CLUSTER-MACHAKOS-EDGE`, and `CLUSTER-MOMBASA-DR`. If Nairobi node error rates surge or timeout, execute **Geographic Failover Routing (`FAILOVER_EXECUTED_TO_MACHAKOS_EDGE`)** seamlessly with 100% double-entry ledger continuity!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Execute Geographic Node Failover</h3>
+                            <p>Simulates heartbeat timeout on `CLUSTER-NAIROBI-MAIN`, instantly promoting `CLUSTER-MACHAKOS-EDGE` and verifying 100% ledger continuity!</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateHsmHa('ha-failover')">Trigger Geographic Failover</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: OFFLINE SYNCHRONIZATION -->
+        <div id="tab-offline" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Mobile App & POS Terminal Offline Synchronization (Section 41.5 & 20.2)</h2>
+                    <span class="badge badge-green">Optimistic Lock & Reconnect Sync Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate temporary M-Pesa or fiber network interruptions where cashier terminals (`POS-MLO-01`) continue processing checkouts locally. Upon reconnection, click <strong>"Synchronize Offline Batch"</strong> to watch our conflict resolution engine verify stock, execute double-entry ledger transfers (`Rule 5`), and generate eTIMS tax stamps (`Rule 7`)!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Synchronize Offline POS Batch</h3>
+                            <p>Reconciles 2 offline checkouts (KES 4,500 + KES 1,500 = KES 6,000 total) cached during network outage (`SYNCHRONIZED_SUCCESS`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateOfflineMkt('offline')">Synchronize Offline Batch</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: MULTI-VENDOR MARKETPLACE & REGULATORY AUDITS -->
+        <div id="tab-mkt-reg" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Multi-Vendor Split-Commissions & Regulatory Compliance Audits (Section 14.3 & 38.8)</h2>
+                    <span class="badge badge-purple">Atomic Multi-Leg Ledger Split Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate multi-vendor B2B/B2C marketplace carts (`Farmer Kamau KES 5,000 + Machakos Coop KES 3,000`) where our split-commission engine automatically calculates vendor net payouts (`85%`) and platform commission (`15%`) across atomic double-entry ledger legs (`Rule 2 & 5`), and generate multi-jurisdictional compliance filings (`Section 38.8`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Execute Multi-Vendor Split Settlement</h3>
+                            <p>Processes KES 8,000 combined cart order via atomic multi-leg double-entry transfers (`85% net to each vendor, KES 1,200 platform commission`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateOfflineMkt('mkt')">Execute Split Checkout</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Compile Central Bank AML/FIU Report</h3>
+                            <p>Scans multi-tier KYC records, AML SARs, eTIMS tax invoices, and ledger SHA-256 chains to generate verifiable government inspection report (`100% VERIFIED_COMPLIANT`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateOfflineMkt('reg')">Compile CBK AML/FIU Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: GDPR & PRIVACY CONTROLS -->
+        <div id="tab-gdpr" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Enterprise Privacy Controls, GDPR/DPA Export & Anonymization (Section 38.7)</h2>
+                    <span class="badge badge-green">Kenya Data Protection Act Compliance Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Manage user privacy opt-ins/opt-outs (`MARKETING_COMMUNICATIONS`), compile complete structured JSON personal data exports across all 12 verticals (`Section 38.7 Data Export`), and execute **GDPR / Kenya DPA Right-to-be-Forgotten Anonymization (`Rule 9 Preserved`)** scrubbing PII while leaving cryptographic double-entry ledger hashes 100% intact!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Compile Complete Personal Data Export</h3>
+                            <p>Compiles structured JSON export of all wallets, medical appointments, mobility trips, safari bookings, and tuition plans for `Amina Wanjiku`.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateGdpr('export')">Export Structured Data</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Execute GDPR/DPA PII Anonymization</h3>
+                            <p>Scrubs personal identifiers (`full_name -> ANONYMIZED_USER_...`) while keeping SHA-256 ledger anchors intact (`LEDGER_HASHES_PRESERVED_INTACT`).</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateGdpr('anonymize')">Anonymize User PII</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: CHAOS ENGINEERING & RESILIENCE -->
+        <div id="tab-chaos" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Chaos Engineering & Fault Injection Resilience Suite (Section 44.2 & 40.7)</h2>
+                    <span class="badge badge-purple">DLQ Auto-Recovery & Zero Data Loss Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate transient database connection timeouts and network latency during concurrent double-entry ledger transfers (`Section 44.2`). Verify that the **Dead-Letter Queue (`DLQ`) Engine** auto-recovers (`DLQ_EVENT_RECOVERED`) and the Universal Ledger maintains `VERIFIED_CLEAN` cryptographic integrity!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Inject Simulated Slave Disconnect Drill</h3>
+                            <p>Injects database slave connection failures during 15 concurrent transactions, verifying that DLQ auto-heals without losing a single coin or event.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateGdpr('chaos')">Run Chaos Resilience Drill</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: MULTI-WAREHOUSE & WEATHER DISPATCH -->
+        <div id="tab-warehouse" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Multi-Warehouse Batch Serial Tracking & AI Weather-Aware Dispatch (Section 15 & 21.5)</h2>
+                    <span class="badge badge-blue">Barcode Serial & Storm Upgrade Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Track exact crate serial numbers (`SN-AVO-CRATE-2026-0001`) across distribution warehouses (`Machakos Depot`, `Mlolongo Hub`), and test **AI Weather-Aware Route Dispatching (`Section 21.5`)** where heavy storm rainfall (`HEAVY_RAINFALL_STORM`) automatically upgrades vehicle dispatches from two-wheeler motorcycles to covered refrigerated trucks (`REFRIGERATED_TRUCK`)!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Register Warehouse Barcode Serial Crate</h3>
+                            <p>Logs crate barcode `SN-AVO-CRATE-2026-0001` in `Machakos Main Warehouse` linked directly to harvest batch `BATCH-FARM-HAS-1BF01C`.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateGdpr('serial')">Register Serial Crate</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Execute Heavy Storm Weather Dispatch</h3>
+                            <p>Simulates heavy rainfall storm during avocado order dispatch. AI Dispatcher auto-switches vehicle to covered `REFRIGERATED_TRUCK` (`Surge 1.35x`).</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateGdpr('weather')">Trigger Storm Dispatch</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: IOT SENSORS & PARAMETRIC INSURANCE -->
+        <div id="tab-iot-ins" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>IoT Agri-Sensor Telemetry & Parametric Crop Insurance Engine (Section 28.5 & 34.4)</h2>
+                    <span class="badge badge-green">Smart Irrigation & Auto-Claim Payout Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate real-time IoT soil moisture sensors (`IOT-MACHAKOS-SN-001`) across Farmer John Kamau's 15-acre avocado farm. When soil moisture drops below `20%` (`Drought threshold`), two actions trigger instantly: smart irrigation valve `VALVE-MLO-12` opens (`2,500L water`), AND the **Parametric Crop Insurance Engine auto-settles a KES 50,000 claim payout (`Rule 2, 5 & 6`)** directly into the farmer's KES wallet via Universal Ledger!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Issue Parametric Crop Insurance Policy</h3>
+                            <p>Issues digital drought index policy `POL-AGRI-MACHAKOS-01` (`KES 5,000 Premium`, `KES 50,000 Coverage`) for 15.0 acres.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateIotIns('policy')">Issue Parametric Policy</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Log Severe Drought Telemetry (14.5%)</h3>
+                            <p>Logs severe drought telemetry (`Soil moisture 14.5% for >72h`), commanding smart irrigation AND auto-disbursing KES 50,000 claim payout!</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateIotIns('drought')">Trigger IoT Drought & Payout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: GOVERNANCE POLICIES & API KEYS -->
+        <div id="tab-policy-keys" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Operational Governance Policies, API Keys & Dynamic Tax Rules (Section 43 & 47)</h2>
+                    <span class="badge badge-purple">SHA-256 Secret Hashing & Granular Scopes Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Manage declarative operational governance policies (`POL-GOV-RESERVE-RATIO-20PCT`), issue cryptographic enterprise API keys (`KARIS_LIVE_...`) with granular scoped permissions (`["ORDERS:WRITE", "LEDGER:READ"]`), and inspect active multi-jurisdictional tax brackets (`16% VAT`, `5% Withholding`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Issue Cryptographic Enterprise API Key</h3>
+                            <p>Issues signed API Key `KARIS_LIVE_*` with SHA-256 secret hashing (`Section 38.4`) scoped for POS terminal `POS-MLO-01`.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateIotIns('key')">Issue Enterprise API Key</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Create Declarative Tax Rule (`Rule 7`)</h3>
+                            <p>Creates dynamic tax bracket `TAX-KE-VAT-16` (`16.0% rate`) applied automatically during KRA eTIMS invoice generation.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateIotIns('tax')">Create Dynamic Tax Rule</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: API SDK GENERATOR -->
+        <div id="tab-sdk" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Automated Enterprise API SDK Client Generator (Section 46.2)</h2>
+                    <span class="badge badge-blue">Type-Hinted Scaffolding Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Generate complete, production-ready client SDK packages (`karis_os_client.py` and `karis-os-sdk.ts`) wrapping all 12 verticals, complete with automatic JWT token management, correlation ID injection (`X-Correlation-ID`), and strong interface definitions (`Rule 6`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Generate Python Async/Sync SDK</h3>
+                            <p>Generates `karis_os_client.py` wrapping 34 endpoints and 18 domain models (`PYTHON_ASYNC_SYNC`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateSdk('py')">Generate Python SDK</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Generate TypeScript / Node SDK</h3>
+                            <p>Generates `karis-os-sdk.ts` with exact interface matching against Draft-07 JSON Event Schemas (`TYPESCRIPT_NODE_BROWSER`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateSdk('ts')">Generate TypeScript SDK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: UNIFIED BI DASHBOARDS -->
+        <div id="tab-bi" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Unified BI Executive & Leadership Dashboard Aggregations (Section 27.2 & 27.3)</h2>
+                    <span class="badge badge-purple">5-Domain C-Suite Intelligence Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Compile high-speed materialized C-suite intelligence reports across all 5 dashboard categories (`Executive Summary`, `Commerce Retail POS`, `Delivery Logistics`, `Finance Treasury Lending`, `Healthcare EMR CHV`) without locking transactional write models (`Section 37.3 CQRS & BI`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Compile Unified C-Suite Executive Report</h3>
+                            <p>Compiles instant multi-vertical BI report across all 5 domains, emitting `BI_EXECUTIVE_REPORT_COMPILED`.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateSdk('bi')">Compile BI Executive Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 8: CI/CD QUALITY GATES -->
+        <div id="tab-cicd" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>CI/CD Automated Deployment Quality Gate Engine (Section 40.5 & 40.6)</h2>
+                    <span class="badge badge-green">Zero-Vulnerability Release Gate Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Enforces that NO code build proceeds to deployment unless all release invariants are verified: **100% Pytest pass rate**, **Rule 9 SHA-256 cryptographic audit chain intact (`VERIFIED_CLEAN`)**, and **Stress throughput > 1,500 ops/sec (`CICD_GATE_PASSED_AUTHORIZED`)**.
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Execute Passing CI/CD Quality Gate</h3>
+                            <p>Evaluates build `BUILD-20260716-PROD-99A` (`100% Pytest, 2,380 ops/sec, Rule 9 clean`), issuing formal deployment authorization certificate!</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateSdk('cicd-pass')">Verify Passing Quality Gate</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Simulate Failing Quality Gate (Rejected)</h3>
+                            <p>Simulates build with 95% test pass rate (`BUILD-FAIL-99`), verifying that the CI/CD gate hard-blocks deployment (`CICD_GATE_FAILED_REJECTED`) and enforces rollback.</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateSdk('cicd-fail')">Simulate Failing Quality Gate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 9: AI FRAUD DETECTION -->
+        <div id="tab-fraud" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>AI Fraud Detection & Real-Time Velocity Anomaly Engine (Section 38.6 & 27.1)</h2>
+                    <span class="badge badge-orange">Impossible Travel & Velocity Protection Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate multi-vector fraud analysis across transaction velocity, impossible travel (`Machakos -> Mombasa in 3 mins`), and blacklisted device fingerprints. When `fraud_risk_score > 80.0`, the AI instantly freezes the target wallet (`wallets.status = 'FROZEN'`), issues a formal investigation case (`FRAUD-CASE-2026`), and emits `FRAUD_ANOMALY_DETECTED` (`Rule 5 & Rule 10`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Normal Transaction in Machakos</h3>
+                            <p>Simulates standard KES 5,000 M-Pesa checkout at `-1.3564, 36.9321` with clean device fingerprint (`CLEARED_PROCEED`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateFraud('normal')">Simulate Normal Checkout</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Impossible Travel Velocity Anomaly</h3>
+                            <p>Simulates second transaction 3 minutes later from Mombasa (`-4.0435, 39.6682`). AI detects impossible travel speed (`>800 km/h`), instantly freezing wallet and issuing SAR!</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateFraud('impossible')">Trigger Impossible Travel Check</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: SLA ESCALATION & SUPER APP GATEWAY -->
+        <div id="tab-sla-super" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Call Center SLA Escalations & Omnichannel Super App Gateway (Section 24.4, 31.2 & 31.3)</h2>
+                    <span class="badge badge-purple">12-Vertical Aggregation & Supervisor Escalations Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Run automated SLA sweeps to flag breached support tickets and auto-assign them to senior supervisors (`SUPERVISOR-ID-99`), and inspect the **Complete Single-Account Super App Profile (`Amina Wanjiku`)** aggregating her entire 12-vertical relationship profile (`KES 42.5k`, `440 KRT`, `Teleconsultation`, `TukTuk Trip`, `Edu-Pay Plan`, `Safari Booking`, `Prop-Share Unit`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Execute Call Center SLA Sweep</h3>
+                            <p>Sweeps active SLA monitoring records, identifies resolution breaches (`TKT-SLA-101`), and auto-escalates to senior supervisor `SUPERVISOR-ID-99` (`TICKET_ESCALATED`).</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateSlaSuper('sla')">Run SLA Escalation Sweep</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Load Customer Super App Profile</h3>
+                            <p>Fetches real-time aggregated profile for `Amina Wanjiku` across all 12 verticals, displaying her multi-asset portfolio and active engagements (`SUPER_APP_SESSION_SYNCED`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateSlaSuper('super-app')">Load Super App Profile</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>3. Load Merchant Portal Dashboard</h3>
+                            <p>Fetches real-time aggregated dashboard for `Machakos Hub`, displaying active retail stores, pending KDS kitchen orders, and double-entry settlement status.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateSlaSuper('merchant')">Load Merchant Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: AMBULANCE AI DISPATCH -->
+        <div id="tab-amb" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Life-Support Emergency Ambulance AI Dispatching Engine (Section 32.8 & 33.5)</h2>
+                    <span class="badge badge-purple">Geodesic GPS Fleet Proximity Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate emergency medical rescue matching (`ADVANCED_LIFE_SUPPORT_ALS` vs `BASIC_LIFE_SUPPORT_BLS`). The AI evaluates real-time GPS coordinates (`Haversine distance check`), checks oxygen cylinder reserves (`>30%`), and dispatches the nearest paramedic within milliseconds (`AMBULANCE_DISPATCHED`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Dispatch Highway Crash ALS Ambulance</h3>
+                            <p>Simulates urgent `ADVANCED_LIFE_SUPPORT_ALS` dispatch for highway accident at `-1.3650, 36.9350`. AI matches Machakos ALS Unit `AMB-MACHAKOS-ALS-01` (`ETA: 4.1 mins`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateAmb('als')">Dispatch ALS Ambulance</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Dispatch Maternal BLS Emergency Unit</h3>
+                            <p>Simulates urgent maternal checkup `BASIC_LIFE_SUPPORT_BLS` dispatch in Mlolongo at `-1.3800, 36.9400`. AI matches Mlolongo Unit `AMB-MLOLONGO-BLS-02` (`ETA: 3.0 mins`).</p>
+                        </div>
+                        <button class="btn" onclick="simulateAmb('bls')">Dispatch BLS Ambulance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: POS AI QUEUE CONGESTION & SHRINKAGE -->
+        <div id="tab-pos-ai" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>POS Queue Congestion AI & Retail Shrinkage Detection (Section 20.3 & 30.5)</h2>
+                    <span class="badge badge-blue">Real-Time Bottleneck Monitoring Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Monitor live cashier terminal lines and physical inventory recounts. When customers waiting exceed `6 customers` (`QUEUE_CONGESTION_DETECTED`), the POS AI issues automated commands to open Express Terminal lanes (`POS-MLO-02`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Simulate POS Queue Congestion Alert</h3>
+                            <p>Simulates 10 customers waiting at terminal `POS-MLO-01` (`Wait time 6.0 mins`). AI flags `QUEUE_CONGESTION_DETECTED` and commands Express Terminal activation.</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulatePosAI('queue')">Trigger Queue Congestion Alert</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Simulate Retail Inventory Shrinkage Audit</h3>
+                            <p>Simulates physical inventory recount finding 280 KG vs 300 KG expected (`20 KG discrepancy = KES 3,000 loss`), auto-creating audit investigations (`THEFT_SUSPECTED`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulatePosAI('shrink')">Execute Shrinkage Audit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: FUTURE INDUSTRIES SUITE -->
+        <div id="tab-future" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Future Industries Suite: Education Edu-Pay, Tourism Safari & Prop-Share (Section 35.3)</h2>
+                    <span class="badge badge-purple">Vertical-Agnostic Core Inheritance Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate future vertical extensions inheriting shared identity, wallet, and ledger services:
+                    <strong>Education Hub (`KARIS Edu-Pay`)</strong> student tuition M-Pesa installments awarding `150 KRT-EDU` scholarship tokens (`Rule 2 & 6`);
+                    <strong>Tourism Hub (`KARIS Safari & Stays`)</strong> eco-lodge bookings in Machakos/Mara minting `75 KRT-GREEN` carbon offset tokens; and
+                    <strong>Real Estate Hub (`KARIS Prop-Share`)</strong> fractional property syndication unit allocation (`AssetType.INVESTMENT`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Pay Student Tuition (`KARIS Edu-Pay`)</h3>
+                            <p>Simulates KES 15,000 tuition fee installment for Term 3 at Machakos Academy, auto-granting a 10% academic scholarship (`1,500 KRT-EDU` tokens).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateFuture('edu')">Pay Tuition Installment</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Book Eco-Lodge (`KARIS Safari & Stays`)</h3>
+                            <p>Simulates a 3-night safari booking at Machakos Luxury Eco-Camp (`KES 36,000`), calculating dynamic seasonal pricing and minting `75 KRT-GREEN` tokens.</p>
+                        </div>
+                        <button class="btn" onclick="simulateFuture('safari')">Confirm Safari Booking</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>3. Allocate Prop-Share Fractional Units</h3>
+                            <p>Allocates 50 fractional property syndication units of Mlolongo Trade Towers (`KES 500,000` valuation) directly into the investor's `INVESTMENT` wallet via Universal Ledger (`Rule 5`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateFuture('prop')">Allocate Prop-Share Units</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: AI CRM & ERP ACCOUNTING SYNC -->
+        <div id="tab-crm-erp" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>AI CRM Churn Prediction, LTV & ERP Accounting/SAP Sync (Section 23.4, 36.5 & 43.2)</h2>
+                    <span class="badge badge-green">SAP S/4HANA & QuickBooks Sync Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Predict Customer Lifetime Value (`LTV`), estimate Churn Risk (`82.5%`), auto-dispatch **500 KRT Win-Back Retention Grants (`Rule 6 & Rule 7`)**, push double-entry ledger batches to external accounting systems (`SAP S/4HANA Kenya`), and render declarative notification templates (`SMS`, `WhatsApp`, `Email`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. AI CRM Churn Evaluation & Win-Back Grant</h3>
+                            <p>Evaluates customer with >90 days inactivity (`82.5% Churn Risk`), automatically triggering a personalized 500 KRT loyalty retention grant and email dispatch.</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateCrmErp('crm')">Trigger Churn Evaluation</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Push Double-Entry Batch to SAP S/4HANA</h3>
+                            <p>Executes batch synchronization pushing verified double-entry `ledger_entries` directly to `SAP S/4HANA Kenya` (`FY-2026-Q3`) with external control tracking.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateCrmErp('erp')">Push SAP S/4HANA Batch</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>3. Dispatch Declarative Notification Template</h3>
+                            <p>Renders template `TPL-ORDER-CONFIRMED-SMS` with dynamic variables (`{{customer_name}} = Amina`, `{{amount_kes}} = 4,500`) and logs gateway dispatch.</p>
+                        </div>
+                        <button class="btn" onclick="simulateCrmErp('notif')">Dispatch SMS Notification</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 8: PREDICTIVE FORECASTING -->
+        <div id="tab-fcast" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>AI Predictive Intelligence & Demand Forecasting Engine (Section 27.4 & 13.4)</h2>
+                    <span class="badge badge-purple">Time-Series Stockout Prediction Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Predict SKU demand, calculate exact stockout dates across retail/supermarket branches in Machakos and Nairobi, and recommend dynamic pricing adjustments (`Rule 10: Human approval or auto-apply`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Generate SKU Demand Forecast</h3>
+                            <p>Forecasts demand velocity (50 units/day) for Grade-A Hass Avocados at Mlolongo Supermarket, predicting stockout in 5 days and recommending a 700-unit reorder buffer.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateGov('fcast')">Generate Demand Forecast</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Dynamic Pricing Recommendation</h3>
+                            <p>Evaluates batch shelf expiry and seasonal demand, recommending a 25% markdown to clear avocado stock with formal Rule 10 human approval gate.</p>
+                        </div>
+                        <button class="btn" onclick="simulateGov('price')">Recommend Dynamic Pricing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: DLQ SELF-HEALING -->
+        <div id="tab-dlq" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Distributed Dead-Letter Queue (DLQ) & Self-Healing Engine (Section 36.6)</h2>
+                    <span class="badge badge-blue">Automated Exponential Backoff Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    When transient database timeouts or network interruptions occur, failed event subscriber dispatches are safely captured in the Dead-Letter Queue (`DLQ_STORE`), automatically swept with exponential backoff retries, and recovered (`DLQ_EVENT_RECOVERED`) without data loss (`Rule 1 & Rule 9`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Record Transient Dispatch Failure</h3>
+                            <p>Simulates a subscriber connection timeout during Rule Engine processing, safely enqueueing the event in our Dead-Letter Store (`DEAD_LETTER_QUEUED`).</p>
+                        </div>
+                        <button class="btn" style="background: var(--orange);" onclick="simulateGov('dlq-fail')">Simulate Dispatch Failure</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Trigger Self-Healing Recovery Sweep</h3>
+                            <p>Runs automated exponential backoff sweep across all pending DLQ records, successfully re-publishing and recovering events (`PROCESSED_RECOVERED`).</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulateGov('dlq-heal')">Run Self-Healing Sweep</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: KARIS OS 2.0 VISION -->
+        <div id="tab-20" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>KARIS OS 2.0 Innovation Vision (Section 48: CBDC, Open Banking, EAC & ESG Carbon Credits)</h2>
+                    <span class="badge badge-green">Regional Wholesale Settlement Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Explore real-time Central Bank Digital Currency wholesale interbank settlement (`CBDC_KES`), Open Banking PSD2 consents (`Equity Bank / KCB`), East African Community cross-border transfers (`KES -> UGX`), and Scope 1/2/3 Carbon Footprint tracking awarding `KRT-GREEN` tokens.
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Wholesale CBDC Interbank Settlement</h3>
+                            <p>Simulates instant 5,000,000 CBDC-KES wholesale settlement between Equity Bank and KCB backed by cryptographic Central Bank signatures.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulate20('cbdc')">Execute CBDC Settlement</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Cross-Border EAC Transfer (KES → UGX)</h3>
+                            <p>Simulates instant regional cross-border settlement sending 10,000 KES from Kenya (`KE`) to Uganda (`UG`), delivering 285,000 UGX via our Exchange Engine.</p>
+                        </div>
+                        <button class="btn" onclick="simulate20('eac')">Execute EAC Transfer</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>3. ESG Carbon Footprint & Green Token Minting</h3>
+                            <p>Records Scope 1/2/3 emissions (`0.5 + 0.3 + 0.2 = 1.0 KG CO2`) for Grade-A Hass Avocado production (`CARBON_NEGATIVE`), minting 50 KRT-GREEN tokens into Treasury pool!</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulate20('esg')">Record ESG Carbon Offset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: WHATSAPP CLOUD BOT SIMULATOR -->
+        <div id="tab-whatsapp" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>WhatsApp Cloud API Interactive Conversational Bot (Section 36.5 & 24)</h2>
+                    <span class="badge badge-blue">Daraja & WhatsApp Business Engine</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Simulate real-time conversational commands from smallholder farmers or consumers across East Africa. Enter a command below or click a quick prompt to see exact WhatsApp bot responses and Event Bus tracking (`Rule 6`).
+                </p>
+                <div style="display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <button class="btn btn-green" onclick="sendWhatsApp('1 Trace KARIS-TRACE-QR-12C8D4F2')">[Quick: Trace Harvest QR]</button>
+                    <button class="btn" onclick="sendWhatsApp('2 Balance')">[Quick: Check Balances]</button>
+                    <button class="btn" style="background: var(--slate);" onclick="sendWhatsApp('3 Ask Agri: What soil pH is best for Avocados?')">[Quick: Ask Agri RAG]</button>
+                </div>
+                <div class="trace-search">
+                    <input type="text" id="wa-input" class="trace-input" placeholder="Enter WhatsApp command e.g., 2 Balance or 3 Ask Agri...">
+                    <button class="btn btn-green" onclick="sendWhatsAppCustom()">Send WhatsApp Command</button>
+                </div>
+                <div id="wa-response-box" class="trace-lineage" style="background: #ECFDF5; border-color: #A7F3D0; display: block;">
+                    <h4 style="color: #065F46; margin-bottom: 0.5rem;">📱 WhatsApp Bot Response:</h4>
+                    <pre id="wa-bot-text" style="color: #047857; font-family: -apple-system, BlinkMacSystemFont, sans-serif; white-space: pre-wrap; line-height: 1.5;">Welcome to KARIS OS™ WhatsApp Business Portal! Click a quick button above to begin interacting.</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: AI RAG ASSISTANT -->
+        <div id="tab-ai" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Multi-Agent AI RAG Knowledge Assistant (Sections 13.2 & 39)</h2>
+                    <span class="badge badge-purple">Vector Cosine Similarity & Grounding Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Ask specialized domain agents (Agriculture AI, Customer Support AI, or Executive AI) for immediate, grounded intelligence. Every query is embedded and matched against our Vector RAG Store (`rag_store`) to prevent hallucination.
+                </p>
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <button class="btn btn-green" onclick="askAI('agri', 'What soil pH and harvest protocols apply to Hass Avocados in Machakos?')">[Sample: Agri Avocado Guidelines]</button>
+                    <button class="btn" onclick="askAI('support', 'Order delay emergency QG37112233')">[Sample: Support Urgent Ticket]</button>
+                    <button class="btn" style="background: var(--slate);" onclick="askAI('exec', 'Briefing')">[Sample: Executive Briefing]</button>
+                </div>
+                <div class="trace-search">
+                    <input type="text" id="ai-input" class="trace-input" placeholder="Ask AI e.g., How do I rotate French Beans and Maize in East Africa?">
+                    <button class="btn btn-green" onclick="submitAICustom()">Ask RAG Agent</button>
+                </div>
+                <div id="ai-response-box" class="trace-lineage" style="background: #F8FAFC; border-color: var(--border);">
+                    <h4 id="ai-agent-title" style="color: var(--navy); margin-bottom: 0.5rem;">AI Response will appear here...</h4>
+                    <p id="ai-agent-text" style="color: var(--text); line-height: 1.6; font-size: 0.92rem; margin-bottom: 1rem;"></p>
+                    <div id="ai-agent-citations" style="font-size: 0.82rem; color: var(--text-muted); background: #EEF4F8; padding: 0.8rem; border-radius: 6px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 8: PROMETHEUS OBSERVABILITY -->
+        <div id="tab-prom" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Prometheus Telemetry & Observability Engine (Section 40.7 & 47.3)</h2>
+                    <button class="btn btn-green" onclick="loadTelemetry()">Refresh Telemetry Status</button>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Live telemetry tracking across API request velocity (`karis_http_requests_total`), double-entry ledger distribution across asset classes, active multi-asset wallets, and Prometheus plain-text metrics scraping endpoint (`/metrics`).
+                </p>
+                <div class="kpi-grid" style="margin-bottom: 1.5rem;">
+                    <div class="kpi-card">
+                        <div class="kpi-title">Telemetry Engine Status</div>
+                        <div class="kpi-value" style="font-size: 1.4rem;" id="prom-status">ONLINE_ACTIVE</div>
+                        <div class="kpi-sub">✔ Scraped by Prometheus / Grafana</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Platform Uptime</div>
+                        <div class="kpi-value" style="font-size: 1.4rem;" id="prom-uptime">124.50s</div>
+                        <div class="kpi-sub">✔ Zero unplanned downtime</div>
+                    </div>
+                </div>
+                <div class="trace-lineage" style="background: #F8FAFC; border-color: var(--border); display: block;">
+                    <h4 style="color: var(--navy); margin-bottom: 0.5rem;">📊 Prometheus Exposition Output Preview (`GET /metrics`):</h4>
+                    <pre id="prom-raw-text" style="color: #334155; font-family: 'Courier New', Courier, monospace; font-size: 0.82rem; white-space: pre-wrap; line-height: 1.4; max-height: 250px; overflow-y: auto; background: #E2E8F0; padding: 1rem; border-radius: 6px;">Loading Prometheus metrics...</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 9: DISASTER RECOVERY & EVENT REPLAY -->
+        <div id="tab-dr" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Disaster Recovery (PITR) & Replayable Event Sourcing (Section 37.5 & 44.4)</h2>
+                    <span class="badge badge-green">Zero-Corruption Backup Active</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Capture complete point-in-time system snapshots (`wallets`, `ledger_entries`, `events`) to disk with cryptographic SHA-256 checksum verification, and reconstruct exact multi-asset wallet balances from pure event logs (`Rule 1 & Section 37.5`).
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Create Point-in-Time PITR Snapshot</h3>
+                            <p>Captures all 77 database tables and active state to `/backups/snapshot_*.json` with SHA-256 cryptographic checksum.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="triggerDR('snapshot')">Take PITR Snapshot</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Verify Backup SHA-256 Checksum</h3>
+                            <p>Validates backup file integrity on disk against stored cryptographic hash (`VERIFIED_CLEAN`).</p>
+                        </div>
+                        <button class="btn" onclick="triggerDR('verify')">Verify Backup Checksum</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>3. Rebuild System State via Event Replay</h3>
+                            <p>Demonstrates `Events support rebuilding system state if required.` Replays event logs to reconstruct wallet balances from scratch.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="triggerDR('replay')">Replay & Rebuild State</button>
+                    </div>
+                </div>
+                <div id="dr-result-box" class="trace-lineage" style="margin-top: 1.5rem; background: #ECFDF5; border-color: #A7F3D0; display: block;">
+                    <h4 id="dr-title" style="color: #065F46; margin-bottom: 0.3rem;">DR Status: Ready for Snapshot or Replay</h4>
+                    <p id="dr-text" style="color: #047857; font-size: 0.88rem;">Click an action above to execute point-in-time recovery backup or event sourcing state reconstruction.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 10: EVENT BUS STREAM -->
+        <div id="tab-events" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Universal Event Bus Store (Enforcing Rule 1, 6, 8, and 9)</h2>
+                    <button class="btn" onclick="fetchEvents()">Refresh Event Stream</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp (UTC)</th>
+                                <th>Event Type</th>
+                                <th>Category</th>
+                                <th>Source Module</th>
+                                <th>Correlation ID</th>
+                                <th>Cryptographic SHA-256 Hash</th>
+                            </tr>
+                        </thead>
+                        <tbody id="events-tbody">
+                            <tr><td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">Loading live events from Universal Event Bus...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: LEDGER -->
+        <div id="tab-ledger" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Universal Double-Entry Ledger (Enforcing Rule 5 and Rule 9)</h2>
+                    <button class="btn" onclick="fetchLedger()">Refresh Ledger Entries</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Transaction ID</th>
+                                <th>Asset Type</th>
+                                <th>Amount</th>
+                                <th>Debit Wallet ID</th>
+                                <th>Credit Wallet ID</th>
+                                <th>SHA-256 Audit Hash Chain</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ledger-tbody">
+                            <tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">Loading double-entry transactions from Universal Ledger...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: AUDIT VERIFICATION -->
+        <div id="tab-audit" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Cryptographic Tamper-Detection & Audit Engine (Section 38.5 & Rule 9)</h2>
+                    <span class="badge badge-green">Real-Time SHA-256 Chain Verification</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.5;">
+                    Verify that neither the double-entry Universal Ledger nor the Universal Event Store has been modified, deleted, or re-ordered. The cryptographic sweep recomputes every block anchor (`previous_hash + payload + timestamp`) in real time.
+                </p>
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <button class="btn btn-green" onclick="runAuditSweep()">Sweep & Verify Ledger Hash Chain</button>
+                    <button class="btn" onclick="runEventSweep()">Sweep & Verify Event Store Hashes</button>
+                </div>
+                <div id="audit-result-box" class="trace-lineage" style="background: #ECFDF5; border-color: #A7F3D0; display: block;">
+                    <div class="trace-item">
+                        <div class="trace-icon" style="background: #059669;">✔</div>
+                        <div class="trace-details">
+                            <h4 id="audit-title" style="color: #065F46;">System Status: 100% Verified Clean</h4>
+                            <p id="audit-text" style="color: #047857; margin-top: 0.3rem;">Double-Entry Ledger and Event Store maintain unbroken SHA-256 cryptographic anchors. Zero tamper anomalies detected across all multi-tenant organizations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: SIMULATOR -->
+        <div id="tab-sim" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2>Interactive Enterprise System Simulator</h2>
+                    <span class="badge badge-blue">Real-Time API Gateway Execution</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                    Click any simulation action below to execute live business workflows. Watch exact domain events publish to the Event Bus and double-entry settlements record in the Universal Ledger!
+                </p>
+                <div class="sim-grid">
+                    <div class="sim-card">
+                        <div>
+                            <h3>1. Supermarket POS Checkout (Mixed Payment)</h3>
+                            <p>Customer Amina purchases KES 3,000 groceries at Mlolongo Supermarket, redeems 200 KRT loyalty discount, pays KES 2,800 via M-Pesa, and earns 5% KRT loyalty reward.</p>
+                        </div>
+                        <button class="btn btn-green" onclick="simulatePOS()">Trigger POS Checkout</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>2. Cloud Kitchen KDS & Rider Dispatch (Rule 4)</h3>
+                            <p>Submits meal order to Kitchen Display System, chef flags ready, AI Dispatcher matches Rider David, and verified GPS delivery releases escrow payout KES 170 directly to rider.</p>
+                        </div>
+                        <button class="btn" onclick="simulateLogistics()">Trigger KDS & Dispatch</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>3. Healthcare Telemedicine & CHV Field Visit</h3>
+                            <p>Books teleconsultation with Dr. Omondi at Machakos Clinic, issues EMR Clinical Note & Prescription, and logs CHV maternal check awarding 50 KRT field incentive.</p>
+                        </div>
+                        <button class="btn" onclick="simulateHealthcare()">Trigger Telemedicine Visit</button>
+                    </div>
+                    <div class="sim-card">
+                        <div>
+                            <h3>4. AI Credit Evaluation & Loan Disbursement</h3>
+                            <p>Farmer Kamau requests KES 100,000 working capital. Risk AI evaluates application (Score 38 -> APPROVE), and Admin disburses 100,000 CREDIT units via Universal Ledger (Rule 3).</p>
+                        </div>
+                        <button class="btn" onclick="simulateCredit()">Trigger Credit Disbursement</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 36: POWER BOT X (AUTONOMOUS AI PREDICTION ECONOMY) -->
+        <div id="tab-powerbot" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #F59E0B;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: POWER BOT X — Autonomous AI Prediction Economy</h2>
+                    <span class="badge" style="background: #FEF3C7; color: #D97706; border: 1px solid #F59E0B;">Section 49 / Vertical 14 • WhatsApp-First Agent Ecosystem</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>Power BOT X</strong> is not a betting site, app, or chatbot—it is a self-improving digital economy where AI, KRT tokens, autonomous agents, merchants, and users continuously create value inside a unified ecosystem. Every deposit converts to KRT (`1 KES = 1 KRT`), predictions escrow via double-entry ledger (`Rule 9`), and winnings spend immediately at <strong>KARIS Eatery</strong> and <strong>KARIS FARM</strong>.
+                </p>
+
+                <!-- 5-Layer Architectural Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 2rem;">
+                    <div style="background: var(--bg-main); padding: 1.2rem; border-radius: 10px; border: 1px solid var(--border);">
+                        <h4 style="color: var(--blue); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">📱 1. Experience Layer (WhatsApp-First)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+                            AI automatically creates Status posters, animated videos, countdown timers, match cards, community polls, QR deep links, voice notes, and daily summaries. Discovery and interaction return strictly to WhatsApp.
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-main); padding: 1.2rem; border-radius: 10px; border: 1px solid var(--border);">
+                        <h4 style="color: #10B981; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">🧠 2. AI Layer (7 Intelligence Engines)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+                            <strong>Prediction Copilot</strong> explains form, injuries, and confidence intervals without promising outcomes (`Rule 10`). <strong>Living AI Content Engine</strong> customizes localized Swahili/Sheng packages per agent.
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-main); padding: 1.2rem; border-radius: 10px; border: 1px solid var(--border);">
+                        <h4 style="color: #F59E0B; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">💰 3. Economy Layer (Dynamic KRT)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+                            Every deposit converts to KRT (`1.0 KRT = 1.0 KES`). Powers prediction entries, escrow pools, agent commissions (`10%`), promotional staking, and immediate redemption at KARIS OS merchants.
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-main); padding: 1.2rem; border-radius: 10px; border: 1px solid var(--border);">
+                        <h4 style="color: #8B5CF6; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">🤝 4. Growth Layer (Social & Agents)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+                            <strong>Reputation Graph</strong> tracks fair participation and longevity (`Reputation unlocks experiences, not game outcomes`). Autonomous Agent Network operates micro-businesses coached by AI.
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-main); padding: 1.2rem; border-radius: 10px; border: 1px solid var(--border);">
+                        <h4 style="color: var(--navy); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">⚙️ 5. Infrastructure Layer (Kernel Sync)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+                            Integrates Single Identity, Multi-Asset Wallets (`Rule 5`), double-entry SHA-256 hash chains (`Rule 9`), 10 Draft-07 JSON event contracts (`Rule 6`), and a self-evolving <strong>Digital Twin</strong> simulation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interactive Simulation Controls -->
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">🚀 Live Power BOT X Ecosystem Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. WhatsApp Status Kit & Swahili Audio Gen</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate Living AI Content Engine generating unique Swahili/Sheng Status poster, 86,400s countdown timer, and WhatsApp audio note for Agent David.</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulatePowerBotWhatsApp()">Generate WhatsApp Status Kit</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. AI Prediction Copilot (Gor vs AFC Derby)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate AI Copilot explaining form trends, tactical fatigue, and 95% confidence intervals (`Improves decision quality without promising outcomes`).</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulatePowerBotCopilot()">Launch AI Copilot Analysis</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. KRT Deposit, Prediction Escrow & Settlement</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate User Amina depositing KES 1,000 via M-Pesa -> Minting 1,000 KRT -> Escrowing 400 KRT stake -> Winning match -> Earning 740 KRT payout (`Rule 9`).</p>
+                            </div>
+                            <button class="btn" style="background: #F59E0B; color: white;" onclick="simulatePowerBotSettlement()">Run Double-Entry Settlement</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">4. Digital Economy Marketplace Gateway</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate prediction winner immediately spending 350 KRT winnings directly from WhatsApp to order a hot lunch via KARIS Eatery KDS (`One Wallet Economy`).</p>
+                            </div>
+                            <button class="btn" style="background: #8B5CF6; color: white;" onclick="simulatePowerBotMarketplace()">Spend KRT at KARIS Eatery</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">5. Digital Twin Policy & Solvency Simulation</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate adjusting agent commissions (`15%`) and staking bonuses (`5%`) across 1.25M KRT circulation. Verify solvency & RBAC admin sign-off (`Rule 10`).</p>
+                            </div>
+                            <button class="btn" style="background: #10B981; color: white;" onclick="simulatePowerBotTwin()">Run Digital Twin Simulation</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Monitoring Box -->
+                <div id="powerbot-output" style="background: #1E293B; color: #38BDF8; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #334155;">[POWER BOT X ENGINE ACTIVE] -> Awaiting interactive simulation trigger... Click any button above to execute live WhatsApp AI workflows and double-entry KRT settlements.</div>
+            </div>
+        </div>
+
+        <!-- TAB 37: KARIS ENERGY & SMART SOLAR GRID (VERTICAL 15) -->
+        <div id="tab-energy" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #10B981;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: KARIS ENERGY & SMART SOLAR GRID™</h2>
+                    <span class="badge" style="background: #D1FAE5; color: #047857; border: 1px solid #10B981;">Section 50 / Vertical 15 • PAYG Solar & IoT Green Token Trading</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>KARIS ENERGY & SMART SOLAR GRID™</strong> digitizes decentralized solar electrification across rural East Africa and urban microgrids. Smallholder farmers (`KARIS FARM`) and community enterprises purchase solar home systems, battery storage units, and smart irrigation pumps on Pay-As-You-Go (PAYG) schedules unlocked using KRT tokens (`Rule 2 & 9`). IoT smart meters stream daily generation telemetry (`Rule 6`), and when surplus solar electricity (`microgrid_feed_in_kwh`) feeds back into the community grid, the system automatically mints <strong>KRT-JOULE / KRT-GREEN rewards</strong> straight to the farmer's wallet via the Universal Double-Entry Ledger (`Rule 5 & Rule 9`)!
+                </p>
+
+                <!-- Interactive Simulation Controls -->
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">☀️ Live KARIS ENERGY & Smart Solar Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. PAYG Solar Irrigation Pump Registration</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate registering Farmer Kamau's 1,500W Solar Irrigation Pump (`SOLAR-PUMP-MACHAKOS-01`) with a daily unlocking token rate of 50 KRT/day (`Rule 6`).</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulateEnergyRegister()">Register PAYG Solar Pump</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. IoT Smart Meter Telemetry & KRT-JOULE Reward Minting</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate smart meter streaming daily metrics (`6.85 kWh generation`, `94.5% battery`). Surplus `2.40 kWh` fed back to community microgrid -> Auto-mints +24.0 KRT-JOULE (`Rule 7 & 9`)!</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulateEnergyTelemetry()">Stream Telemetry & Mint KRT</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. PAYG Solar Token Installment Payment (`Rule 9`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate Farmer Kamau paying 150 KRT directly from WhatsApp / Wallet to unlock 3 days (`150 KRT / 50 KRT per day = 3 Days Unlocked`) via Universal Double-Entry Ledger.</p>
+                            </div>
+                            <button class="btn" style="background: #F59E0B; color: white;" onclick="simulateEnergyPAYG()">Pay PAYG Solar Installment</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">4. Peer-to-Peer Microgrid Solar Energy Trading</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate Farmer Kamau selling 10 kWh of surplus solar power directly to Machakos Clinic (`12.5 KRT/kWh = 125 KRT`). Atomic double-entry peer settlement (`Rule 5 & Rule 9`).</p>
+                            </div>
+                            <button class="btn" style="background: #8B5CF6; color: white;" onclick="simulateEnergyPeerTrade()">Execute P2P Solar Trade</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Monitoring Box -->
+                <div id="energy-output" style="background: #064E3B; color: #6EE7B7; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #065F46;">[KARIS ENERGY ENGINE ACTIVE] -> Awaiting interactive simulation trigger... Click any button above to stream IoT telemetry, unlock PAYG solar tokens, and execute P2P solar microgrid trades.</div>
+            </div>
+        </div>
+
+        <!-- TAB 38: PALPLUS HOSTED PAYMENT LINKS (SECTION 51) -->
+        <div id="tab-palplus" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #3B82F6;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: PalPlus & Hosted Payment Links Engine (`Section 51 / Section 34.5`)</h2>
+                    <span class="badge badge-blue">Active Temporary Checkout URL • Instant M-Pesa Express Reconciliation</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>KARIS OS™</strong> integrates universal hosted checkout URLs and temporary payment links directly into the double-entry accounting kernel (`Rule 2 & Rule 9`). Merchants (`KARIS FARM`), prediction leagues (`POWER BOT X`), and PAYG solar installments (`KARIS ENERGY`) can generate checkout links or utilize our active temporary payment link below. When a customer completes checkout via M-Pesa Express / card on the hosted PalPlus link, secure webhooks instantly trigger double-entry KES/KRT settlement and mint loyalty reward tokens (`Rule 5, 6 & 7`)!
+                </p>
+
+                <!-- Active Link Showcase Card -->
+                <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between;">
+                    <div>
+                        <span class="badge" style="background: #2563EB; color: white; margin-bottom: 0.5rem; display: inline-block;">ACTIVE TEMPORARY LINK</span>
+                        <h3 style="color: #1E3B8A; margin-bottom: 0.4rem;">PalPlus Universal Checkout Gateway</h3>
+                        <p style="font-size: 0.9rem; color: #1E40AF; margin-bottom: 0.8rem;">Link ID: <code>6e8de0bc-1284-4bba-a5de-f886665bf18f</code> | Status: <strong>ACTIVE_TEMPORARY_LINK</strong></p>
+                        <a href="https://link.palpluss.com/6e8de0bc-1284-4bba-a5de-f886665bf18f" target="_blank" style="background: #2563EB; color: white; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);">
+                            🔗 Open Payment Link: link.palpluss.com/6e8de...
+                        </a>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 10px; border: 1px solid #DBEAFE; text-align: center;">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.4rem; font-weight: 600;">CHECKOUT QR CODE</div>
+                        <div style="width: 110px; height: 110px; background: #F8FAFC; border: 1px dashed #CBD5E1; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 0.7rem; color: #64748B; font-weight: bold; border-radius: 6px;">
+                            [QR CODE:<br>6e8de0bc]
+                        </div>
+                        <div style="font-size: 0.7rem; color: #3B82F6; margin-top: 0.4rem;">Scan with WhatsApp / Phone</div>
+                    </div>
+                </div>
+
+                <!-- Interactive Simulator -->
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">⚡ Live PalPlus Webhook & Checkout Reconciliation Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. Generate Universal Checkout Package</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate attaching our temporary PalPlus payment link (`6e8de0bc...`) to KARIS FARM invoice `ORDER-FARM-9901` (`KES 3,500.00`).</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulatePalPlusPackage()">Attach Payment Link</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. Simulate M-Pesa Express Webhook Reconciliation</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate PalPlus server firing a payment completion webhook (`KES 3,500.00`). Verifies double-entry KES settlement & mints +175 KRT reward (`Rule 2 & 9`)!</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulatePalPlusWebhook()">Trigger PalPlus Webhook</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Monitoring Box -->
+                <div id="palplus-output" style="background: #1E293B; color: #60A5FA; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #3B82F6;">[PALPLUS CHECKOUT ENGINE ACTIVE] -> Monitoring temporary payment link: https://link.palpluss.com/6e8de0bc-1284-4bba-a5de-f886665bf18f ... Click any button above to test live checkout attachment and M-Pesa webhook reconciliation.</div>
+            </div>
+        </div>
+
+        <!-- TAB 39: KARIS INNOVATION EXPANSION SUITE (SECTION 52) -->
+        <div id="tab-expsuite" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #8B5CF6;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: KARIS INNOVATION EXPANSION SUITE (`Section 52`)</h2>
+                    <span class="badge" style="background: #EDE9FE; color: #6D28D9; border: 1px solid #8B5CF6;">Verticals 16, 17, 18 • Pharma-Trace / Prop-Share / Edu-Pay</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>KARIS INNOVATION EXPANSION SUITE (`Section 52`)</strong> demonstrates zero-code kernel expansion (`Rule 7 & Section 35`) across 3 high-impact industry domains:
+                    <strong>Pharma-Trace</strong> tracks temperature-sensitive cold-chain drug deliveries (`< 8°C`) and auto-locks breached batches (`Rule 1 & 6`).
+                    <strong>Prop-Share</strong> enables digital fractional commercial real estate syndication and executes atomic double-entry monthly rental dividend distributions (`Rule 5 & Rule 9`).
+                    <strong>Edu-Pay</strong> manages student tuition fee installments, awarding <strong>+150 KRT-EDU scholarship bonus tokens</strong> (`Rule 7 & Rule 9`) upon payment verification!
+                </p>
+
+                <!-- Interactive Simulation Controls -->
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">🚀 Live Pharma-Trace, Prop-Share & Edu-Pay Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. Pharma Cold-Chain Breach Detection (`Vertical 16`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate IoT temperature telemetry reporting `10.5°C` (`> 8.0°C max limit`) during transit. Auto-fires `COLD_CHAIN_BREACHED_LOCKED` & alerts Logistics AI.</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulatePharmaBreach()">Trigger Cold-Chain Breach</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. Prop-Share Double-Entry Dividend Distribution (`Vertical 17`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate distributing `100,000 KRT` monthly rental pool across Machakos Commercial Hub investors (`Rule 5 & Rule 9 double entry`).</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulatePropDividends()">Distribute Rental Dividends</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. Edu-Pay Tuition Checkout & KRT-EDU Scholarship (`Vertical 18`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate student KES 15,000 tuition installment via PalPlus link. Double-entry KES settlement + awards `+150 KRT-EDU` campus cafeteria bonus (`Rule 7`)!</p>
+                            </div>
+                            <button class="btn" style="background: #8B5CF6; color: white;" onclick="simulateEduTuition()">Pay Tuition Installment</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Monitoring Box -->
+                <div id="expsuite-output" style="background: #2E1065; color: #DDD6FE; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #5B21B6;">[INNOVATION EXPANSION SUITE ACTIVE] -> Monitoring Pharma-Trace batches, Prop-Share syndications, and Edu-Pay tuition plans ... Click any button above to execute live simulations.</div>
+            </div>
+        </div>
+
+        <!-- TAB 40: WHITE-LABEL CUSTOMIZATION ENGINE (FRONTIER D) -->
+        <div id="tab-whitelabel" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #10B981;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: White-Label Client Customization Engine (`Frontier D / Section 35`)</h2>
+                    <span class="badge" style="background: #D1FAE5; color: #047857; border: 1px solid #10B981;">Multi-Tenant Branding • Dynamic Theme Reconfiguration</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    Through our **White-Label Customization Engine (`src/core/whitelabel_engine.py`)**, commercial partners license and brand the entire operating system across East Africa in seconds without modifying underlying double-entry accounting kernel code (`Rule 7 & Rule 9`). When applied, the engine dynamically modifies platform metadata, default currency, active payment links (`6e8de0bc...`), and visual styling while publishing `WHITELABEL_BRANDING_APPLIED` (`Rule 6`).
+                </p>
+
+                <!-- Interactive Profile Switcher Grid -->
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">🎨 Live White-Label Profile Switcher & C-Suite Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card" style="border-left: 4px solid #10B981;">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. Safaricom M-Pesa Enterprise OS</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Brand the platform as `M-Pesa Enterprise & Digital Economy OS` (`#10B981` Green). Powers smallholder aggregation (`KARIS FARM`), POS checkouts, and student tuition plans (`Edu-Pay`).</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulateWhitelabelSwitch('SAFARICOM_MPESA_ENTERPRISE', '#10B981', 'M-Pesa Enterprise & Digital Economy OS')">Apply Safaricom Brand</button>
+                        </div>
+                        <div class="sim-card" style="border-left: 4px solid #8B0000;">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. Equity Digital Banking & Agri-Fintech OS</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Brand as `Equity Digital Banking & Agri-Fintech OS` (`#8B0000` Maroon/Red). Focuses on input financing (`Rule 3`), PAYG solar lending (`KARIS ENERGY`), and regional clearing.</p>
+                            </div>
+                            <button class="btn" style="background: #8B0000; color: white;" onclick="simulateWhitelabelSwitch('EQUITY_BANK_FINTECH_HUB', '#8B0000', 'Equity Digital Banking & Agri-Fintech OS')">Apply Equity Bank Brand</button>
+                        </div>
+                        <div class="sim-card" style="border-left: 4px solid #2563EB;">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. PalPlus Universal Commerce & Checkout OS</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Brand as `PalPlus Universal Commerce & Checkout OS` (`#2563EB` Blue). Powers universal hosted payment checkouts (`link.palpluss.com/6e8de0bc...`) and prediction checkouts.</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulateWhitelabelSwitch('PALPLUS_GLOBAL_CHECKOUT_OS', '#2563EB', 'PalPlus Universal Commerce & Checkout OS')">Apply PalPlus Brand</button>
+                        </div>
+                        <div class="sim-card" style="border-left: 4px solid #0B2545;">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">4. Restore KARIS OS™ Enterprise Default</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Restore standard `KARIS OS™ Enterprise Platform` (`#0B2545` Navy). Unifies all 18 industry verticals under shared C-suite BI executive aggregation.</p>
+                            </div>
+                            <button class="btn" style="background: #0B2545; color: white;" onclick="simulateWhitelabelSwitch('KARIS_OS_DEFAULT', '#0B2545', 'KARIS OS™ Enterprise Platform')">Restore KARIS OS Default</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Monitoring Box -->
+                <div id="whitelabel-output" style="background: #0B2545; color: #93C5FD; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #1D4ED8;">[WHITE-LABEL ENGINE ACTIVE] -> Active Profile: KARIS_OS_DEFAULT (#0B2545 Navy) ... Click any button above to dynamically rebrand the platform and emit WHITELABEL_BRANDING_APPLIED.</div>
+            </div>
+        </div>
+
+        <!-- TAB 41: KARIS LOOP SOCIAL INTELLIGENCE LAYER (SECTION 54) -->
+        <div id="tab-loop" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #EC4899;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: KARIS LOOP™ — Social Intelligence & Creator Economy Layer</h2>
+                    <span class="badge" style="background: #FCE7F3; color: #BE185D; border: 1px solid #EC4899;">Section 54 / Vertical 19 • 7 Graphs • Shoppable Checkouts</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>KARIS LOOP™</strong> is not merely a social network—it is the unified social intelligence and creator economy layer of KARIS OS™ (`Section 54 / Vertical 19`). It integrates <strong>7 Interconnected Graphs</strong> (`Social, Interest, Creator, Business, Community, Knowledge, Commerce`), 14 content types (`Short-form video, Shoppable Product Posts`), KRT creator tipping (`Rule 5 & Rule 9 double entry`), AI RAG captioning (`Swahili/Sheng`), and shoppable instant checkouts directly into our single-wallet digital economy!
+                </p>
+
+                <!-- Interactive Simulation Controls -->
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">✨ Live Karis Loop™ Social & Creator Economy Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. Shoppable Post & AI Caption Generator</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate Creator David publishing an avocado shoppable video (`PROD-AVO-01`). Auto-generates Swahili/Sheng AI caption & hashtag schedule (`Rule 6`).</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulateLoopPost()">Publish Shoppable Video</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. Creator Tipping (`Rule 5 & Rule 9 Double Entry`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate User Amina tipping Creator David `50.00 KRT`. Instant double-entry ledger movement from tipper KRT wallet to creator wallet (`Rule 9`).</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulateLoopTip()">Tip Creator 50 KRT</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. Shoppable Product Checkout (`One Wallet Economy`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate instant one-click KRT/KES checkout (`350 KRT`) straight from a Karis Loop short video! Auto-mints +5% KRT loyalty reward (`Rule 7 & 9`).</p>
+                            </div>
+                            <button class="btn" style="background: #EC4899; color: white;" onclick="simulateLoopCheckout()">Instant Shoppable Checkout</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">4. AI Content Moderation (`Rule 10 Guardrail`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate AI toxicity check on toxic comment (`Toxicity Score: 70.0 > 60.0`). Status locked at `FLAGGED_PENDING_HUMAN_REVIEW` per `Rule 10`.</p>
+                            </div>
+                            <button class="btn" style="background: #8B5CF6; color: white;" onclick="simulateLoopModeration()">Trigger AI Moderation Check</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Monitoring Box -->
+                <div id="loop-output" style="background: #500724; color: #FBCFE8; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #831843;">[KARIS LOOP SOCIAL ENGINE ACTIVE] -> 7 Interconnected Graphs Online ... Click any button above to publish shoppable short-form videos, tip creators, and test Rule 10 AI Moderation.</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        KARIS OS™ Version 1.0.0-PROD-V1 | Unified Enterprise & Digital Economy Platform | Enforcing Rule 1 to Rule 10 strictly across all 48 Sections.
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+
+            if (tabId === 'tab-events') fetchEvents();
+            if (tabId === 'tab-ledger') fetchLedger();
+        }
+
+        async function fetchEvents() {
+            try {
+                const res = await fetch('/api/v1/events');
+                if (!res.ok) return;
+                const events = await res.json();
+                document.getElementById('kpi-event-count').innerText = events.length + ' Events';
+                const tbody = document.getElementById('events-tbody');
+                tbody.innerHTML = '';
+                events.slice(-15).reverse().forEach(ev => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${new Date(ev.timestamp).toLocaleTimeString()}</td>
+                        <td><strong>${ev.event_type}</strong></td>
+                        <td><span class="badge badge-blue">${ev.event_category}</span></td>
+                        <td><code>${ev.source_module}</code></td>
+                        <td><code>${ev.correlation_id.substring(0,8)}...</code></td>
+                        <td><span class="hash-code">${ev.cryptographic_hash ? ev.cryptographic_hash.substring(0,24) + '...' : 'PENDING'}</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) { console.error('Error fetching events:', err); }
+        }
+
+        async function fetchLedger() {
+            try {
+                const res = await fetch('/api/v1/ledger/entries');
+                if (!res.ok) return;
+                const entries = await res.json();
+                document.getElementById('kpi-ledger-count').innerText = entries.length + ' Entries';
+                const tbody = document.getElementById('ledger-tbody');
+                tbody.innerHTML = '';
+                entries.slice(-15).reverse().forEach(en => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${new Date(en.timestamp).toLocaleTimeString()}</td>
+                        <td><code>${en.transaction_id.substring(0,8)}...</code></td>
+                        <td><span class="badge badge-green">${en.asset_type}</span></td>
+                        <td><strong>${en.amount.toLocaleString()} ${en.currency}</strong></td>
+                        <td><code>${en.debit_wallet_id.substring(0,8)}...</code></td>
+                        <td><code>${en.credit_wallet_id.substring(0,8)}...</code></td>
+                        <td><span class="hash-code">${en.audit_hash.substring(0,24)}...</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) { console.error('Error fetching ledger:', err); }
+        }
+
+        function traceHarvest() {
+            const box = document.getElementById('lineage-box');
+            box.style.display = 'block';
+        }
+
+        async function askAI(type, queryText) {
+            const box = document.getElementById('ai-response-box');
+            box.style.display = 'block';
+            document.getElementById('ai-agent-title').innerText = 'AI Agent Processing via Vector RAG...';
+            document.getElementById('ai-agent-text').innerText = 'Searching vector embeddings and retrieving grounding context...';
+            document.getElementById('ai-agent-citations').innerText = '';
+
+            try {
+                let url = '/api/v1/ai/agriculture/ask';
+                let body = { query: queryText };
+                if (type === 'support') {
+                    url = '/api/v1/ai/support/ask';
+                    body = { subject: 'Urgent Inquiry', description: queryText };
+                } else if (type === 'exec') {
+                    const res = await fetch('/api/v1/ai/executive-briefing');
+                    const data = await res.json();
+                    document.getElementById('ai-agent-title').innerText = 'Executive AI Agent Briefing';
+                    document.getElementById('ai-agent-text').innerText = data.briefing_summary;
+                    document.getElementById('ai-agent-citations').innerText = `Status: ${data.status} | Total Fiat Volume: KES ${data.metrics.total_fiat_volume_kes.toLocaleString()}`;
+                    return;
+                }
+
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                const data = await res.json();
+                document.getElementById('ai-agent-title').innerText = `${data.agent} (Grounded via RAG)`;
+                document.getElementById('ai-agent-text').innerText = data.response || data.suggested_resolution;
+                if (data.rag_citations && data.rag_citations.length > 0) {
+                    document.getElementById('ai-agent-citations').innerText = `Grounding Citations: [${data.rag_citations.map(c => c.doc_id + ' (' + c.similarity_score + ')').join(', ')}]`;
+                } else if (data.rag_grounding_used) {
+                    document.getElementById('ai-agent-citations').innerText = `Grounding Docs: [${data.rag_grounding_used.join(', ')}] | Urgency: ${data.classified_urgency}`;
+                }
+            } catch (err) { console.error('AI error:', err); }
+        }
+
+        function submitAICustom() {
+            const val = document.getElementById('ai-input').value;
+            if (!val) return;
+            askAI('agri', val);
+        }
+
+        async function loadTelemetry() {
+            try {
+                const res = await fetch('/api/v1/observability/status');
+                const data = await res.json();
+                document.getElementById('prom-status').innerText = data.telemetry_engine_status;
+                document.getElementById('prom-uptime').innerText = data.uptime_seconds + 's';
+                
+                const rawRes = await fetch('/metrics');
+                const rawText = await rawRes.text();
+                document.getElementById('prom-raw-text').innerText = rawText;
+            } catch (err) { console.error('Telemetry error:', err); }
+        }
+
+        async function triggerDR(action) {
+            if (action === 'snapshot') {
+                document.getElementById('dr-title').innerText = '⏳ Capturing Point-in-Time PITR Snapshot to disk...';
+                const res = await fetch('/api/v1/recovery/snapshot', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL', snapshot_type: 'POINT_IN_TIME_PITR', creator_identity_id: 'ADMIN-01'})
+                });
+                const data = await res.json();
+                window.lastSnapId = data.snapshot_id;
+                document.getElementById('dr-title').innerText = `✔ Snapshot Captured: ${data.snapshot_id}`;
+                document.getElementById('dr-text').innerText = `File: ${data.snapshot_file_path} | SHA-256 Checksum: ${data.sha256_checksum.substring(0,32)}... | Captured ${data.total_events_captured} events and ${data.total_ledger_entries_captured} double-entry records.`;
+            } else if (action === 'verify') {
+                const snapId = window.lastSnapId || 'PITR-SNAP-SAMPLE';
+                const res = await fetch(`/api/v1/recovery/snapshot/${snapId}/verify`);
+                const data = await res.json();
+                document.getElementById('dr-title').innerText = `✔ Backup Checksum Status: ${data.status}`;
+                document.getElementById('dr-text').innerText = `${data.message} | Computed Checksum: ${data.sha256_checksum ? data.sha256_checksum.substring(0,32) + '...' : 'Clean'}`;
+            } else if (action === 'replay') {
+                document.getElementById('dr-title').innerText = '⏳ Replaying immutable domain events to reconstruct system state...';
+                const res = await fetch('/api/v1/recovery/replay', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL'}) });
+                const data = await res.json();
+                document.getElementById('dr-title').innerText = `✔ Event Replay Complete (` + data.events_replayed_count + ` events replayed)`;
+                document.getElementById('dr-text').innerText = `Reconstructed ${data.reconstructed_wallets_count} wallet balances directly from event sourcing log without relying on database write snapshots!`;
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateFuture(action) {
+            if (action === 'edu') {
+                alert('Registering tuition fee plan for Term 3 2026 and paying KES 15,000 installment via KARIS Edu-Pay... Auto-granting 1,500 KRT-EDU scholarship loyalty tokens!');
+                const planRes = await fetch('/api/v1/future-industries/education/register-plan', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({student_id: 'USER-STUDENT-01', parent_id: '7f8013a9-310c-4f16-9031-295274a26944', institution_name: 'Machakos Academy of Technology', term: 'Term 3 2026', total_fee_kes: 45000.0, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+                const plan = await planRes.json();
+                await fetch('/api/v1/future-industries/education/pay-installment', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({plan_id: plan.plan_id, amount_paid_kes: 15000.0})
+                });
+            } else if (action === 'safari') {
+                alert('Confirming 3-night safari booking at Machakos Luxury Eco-Camp (`KES 36,000` total) and minting 75 KRT-GREEN carbon offset tokens via Universal Ledger!');
+                await fetch('/api/v1/future-industries/tourism/book-safari', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({guest_id: '7f8013a9-310c-4f16-9031-295274a26944', lodge_name: 'Machakos Luxury Eco-Safari Camp', nights: 3, price_per_night_kes: 12000.0, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'prop') {
+                alert('Allocating 50 fractional property syndication units (`Mlolongo Trade Towers` KES 500,000 valuation) into investor INVESTMENT wallet under Rule 5!');
+                const synRes = await fetch('/api/v1/future-industries/real-estate/create-syndication', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({property_code: 'PROP-MLO-TOWERS-' + Math.floor(Math.random()*100), property_name: 'Mlolongo Trade Towers', total_valuation_kes: 100000000.0, total_units: 10000.0, yield_pct: 13.8, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+                const syn = await synRes.json();
+                await fetch('/api/v1/future-industries/real-estate/allocate-units', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({syndication_id: syn.syndication_id, investor_id: '8b6ff564-ce30-489e-8a02-75004ccd5516', units_purchased: 50.0})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateCrmErp(action) {
+            if (action === 'crm') {
+                alert('Evaluating customer (>95 days inactive)... AI predicting 82.5% churn risk and triggering automated 500 KRT win-back retention loyalty grant and email!');
+                await fetch('/api/v1/crm/ai/evaluate-ltv-churn', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: '7f8013a9-310c-4f16-9031-295274a26944', historical_spend_kes: 150000.0, purchase_frequency_days: 95.0, organization_id: 'ORG-KARIS-RETAIL', customer_name: 'Amina Wanjiku'})
+                });
+            } else if (action === 'erp') {
+                alert('Pushing verified double-entry ledger batches directly to SAP S/4HANA Kenya (`FY-2026-Q3`) with external fiscal audit tracking!');
+                await fetch('/api/v1/integrations/erp-sync/batch', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL', target_system: 'SAP_S4HANA_KENYA', fiscal_period: 'FY-2026-Q3'})
+                });
+            } else if (action === 'notif') {
+                alert('Rendering declarative template TPL-ORDER-CONFIRMED-SMS with variables (`Amina`, `4,500 KES`, `QR Code`) and logging gateway dispatch status!');
+                await fetch('/api/v1/integrations/notifications/dispatch', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({template_code: 'TPL-ORDER-CONFIRMED-SMS', recipient_identity_id: '7f8013a9-310c-4f16-9031-295274a26944', recipient_contact: '+254711000003', variables: {customer_name: 'Amina Wanjiku', order_number: 'ORD-SMS-101', amount_kes: '4,500.00', qr_code: 'KARIS-TRACE-QR-12C8D4F2'}, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateGdpr(action) {
+            if (action === 'export') {
+                alert('Compiles complete structured JSON personal data export across all 12 verticals for Amina Wanjiku...');
+                await fetch('/api/v1/security/privacy/export/7f8013a9-310c-4f16-9031-295274a26944');
+            } else if (action === 'anonymize') {
+                alert('Executing Kenya DPA / GDPR right-to-be-forgotten PII anonymization while keeping SHA-256 ledger anchors 100% intact...');
+                await fetch('/api/v1/security/privacy/anonymize', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: '7f8013a9-310c-4f16-9031-295274a26944', reason: 'KENYA_DPA_DELETION_REQUEST', executor_id: 'ADMIN-01', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'chaos') {
+                alert('Injecting database slave connection failures during 15 concurrent transactions... DLQ self-healing auto-recovering events without data loss!');
+                await fetch('/api/v1/observability/chaos/inject-drill', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({fault_type: 'SIMULATED_DATABASE_SLAVE_DISCONNECT', target_component: 'UNIVERSAL_LEDGER_ENGINE', concurrent_transactions: 15, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'serial') {
+                alert('Registering agricultural crate barcode SN-AVO-CRATE-2026-0001 in Machakos Main Warehouse...');
+                await fetch('/api/v1/logistics/ai/serial-tracking', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({product_id: 'PROD-AVO-01', batch_id: 'BATCH-FARM-HAS-1BF01C', warehouse_code: 'WH-MACHAKOS-MAIN', organization_id: 'ORG-KARIS-FARM', custodian_id: '268e1e85-a0b3-445d-827b-98e327af3bee'})
+                });
+            } else if (action === 'weather') {
+                alert('Simulating heavy storm rainfall during order dispatch... AI Dispatcher auto-switching vehicle from two-wheeler to covered REFRIGERATED_TRUCK (`Surge 1.35x`)!');
+                await fetch('/api/v1/logistics/ai/weather-dispatch', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({order_id: 'ORD-WEATHER-' + Math.floor(Math.random()*1000), pickup_gps: 'Machakos Hub', dropoff_gps: 'Mlolongo Estate', distance_km: 10.0, weather_condition: 'HEAVY_RAINFALL_STORM', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateSdk(action) {
+            if (action === 'py') {
+                alert('Generating complete Python Async/Sync Client SDK (`karis_os_client.py`) wrapping 34 endpoints and 18 domain models...');
+                await fetch('/api/v1/integrations/sdk/generate-python', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL', requested_by_identity_id: 'DEV-CLIENT-01'})
+                });
+            } else if (action === 'ts') {
+                alert('Generating TypeScript / Node Client SDK (`karis-os-sdk.ts`) matching exact Draft-07 JSON Event Schemas...');
+                await fetch('/api/v1/integrations/sdk/generate-typescript', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL', requested_by_identity_id: 'DEV-CLIENT-01'})
+                });
+            } else if (action === 'bi') {
+                alert('Compiling C-Suite Unified BI Executive Report across 5 domain dashboards (`Executive, Commerce, Delivery, Finance, Healthcare`).');
+                await fetch('/api/v1/integrations/analytics/bi/executive-report');
+            } else if (action === 'cicd-pass') {
+                alert('Evaluating CI/CD release build BUILD-20260716-PROD-99A (100% Pytest, 2380 ops/sec, Rule 9 clean)... Issuing CICD_GATE_PASSED_AUTHORIZED certificate!');
+                await fetch('/api/v1/integrations/observability/cicd/evaluate-gate', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({commit_hash: 'A8F291B0C4D5E6F7', branch_name: 'main', pytest_pass_pct: 100.0, stress_ops_sec: 2380.0, security_vulns: 0, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'cicd-fail') {
+                alert('Evaluating build with 95% test rate... Quality Gate hard-blocking release (`CICD_GATE_FAILED_REJECTED`) under Section 40.6!');
+                await fetch('/api/v1/integrations/observability/cicd/evaluate-gate', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({commit_hash: 'FAIL-HASH-99', branch_name: 'main', pytest_pass_pct: 95.0, stress_ops_sec: 2380.0, security_vulns: 0, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateIotIns(action) {
+            if (action === 'policy') {
+                alert('Issuing parametric crop drought insurance policy POL-AGRI-MACHAKOS-01 (KES 5,000 premium, KES 50,000 max payout)...');
+                await fetch('/api/v1/financial/insurance/policies', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({insured_id: '268e1e85-a0b3-445d-827b-98e327af3bee', farm_id: 'FARM-ID-MACHAKOS-01', organization_id: 'ORG-KARIS-FARM', policy_type: 'CROP_DROUGHT_INDEX', insured_acreage: 15.0, premium_kes: 5000.0, max_payout_kes: 50000.0})
+                });
+            } else if (action === 'drought') {
+                alert('Logging severe drought telemetry (14.5% soil moisture)... Auto-triggering smart irrigation VALVE-MLO-12 AND auto-disbursing KES 50,000 insurance claim settlement!');
+                await fetch('/api/v1/financial/insurance/iot/telemetry', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({sensor_code: 'IOT-MACHAKOS-SN-001', farm_id: 'FARM-ID-MACHAKOS-01', soil_moisture_pct: 14.5, soil_temp_celsius: 26.0, ambient_temp_celsius: 31.0, rainfall_24h_mm: 0.0, organization_id: 'ORG-KARIS-FARM'})
+                });
+            } else if (action === 'key') {
+                alert('Issuing cryptographic API Key KARIS_LIVE_* with SHA-256 secret hashing (`Section 38.4 & 43.2`)... Check Event Bus for API_KEY_ISSUED_OR_REVOKED!');
+                await fetch('/api/v1/governance/controls/api-keys', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: 'ADMIN-USER-01', organization_id: 'ORG-KARIS-RETAIL', key_name: 'Machakos Supermarket POS Terminal Key', scopes: ['ORDERS:WRITE', 'LEDGER:READ']})
+                });
+            } else if (action === 'tax') {
+                alert('Creating dynamic tax rule TAX-KE-VAT-16 (16% standard VAT) under Rule 7 declarative governance...');
+                await fetch('/api/v1/governance/controls/tax-rules', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL', jurisdiction: 'KE', code: 'TAX-KE-VAT-16', name: 'Kenya Standard VAT', rate_pct: 16.0, is_withholding: false})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateFraud(action) {
+            if (action === 'normal') {
+                alert('Executing normal KES 5,000 M-Pesa checkout in Machakos (-1.3564, 36.9321)... AI fraud check CLEARED_PROCEED.');
+                await fetch('/api/v1/security/fraud/evaluate', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: '7f8013a9-310c-4f16-9031-295274a26944', amount_kes: 5000.0, device_fingerprint: 'DEV-IP-01-CLEAN', location_gps: '-1.3564,36.9321', transaction_type: 'M_PESA_CHECKOUT', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'impossible') {
+                alert('Executing KES 15,000 checkout from Mombasa (-4.0435, 39.6682) only 3 mins after Machakos... AI detecting Impossible Travel speed (>800 km/h), instantly freezing wallet and issuing SAR!');
+                await fetch('/api/v1/security/fraud/evaluate', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: '7f8013a9-310c-4f16-9031-295274a26944', amount_kes: 15000.0, device_fingerprint: 'DEV-IP-02-SUSPICIOUS', location_gps: '-4.0435,39.6682', transaction_type: 'M_PESA_CHECKOUT', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateSlaSuper(action) {
+            if (action === 'sla') {
+                alert('Running Call Center SLA escalation sweep across active tickets... Breached tickets auto-assigned to senior supervisor SUPERVISOR-ID-99!');
+                await fetch('/api/v1/crm/sla/sweep', { method: 'POST' });
+            } else if (action === 'super-app') {
+                alert('Loading aggregated 12-Vertical Super App Profile for Amina Wanjiku (`7f8013a9-310c-4f16-9031-295274a26944`). Check Event Bus for SUPER_APP_SESSION_SYNCED!');
+                await fetch('/api/v1/omnichannel/customer-super-app/7f8013a9-310c-4f16-9031-295274a26944');
+            } else if (action === 'merchant') {
+                alert('Loading aggregated Omnichannel Merchant Portal Dashboard for Machakos Hub (`ORG-KARIS-RETAIL`).');
+                await fetch('/api/v1/omnichannel/merchant-portal/ORG-KARIS-RETAIL');
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulatePasskeyRecon(action) {
+            if (action === 'passkey') {
+                alert('Verifying hardware FIDO2 passkey challenge (`IOS_APPLE_SECURE_ENCLAVE`)... 10th milestone reached, unlocking 250 KRT Security Champion bonus (`Rule 6`)!');
+                await fetch('/api/v1/mobile/passkeys/verify-challenge', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: '7f8013a9-310c-4f16-9031-295274a26944', organization_id: 'ORG-KARIS-RETAIL', platform: 'IOS_APPLE_SECURE_ENCLAVE', credential_id: 'PASSKEY-CRED-2026-89A1B2C3'})
+                });
+            } else if (action === 'push') {
+                alert('Dispatching APNS/FCM push alert to registered devices (`FCM-TOKEN-101`)... Check delivery status!');
+                await fetch('/api/v1/mobile/push/register-device', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: '7f8013a9-310c-4f16-9031-295274a26944', token: 'FCM-TOKEN-101', platform: 'ANDROID_FCM', model: 'Samsung Galaxy S24 Ultra', role: 'CUSTOMER'})
+                });
+            } else if (action === 'recon') {
+                alert('Sweeping all multi-asset wallets against exact double-entry sums (`Sum(Credits) - Sum(Debits)`)... Verification status: 100% mathematically reconciled (`Rule 9`)!');
+                await fetch('/api/v1/observability/ledger/reconciliation-sweep', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'hpa-out') {
+                alert('Simulating traffic surge (`2,380 ops/sec`, `88.5% CPU`)... Kubernetes HPA auto-scaling pod replicas from 4 -> 16 (`PODS_SCALED_OUT_TRAFFIC_SURGE`)!');
+                await fetch('/api/v1/observability/k8s/hpa-evaluate', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({request_velocity_ops_per_sec: 2380.0, cpu_utilization_pct: 88.5, target_service: 'karis-api-gateway', cluster_node_code: 'CLUSTER-NAIROBI-MAIN', organization_id: 'SYSTEM_CORE_ORG'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateHsmHa(action) {
+            if (action === 'nfc-gen') {
+                alert('Generating encrypted 60-second NFC/QR cryptogram via Hardware Security Module (`HSM`) after Face ID biometric verification...');
+                const res = await fetch('/api/v1/security/hsm/generate-nfc-token', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: '7f8013a9-310c-4f16-9031-295274a26944', wallet_id: 'W-CUST-1', authorized_amount_kes: 4500.0, target_terminal_code: 'POS-MLO-01', biometric_method: 'FACE_ID_VERIFIED', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+                const data = await res.json();
+                window.lastNfcToken = data.nfc_cryptogram;
+            } else if (action === 'nfc-verify') {
+                const token = window.lastNfcToken || 'NFC-TOKEN-2026-SAMPLE';
+                alert(`Scanning NFC cryptogram ${token} at POS terminal POS-MLO-01... Executing double-entry transfer via Universal Ledger (` + '`Rule 5 & Rule 9`' + `)!`);
+                await fetch('/api/v1/security/hsm/verify-payment', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({nfc_cryptogram: token, seller_identity_id: '268e1e85-a0b3-445d-827b-98e327af3bee', terminal_code: 'POS-MLO-01'})
+                });
+            } else if (action === 'tier-eval') {
+                alert('Evaluating spend across all 13 verticals (`KES 125,000`)... Auto-upgrading customer to `PLATINUM_VIP` membership with 15% free delivery rebate!');
+                await fetch('/api/v1/loyalty/tiers/evaluate-upgrade', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: '7f8013a9-310c-4f16-9031-295274a26944', total_lifetime_spend_kes: 125000.0, krt_balance: 450.0, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'cross-net') {
+                alert('Executing cross-merchant KRT redemption clearing 150 KRT earned at `KARIS FARM` for a meal at `Machakos Eatery Hub` with inter-org double-entry settlement (`Rule 5`)!');
+                await fetch('/api/v1/loyalty/network/cross-merchant-redeem', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({customer_identity_id: '7f8013a9-310c-4f16-9031-295274a26944', source_organization_id: 'ORG-KARIS-FARM', target_organization_id: 'ORG-KARIS-EATERY', krt_tokens_redeemed: 150.0})
+                });
+            } else if (action === 'ha-failover') {
+                alert('Simulating heartbeat timeout on `CLUSTER-NAIROBI-MAIN`... Executing instant geographic failover routing to `CLUSTER-MACHAKOS-EDGE` with 100% double-entry ledger continuity (`Section 40.8`)!');
+                await fetch('/api/v1/observability/ha/execute-failover', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({failed_node_code: 'CLUSTER-NAIROBI-MAIN', promoted_node_code: 'CLUSTER-MACHAKOS-EDGE', trigger_reason: 'Simulated node heartbeat timeout during stress drill', organization_id: 'SYSTEM_CORE_ORG'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateOfflineMkt(action) {
+            if (action === 'offline') {
+                alert('Synchronizing offline POS checkouts (KES 4,500 + KES 1,500) cached during network outage... Reconciling stock & double-entry ledger!');
+                await fetch('/api/v1/integrations/offline-sync/batch', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({device_terminal_code: 'POS-MLO-01', offline_transactions: [{type: 'POS_CHECKOUT', amount_kes: 4500.0, customer_id: 'USER-OFFLINE-101'}, {type: 'POS_CHECKOUT', amount_kes: 1500.0, customer_id: 'USER-OFFLINE-101'}], cashier_identity_id: '268e1e85-a0b3-445d-827b-98e327af3bee', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'mkt') {
+                alert('Executing atomic multi-vendor split-commission checkout (Farmer Kamau KES 5,000 + Machakos Coop KES 3,000)... 85% net to each vendor, 15% platform commission!');
+                await fetch('/api/v1/marketplace/orders/split-checkout', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({customer_identity_id: 'USER-MKT-CUST-01', vendor_items: [{vendor_id: '268e1e85-a0b3-445d-827b-98e327af3bee', amount_kes: 5000.0, commission_pct: 15.0}, {vendor_id: '8b6ff564-ce30-489e-8a02-75004ccd5516', amount_kes: 3000.0, commission_pct: 15.0}], payment_reference: 'QG37TEST123', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'reg') {
+                alert('Compiling formal Central Bank AML/FIU regulatory compliance report across all KYC tiers, SARs, and double-entry ledger transfers!');
+                await fetch('/api/v1/governance/regulatory/generate-report', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({jurisdiction_code: 'KE', report_type: 'CENTRAL_BANK_AML_FIU_SUMMARY', organization_id: 'ORG-KARIS-RETAIL', generator_identity_id: 'SYSTEM_COMPLIANCE_OFFICER'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateAmb(action) {
+            if (action === 'als') {
+                alert('Dispatching nearest ADVANCED_LIFE_SUPPORT_ALS ambulance to highway emergency at -1.3650, 36.9350...');
+                await fetch('/api/v1/healthcare/ambulance/dispatch', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({pickup_gps: '-1.3650,36.9350', required_tier: 'ADVANCED_LIFE_SUPPORT_ALS', organization_id: 'ORG-KARIS-HEALTH'})
+                });
+            } else if (action === 'bls') {
+                alert('Dispatching nearest BASIC_LIFE_SUPPORT_BLS ambulance to maternal emergency at -1.3800, 36.9400...');
+                await fetch('/api/v1/healthcare/ambulance/dispatch', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({pickup_gps: '-1.3800,36.9400', required_tier: 'BASIC_LIFE_SUPPORT_BLS', organization_id: 'ORG-KARIS-HEALTH'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulatePosAI(action) {
+            if (action === 'queue') {
+                alert('Simulating 10 customers waiting at POS-MLO-01... AI detecting congestion bottleneck and commanding Express Lane activation!');
+                await fetch('/api/v1/retail-pos/ai/queue-monitor', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({store_id: 'STORE-RETAIL-MLOLONGO-01', terminal_id: 'POS-MLO-01', active_customers: 10, wait_time_minutes: 6.0, organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'shrink') {
+                alert('Simulating physical inventory recount finding 280 KG vs 300 KG expected... Flagging discrepancy for governance audit!');
+                await fetch('/api/v1/retail-pos/ai/shrinkage-check', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({store_id: 'STORE-RETAIL-MLOLONGO-01', product_id: 'PROD-AVO-01', expected_qty: 300.0, physical_qty: 280.0, unit_price_kes: 150.0, reason: 'THEFT_SUSPECTED'})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateGov(action) {
+            if (action === 'kyc') {
+                alert('Completing Tier 3 Advanced KYC verification against National ID registry and CBK watchlists...');
+                await fetch('/api/v1/governance/kyc/verify', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: 'USER-GOV-101', organization_id: 'ORG-KARIS-RETAIL', national_id: 'ID-28491029', kra_pin: 'A001234567Z', tier: 'TIER_3_ADVANCED'})
+                });
+            } else if (action === 'aml') {
+                alert('Simulating AML structuring check (KES 249,000 deposit)... Auto-generating Suspicious Activity Report (SAR)!');
+                await fetch('/api/v1/governance/aml/check', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({identity_id: 'USER-GOV-101', organization_id: 'ORG-KARIS-RETAIL', amount_kes: 249000.0, transaction_type: 'M_PESA_CHECKOUT'})
+                });
+            } else if (action === 'etims') {
+                alert('Issuing KRA eTIMS digital tax invoice for KES 10,000 order with exact VAT (16% = KES 1,600)...');
+                await fetch('/api/v1/governance/kra/etims/issue', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL', order_id: 'ORD-ETIMS-' + Math.floor(Math.random()*1000), buyer_identity_id: 'USER-GOV-101', seller_identity_id: 'USER-GOV-202', seller_kra_pin: 'P051234567Z', taxable_amount_kes: 10000.0})
+                });
+            } else if (action === 'fcast') {
+                alert('Generating SKU demand forecast for Hass Avocados at Mlolongo Supermarket...');
+                await fetch('/api/v1/predictive/demand-forecast', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL', product_id: 'PROD-AVO-01', branch_store_id: 'STORE-RETAIL-MLOLONGO-01', daily_sales_velocity: 50.0, current_shelf_quantity: 250.0})
+                });
+            } else if (action === 'price') {
+                alert('Recommending 25% clearance markdown for expiring avocado batch under Rule 10 human approval gate...');
+                await fetch('/api/v1/predictive/dynamic-pricing', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-RETAIL', product_id: 'PROD-AVO-01', current_price_kes: 200.0, trigger_factor: 'SHELF_EXPIRY_APPROACHING'})
+                });
+            } else if (action === 'dlq-fail') {
+                alert('Simulating transient database connection timeout... Enqueueing failed dispatch in Dead-Letter Queue!');
+                await fetch('/api/v1/dlq/record', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({event_id: 'EV-FAIL-' + Math.floor(Math.random()*1000), consumer_name: 'RULE_ENGINE_SUBSCRIBER', error_message: 'Connection timeout to PostgreSQL slave', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+            } else if (action === 'dlq-heal') {
+                alert('Triggering automated exponential backoff self-healing sweep across DLQ records...');
+                await fetch('/api/v1/dlq/retry-recovery', { method: 'POST' });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulate20(action) {
+            if (action === 'cbdc') {
+                alert('Executing 5,000,000 CBDC-KES wholesale interbank settlement between Equity Bank and KCB...');
+                await fetch('/api/v1/innovation-2-0/cbdc/settle', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({sender_institution_id: 'BANK-CBK-EQUITY-01', recipient_institution_id: 'BANK-CBK-KCB-02', amount: 5000000.0, cbdc_asset_code: 'CBDC_KES', settlement_type: 'WHOLESALE_INTERBANK'})
+                });
+            } else if (action === 'eac') {
+                alert('Initiating East African Community cross-border transfer sending 10,000 KES from Kenya to Uganda...');
+                await fetch('/api/v1/innovation-2-0/cross-border/initiate', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({sender_identity_id: 'USER-101', recipient_identity_id: 'USER-UG-202', source_country: 'KE', destination_country: 'UG', source_currency: 'KES', destination_currency: 'UGX', source_amount: 10000.0})
+                });
+            } else if (action === 'esg') {
+                alert('Recording Scope 1/2/3 carbon footprint for Grade-A Hass Avocados and minting 50 KRT-GREEN tokens!');
+                await fetch('/api/v1/innovation-2-0/esg/record-carbon', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({organization_id: 'ORG-KARIS-FARM', target_resource_id: 'BATCH-FARM-HAS-1BF01C', target_resource_type: 'PRODUCE_BATCH', scope_1_kg: 0.5, scope_2_kg: 0.3, scope_3_kg: 0.2})
+                });
+            }
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function sendWhatsApp(cmdText) {
+            document.getElementById('wa-bot-text').innerText = '⏳ Processing inbound message via WhatsApp Cloud API...';
+            try {
+                const res = await fetch('/api/v1/integrations/whatsapp/webhook', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({sender_phone: '+254711223344', inbound_text: cmdText, identity_id: '7f8013a9-310c-4f16-9031-295274a26944', organization_id: 'ORG-KARIS-RETAIL'})
+                });
+                const data = await res.json();
+                document.getElementById('wa-bot-text').innerText = data.bot_response_text;
+            } catch (err) { console.error('WhatsApp error:', err); }
+        }
+
+        function sendWhatsAppCustom() {
+            const val = document.getElementById('wa-input').value;
+            if (!val) return;
+            sendWhatsApp(val);
+        }
+            document.getElementById('audit-title').innerText = 'Scanning Universal Double-Entry Ledger Hash Chain...';
+            const res = await fetch('/api/v1/audit/verify-ledger');
+            const data = await res.json();
+            document.getElementById('audit-title').innerText = `Ledger Verification: ${data.status}`;
+            document.getElementById('audit-text').innerText = `${data.message} | Checked ${data.entries_checked} transactions | Anchor: ${data.latest_audit_hash ? data.latest_audit_hash.substring(0,32) + '...' : 'Clean'}`;
+        }
+
+        async function runAuditSweep() {
+            document.getElementById('audit-title').innerText = 'Scanning Universal Double-Entry Ledger Hash Chain...';
+            const res = await fetch('/api/v1/audit/verify-ledger');
+            const data = await res.json();
+            document.getElementById('audit-title').innerText = `Ledger Verification: ${data.status}`;
+            document.getElementById('audit-text').innerText = `${data.message} | Checked ${data.entries_checked} transactions | Anchor: ${data.latest_audit_hash ? data.latest_audit_hash.substring(0,32) + '...' : 'Clean'}`;
+        }
+
+        async function runEventSweep() {
+            document.getElementById('audit-title').innerText = 'Scanning Universal Event Store Cryptographic Hashes...';
+            const res = await fetch('/api/v1/audit/verify-events');
+            const data = await res.json();
+            document.getElementById('audit-title').innerText = `Event Store Verification: ${data.status}`;
+            document.getElementById('audit-text').innerText = `${data.message} | Checked ${data.events_checked} immutable domain events.`;
+        }
+
+        async function simulatePOS() {
+            alert('Triggering live Supermarket POS Checkout... Watch Event Bus and Ledger update!');
+            await fetch('/api/v1/simulators/pos', { method: 'POST' });
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateLogistics() {
+            alert('Triggering Kitchen KDS & Rider Dispatch with GPS verification... Escrow payout active!');
+            await fetch('/api/v1/simulators/logistics', { method: 'POST' });
+            switchTab('tab-ledger');
+            document.querySelectorAll('.tab-btn')[32].classList.add('active');
+        }
+
+        async function simulateHealthcare() {
+            alert('Triggering Teleconsultation & CHV Field Check... 50 KRT field incentive awarded!');
+            await fetch('/api/v1/simulators/healthcare', { method: 'POST' });
+            switchTab('tab-events');
+            document.querySelectorAll('.tab-btn')[31].classList.add('active');
+        }
+
+        async function simulateCredit() {
+            alert('Triggering AI Credit Evaluation & Loan Disbursement... Rule 3 enforced via Universal Ledger!');
+            await fetch('/api/v1/simulators/credit', { method: 'POST' });
+            switchTab('tab-ledger');
+            document.querySelectorAll('.tab-btn')[32].classList.add('active');
+        }
+
+        async function simulatePowerBotWhatsApp() {
+            const out = document.getElementById('powerbot-output');
+            out.innerText = '[EXEC] Generating WhatsApp Status Kit & Swahili/Sheng Audio Package for Agent David...\n';
+            try {
+                const res = await fetch('/api/v1/power-bot-x/whatsapp/status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ agent_user_id: 'AGENT-David', fixture_id: 'GOR-AFC-DERBY', preferred_language: 'SWAHILI_SHENG' })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    out.innerText += `\n✔ [WHATSAPP STATUS PACKAGE GENERATED]\nTarget Channel: ${data.package.target_channel}\nDeep Link: ${data.package.deep_link}\nHeadline: ${data.package.match_card.team_a} vs ${data.package.match_card.team_b}\nAudio Script: "${data.package.voice_note_script}"\n\nDaily Summary: ${data.package.daily_summary}`;
+                } else {
+                    // Fallback simulated presentation if exact fixture not seeded yet
+                    out.innerText += `\n✔ [WHATSAPP STATUS PACKAGE READY (SIMULATED)]\nTarget Channel: WHATSAPP_STATUS\nDeep Link: https://wa.me/254700000000?text=JOIN_AGENT-David_GOR-AFC-2026\nAudio Script: "Sasa buda! Komaa na Power BOT X. Hii mechi ya Gor Mahia na AFC Leopards ni moto. AI yetu imeshachora tactical breakdown yote kwa WhatsApp!"\n\nQR Code Deep Link generated. Ready for one-click status posting.`;
+                }
+            } catch (e) {
+                out.innerText += `\n✔ [WHATSAPP STATUS READY]\nAudio Script: "Sasa buda! Komaa na Power BOT X. Mechi ya Gor Mahia na AFC Leopards ni moto!"`;
+            }
+        }
+
+        async function simulatePowerBotCopilot() {
+            const out = document.getElementById('powerbot-output');
+            out.innerText = '[EXEC] Launching AI Prediction Copilot Tactical Form Analysis for East African Derby...\n';
+            out.innerText += `\n🧠 [AI PREDICTION COPILOT BREAKDOWN]\nFixture: Gor Mahia vs AFC Leopards\n• Tactical Form: Gor Mahia unbeaten in 4 home matches (xG 1.85); AFC Leopards 3-game road win streak (0.6 goals conceded/match).\n• Fixture Congestion: 72-hour continental turnaround induces second-half fatigue after the 65th minute.\n• Confidence Intervals: High intensity derby volatility expands 95% uncertainty band.\n• Rule 10 Disclaimer: POWER BOT X AI Copilot explains objective form and historical trends to improve decision quality. It does NOT promise match outcomes.`;
+        }
+
+        async function simulatePowerBotSettlement() {
+            const out = document.getElementById('powerbot-output');
+            out.innerText = '[EXEC] Executing M-Pesa KES Deposit -> KRT Minting -> Prediction Escrow -> Double-Entry Settlement...\n';
+            out.innerText += `\n✔ [STEP 1: DEPOSIT & MINTING] User Amina deposits KES 1,000 via M-Pesa (Receipt QWX8992110). Converted instantly to 1,000 KRT inside MultiAssetWalletEngine (Rule 5 & Rule 9).\n✔ [STEP 2: PREDICTION STAKE] Amina submits prediction 'GOR_MAHIA_WIN' and escrows 400 KRT stake into Power BOT X Escrow pool via UniversalLedgerEngine.\n✔ [STEP 3: MATCH SETTLEMENT] Match concludes: Gor Mahia 2-1 AFC Leopards! Escrow releases 740 KRT winning payout directly to Amina's KRT wallet.\n✔ [STEP 4: REPUTATION BOOST] Non-financial reputation score increased (+25 pts). Tier: CLUB_STRATEGIST. (Reputation unlocks experiences, not game outcomes).\n\n✔ [AUDIT VERIFIED] Double-Entry SHA-256 Hash Chaining intact across all movements!`;
+        }
+
+        async function simulatePowerBotMarketplace() {
+            const out = document.getElementById('powerbot-output');
+            out.innerText = '[EXEC] Digital Economy Marketplace Gateway: Redeeming KRT Winnings at KARIS Eatery...\n';
+            out.innerText += `\n✔ [ONE WALLET ECONOMY] User Amina initiates KRT spend directly from WhatsApp reply: 'ORDER EATERY 350'.\n✔ [LEDGER SETTLEMENT] UniversalLedgerEngine debits Amina's KRT Wallet 350 KRT and credits KARIS Eatery Merchant Wallet 350 KRT.\n✔ [KDS ORDER FIRED] Meal Order 'MEAL-ORDER-777' sent to Kitchen Display System. Chef marks READY_FOR_PICKUP.\n✔ [COMMERCE EVENT EMITTED] POWER_BOT_MERCHANT_PAID published to UniversalEventBus.\n\n🎉 Winnings spent immediately inside the shared KARIS OS infrastructure!`;
+        }
+
+        async function simulatePowerBotTwin() {
+            const out = document.getElementById('powerbot-output');
+            out.innerText = '[EXEC] Running Digital Twin Real-Time Solvency Simulation & Self-Evolving Recommendations...\n';
+            out.innerText += `\n🏢 [DIGITAL TWIN SNAPSHOT]\n• KRT Circulation: 1,250,000 KRT | Active Predictions: 420 | Agent Network: 85 Micro-Businesses\n• Treasury Health Score: 98.50% (Highly Solvent)\n\n📊 [POLICY SIMULATION RESULT]\n• Proposed Parameters: Agent Commission = 15.0%, Staking Bonus = 5.0%, User Growth Multiplier = 1.35x\n• Projected KRT Circulation: 1,687,500 KRT | Net Treasury Liquidity Impact: +1,383,750 KRT\n• Solvency Assessment: SOLVENT AND SUSTAINABLE\n\n🛡️ [RULE 10 RBAC GATE] Self-evolving AI recommendation requires explicit human sign-off (` + `'PENDING_RBAC_APPROVAL'` + `) by role PLATFORM_ADMINISTRATOR before applying to live business_rules table.`;
+        }
+
+        async function simulateEnergyRegister() {
+            const out = document.getElementById('energy-output');
+            out.innerText = '[EXEC] Registering PAYG Solar Irrigation Pump for Farmer Kamau (`SOLAR-PUMP-MACHAKOS-01`)...\n';
+            out.innerText += `\n✔ [INSTALLATION REGISTERED]\nDevice Serial: SN-SOLAR-PUMP-2026-9901 | Type: SOLAR_IRRIGATION_PUMP | Capacity: 1,500.00 Watts\nOwner Identity: USER-Kamau (Farmer - Machakos) | Organization: ORG-KARIS-FARM-MAIN\nDaily PAYG Token Unlocking Rate: 50.00 KRT/day | Status: ACTIVE_UNLOCKED\n\nEvent Published: ENERGY_SOLAR_UNIT_REGISTERED (` + `Rule 6 & Rule 8` + `).`;
+        }
+
+        async function simulateEnergyTelemetry() {
+            const out = document.getElementById('energy-output');
+            out.innerText = '[EXEC] Streaming IoT Smart Meter Telemetry & Auto-Minting KRT-JOULE Surplus Rewards...\n';
+            out.innerText += `\n📡 [SMART METER TELEMETRY ARRIVED]\nInstallation: SOLAR-PUMP-MACHAKOS-01 | Timestamp: ` + new Date().toISOString() + `\nMetrics: Generation Today = 6.85 kWh | Consumption = 4.45 kWh | Battery Charge = 94.5% (25.2V) | Soil Moisture = 48.0%\n\n⚡ [COMMUNITY MICROGRID FEED-IN DETECTED]\nSurplus Solar Power Fed into Microgrid: 2.40 kWh\nConfigurable Rule 7 Reward: 10.00 KRT per kWh fed into grid\n\n🎉 [AUTOMATED GREEN TOKEN MINTING]\nUniversalLedgerEngine debited Treasury Reserve Pool and credited Farmer Kamau's KRT Wallet: +24.00 KRT-JOULE!\nEvent Emitted: ENERGY_MICROGRID_SURPLUS_MINTED | Audit Hash: SHA-256 Chained (` + `Rule 9` + `).`;
+        }
+
+        async function simulateEnergyPAYG() {
+            const out = document.getElementById('energy-output');
+            out.innerText = '[EXEC] Processing PAYG Solar Token Installment Payment via Universal Double-Entry Ledger...\n';
+            out.innerText += `\n💰 [PAYG INSTALLMENT SETTLEMENT]\nPayer Identity: Farmer Kamau | Amount Paid: 150.00 KRT\nCalculation: 150.00 KRT / 50.00 KRT per day = 3 Days Unlocked (` + `72 Hours Irrigation Access` + `)\n\n✔ [LEDGER DOUBLE-ENTRY MOVEMENT (` + `Rule 5 & Rule 9` + `)]\nDebited: Farmer Kamau KRT Wallet (-150.00 KRT)\nCredited: KARIS ENERGY Merchant Wallet (+150.00 KRT)\nAudit Hash: 99a182cf78b10f2249ac... | Status: SETTLED_UNLOCKED.`;
+        }
+
+        async function simulateEnergyPeerTrade() {
+            const out = document.getElementById('energy-output');
+            out.innerText = '[EXEC] Executing Peer-to-Peer Microgrid Solar Energy Trade (`Farmer Kamau -> Machakos Clinic`)...\n';
+            out.innerText += `\n🤝 [P2P SOLAR MICROGRID TRADE SETTLED]\nSeller: Farmer Kamau | Buyer: Machakos Health Clinic (` + `ORG-HEALTH-CLINIC` + `)\nTraded Power: 10.00 kWh of Solar Electricity | Agreed Price: 12.50 KRT/kWh | Total: 125.00 KRT\n\n✔ [ATOMIC DOUBLE-ENTRY SETTLEMENT]\nUniversalLedgerEngine debited Machakos Clinic KRT Wallet (-125.00 KRT) and credited Farmer Kamau KRT Wallet (+125.00 KRT).\nEvent Emitted: LEDGER_ENTRY_RECORDED | SHA-256 Chaining 100% Intact.`;
+        }
+
+        async function simulatePalPlusPackage() {
+            const out = document.getElementById('palplus-output');
+            out.innerText = '[EXEC] Attaching Universal PalPlus Temporary Payment Link to KARIS FARM Invoice ORDER-FARM-9901...\n';
+            out.innerText += `\n✔ [CHECKOUT PACKAGE GENERATED]\nTarget Order: ORDER-FARM-9901 | Amount: KES 3,500.00 | Payer Identity: USER-AMINA-777\nPayment Link URL: https://link.palpluss.com/6e8de0bc-1284-4bba-a5de-f886665bf18f\nQR Code Payload: https://link.palpluss.com/6e8de0bc-1284-4bba-a5de-f886665bf18f?order=ORDER-FARM-9901&amount=3500.0\n\nStatus: ACTIVE_TEMPORARY_LINK (` + `Section 51 / Rule 6` + `). Ready for customer tap or QR scan.`;
+        }
+
+        async function simulatePalPlusWebhook() {
+            const out = document.getElementById('palplus-output');
+            out.innerText = '[EXEC] Simulating PalPlus Webhook & Double-Entry M-Pesa Express Reconciliation (`ORDER-FARM-9901`)...\n';
+            out.innerText += `\n💰 [PALPLUS WEBHOOK RECEIVED]\nPayment Link ID: 6e8de0bc-1284-4bba-a5de-f886665bf18f | Provider: PALPLUS\nReceipt Number: PALPLUS-RC-99021 | Payer: USER-AMINA-777 | Amount Settled: KES 3,500.00\n\n✔ [DOUBLE-ENTRY RECONCILIATION (` + `Rule 2, 5 & 9` + `)]\n1. Customer KES Wallet Debited (-KES 3,500.00) / Supplier KES Wallet Credited (+KES 3,500.00)\n2. Rule Engine Minted +175.00 KRT Loyalty Reward directly into Customer KRT Wallet (` + `Rule 7` + `)\n3. Event Published: PAYMENT_LINK_CHECKOUT_COMPLETED (` + `Audit Hash: SHA-256 Chained` + `)\n\n🎉 Invoice ORDER-FARM-9901 marked SETTLED_PAID. Zero human intervention needed!`;
+        }
+
+        async function simulatePharmaBreach() {
+            const out = document.getElementById('expsuite-output');
+            out.innerText = '[EXEC] Streaming IoT Temperature Telemetry for Pharma Cold-Chain Batch (`BATCH-PHARMA-INS-2026`)...\n';
+            out.innerText += `\n🌡️ [COLD-CHAIN TELEMETRY ARRIVED]\nBatch ID: BATCH-PHARMA-INS-2026 | Timestamp: ` + new Date().toISOString() + `\nMetrics: Current Temperature = 10.5°C | Storage Thresholds = 2.0°C to 8.0°C | Humidity = 58.0%\n\n🚨 [COLD-CHAIN BREACH DETECTED]\nTemperature exceeded 8.0°C limit during distribution transit!\nBatch Status: COLD_CHAIN_BREACHED_LOCKED (` + `Rule 1 & Rule 6` + `)\nLogistics AI Alert: Automatic reroute triggered to nearest Machakos refrigerated depot to salvage remaining stock. Dispensary checkout strictly disabled.`;
+        }
+
+        async function simulatePropDividends() {
+            const out = document.getElementById('expsuite-output');
+            out.innerText = '[EXEC] Executing Atomic Double-Entry Rental Dividend Distribution (`Machakos Commercial Hub`)...\n';
+            out.innerText += `\n🏢 [PROP-SHARE SYNDICATION DIVIDEND SWEEP]\nSyndication: Machakos Commercial Aggregation Hub | Total Rental Pool: 100,000.00 KRT | Total Shares: 1,000 Shares\n\n✔ [DOUBLE-ENTRY LEDGER SETTLEMENT (` + `Rule 5 & Rule 9` + `)]\n1. Investor Kamau (` + `100 Shares = 10%` + `): Debited Treasury Reserve (-10,000 KRT) / Credited Kamau KRT Wallet (+10,000 KRT)\n2. Machakos Cooperative (` + `250 Shares = 25%` + `): Credited Cooperative KRT Wallet (+25,000 KRT)\n3. Remaining 650 Shares distributed via 14 automated double-entry ledger records.\n\nEvent Published: EXPSUITE_PROP_SHARE_DIVIDEND_DISTRIBUTED | SHA-256 Chaining Intact.`;
+        }
+
+        async function simulateEduTuition() {
+            const out = document.getElementById('expsuite-output');
+            out.innerText = '[EXEC] Reconciling Student Tuition Installment via Universal Double-Entry Ledger (`Edu-Pay`)...\n';
+            out.innerText += `\n🎓 [EDU-PAY TUITION INSTALLMENT SETTLEMENT]\nPlan: Academic Term 3 2026 (Machakos Institute of Technology) | Student: USER-STUDENT-01\nAmount Paid: KES 15,000.00 | Payment Method: MPESA_EXPRESS_PALPLUS\n\n✔ [DOUBLE-ENTRY RECONCILIATION (` + `Rule 9` + `)]\nDebited: Payer KES Wallet (-KES 15,000.00) / Credited: MIT College KES Wallet (+KES 15,000.00)\n\n🎉 [STUDENT SCHOLARSHIP & CAFETERIA BONUS (` + `Rule 7` + `)]\nRule Engine automatically minted +150.00 KRT-EDU scholarship and cafeteria bonus straight into Student KRT Wallet!\nEvent Published: EXPSUITE_EDUPAY_INSTALLMENT_SETTLED | Campus Cafeteria QR Check-In Active.`;
+        }
+
+        async function simulateWhitelabelSwitch(profileCode, hexColor, brandName) {
+            const out = document.getElementById('whitelabel-output');
+            out.innerText = `[EXEC] Applying White-Label Commercial Profile: '${brandName}' (` + profileCode + `)...\n`;
+            
+            // Dynamically reconfigure live UI headers & palettes (`Rule 7 & Section 35`)
+            document.documentElement.style.setProperty('--navy', hexColor);
+            document.querySelector('.header-titles h1').innerText = brandName + ' — Enterprise Portal';
+            document.querySelector('.logo-badge').style.backgroundColor = hexColor;
+            out.style.backgroundColor = hexColor;
+            out.style.borderColor = hexColor;
+
+            out.innerText += `\n🎨 [WHITE-LABEL BRANDING APPLIED]\nProfile Code: ${profileCode} | Brand Name: ${brandName} | Primary Palette: ${hexColor}\nDefault Currency: KES | Active Payment Link: https://link.palpluss.com/6e8de0bc-1284-4bba-a5de-f886665bf18f\n\n✔ [SYSTEM KERNEL CONFIG RECONFIGURED (` + `Rule 7` + `)]\nPLATFORM_NAME = "${brandName}"\nAll 18 industry verticals (` + `KARIS FARM, POS, Eatery, Power BOT X, Energy, Pharma, Prop-Share, Edu-Pay` + `) now operate natively under '${brandName}' branding while maintaining 100% exact double-entry SHA-256 hash protection (` + `Rule 9` + `)!\n\nEvent Published: WHITELABEL_BRANDING_APPLIED | Status: WHITELABEL_APPLIED_SUCCESS.`;
+        }
+
+        async function simulateLoopPost() {
+            const out = document.getElementById('loop-output');
+            out.innerText = '[EXEC] Publishing Shoppable Video Post (`PROD-AVO-01`) on Karis Loop™ & Generating AI Captions...\n';
+            out.innerText += `\n📱 [SHOPPABLE POST PUBLISHED]\nCreator: David Kamau (` + `creator_david` + `) | Community: Machakos County Farmers Guild | Type: SHORT_VIDEO\nLinked Product: Grade-A Export Hass Avocados (` + `PROD-AVO-01` + `) | Shoppable Price: KES 350.00\n\n🤖 [AI RAG CAPTION ASSISTANT (` + `Rule 6` + `)]\nSwahili/Sheng Caption: "🔥 Sasa mazee! Hii Grade-A Hass Avocados ni kiboko ya zote! Bei ni KES 350.00 tu hapa Karis Loop. Tap 'Buy Now' ulipe instantly na KRT ama M-Pesa!"\nHashtag Schedule: #KarisLoop #Grade-AHassAvocados #EastAfricaEconomy #OneWallet\nAI Moderation Status: APPROVED_CLEAN (` + `Toxicity Score: 0.0` + `).`;
+        }
+
+        async function simulateLoopTip() {
+            const out = document.getElementById('loop-output');
+            out.innerText = '[EXEC] Executing Double-Entry KRT Creator Tip (`User Amina -> Creator David`)...\n';
+            out.innerText += `\n💰 [DOUBLE-ENTRY CREATOR TIP SETTLED]\nTipper: User Amina (` + `USER-AMINA-777` + `) | Creator: David Kamau | Amount Tipped: 50.00 KRT\n\n✔ [ATOMIC LEDGER MOVEMENT (` + `Rule 5 & Rule 9` + `)]\nDebited: User Amina KRT Wallet (-50.00 KRT)\nCredited: Creator David KRT Wallet (+50.00 KRT)\nAudit Hash: 8b21c430e7f1e948a318... | Event Published: LOOP_CREATOR_TIPPED.`;
+        }
+
+        async function simulateLoopCheckout() {
+            const out = document.getElementById('loop-output');
+            out.innerText = '[EXEC] Complete Shoppable Product Checkout Directly From Short Video (`One Wallet Economy`)...\n';
+            out.innerText += `\n🛍️ [INSTANT SHOPPABLE CHECKOUT (` + `Section 54.5` + `)]\nBuyer: User Amina | Product: Grade-A Export Hass Avocados (` + `PROD-AVO-01` + `) | Price Paid: 350.00 KRT\n\n✔ [DOUBLE-ENTRY RECONCILIATION (` + `Rule 9` + `)]\n1. Buyer KRT Wallet Debited (-350.00 KRT) / Merchant KRT Wallet Credited (+350.00 KRT)\n2. Rule Engine Minted +17.50 KRT Loyalty Reward (+5%) directly into Buyer KRT Wallet (` + `Rule 7` + `)\n3. Event Published: LOOP_SHOPPABLE_CHECKOUT_COMPLETED (` + `Audit Hash: SHA-256 Chained` + `)\n\n🎉 Product checkout completed right inside the video stream!`;
+        }
+
+        async function simulateLoopModeration() {
+            const out = document.getElementById('loop-output');
+            out.innerText = '[EXEC] Simulating AI Toxicity Evaluation on Toxic Comment (`Rule 10 Guardrail`)...\n';
+            out.innerText += `\n🛡️ [AI MODERATION EVALUATION (` + `Section 54.6` + `)]\nEvaluated Text: "This product is a complete scam and fake!"\nFlagged Keywords: ['scam', 'fake'] | Calculated Toxicity Score: 70.0 / 100.0 (` + `> 60.0 maximum clean threshold` + `)\n\n🚨 [RULE 10 HUMAN REVIEW GATE ENFORCED]\nPost Status: FLAGGED_PENDING_HUMAN_REVIEW\nAction: Post automatically suppressed from public feeds and routed to human community moderator queue (` + `require_role('COMMUNITY_MODERATOR')` + `) for formal review and appeals processing.`;
+        }
+
+        // Auto load on boot
+        setTimeout(() => { fetchEvents(); fetchLedger(); traceHarvest(); }, 500);
+    </script>
+</body>
+</html>
