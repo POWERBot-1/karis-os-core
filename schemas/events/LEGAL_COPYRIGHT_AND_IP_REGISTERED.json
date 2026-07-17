@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LEGAL_COPYRIGHT_AND_IP_REGISTERED",
+  "description": "Event emitted when formal copyright, authorship, software version release provenance, and trademark certificates are generated and verified per Rule 1 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "certificate_id": { "type": "string" },
+    "certificate_type": { "type": "string" },
+    "software_name": { "type": "string" },
+    "version": { "type": "string" },
+    "founder_or_holder_name": { "type": "string" },
+    "repository_url": { "type": "string" },
+    "commit_id": { "type": "string" },
+    "sha256_codebase_hash": { "type": "string" },
+    "jurisdiction_code": { "type": "string" },
+    "issued_at": { "type": "string" }
+  },
+  "required": ["certificate_id", "certificate_type", "software_name", "version", "commit_id", "sha256_codebase_hash"]
+}
