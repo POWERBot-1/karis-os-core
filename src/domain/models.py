@@ -32,6 +32,11 @@ class WalletType(str, Enum):
     MERCHANT_WALLET = "MERCHANT_WALLET"
     DRIVER_WALLET = "DRIVER_WALLET"
     ESCROW_WALLET = "ESCROW_WALLET"
+    UGX_WALLET = "UGX_WALLET"
+    TZS_WALLET = "TZS_WALLET"
+    RWF_WALLET = "RWF_WALLET"
+    BIF_WALLET = "BIF_WALLET"
+    SSP_WALLET = "SSP_WALLET"
 
 class AssetType(str, Enum):
     KES = "KES"
@@ -50,6 +55,11 @@ class AssetType(str, Enum):
     BONDS = "BONDS"
     REWARDS = "REWARDS"
     KRT_REWARDS = "KRT_REWARDS"
+    UGX = "UGX"
+    TZS = "TZS"
+    RWF = "RWF"
+    BIF = "BIF"
+    SSP = "SSP"
 
 class EventCategory(str, Enum):
     IDENTITY = "IDENTITY"
@@ -79,6 +89,9 @@ class EventCategory(str, Enum):
     COSMOX_MARKETPLACE = "COSMOX_MARKETPLACE"
     COSMOX_LOGISTICS = "COSMOX_LOGISTICS"
     COSMOX_TOKENOMICS = "COSMOX_TOKENOMICS"
+    BORDERX_CUSTOMS = "BORDERX_CUSTOMS"
+    BORDERX_LOGISTICS = "BORDERX_LOGISTICS"
+    BORDERX_FINANCE = "BORDERX_FINANCE"
 
 class OrderStatus(str, Enum):
     ORDER_CREATED = "ORDER_CREATED"
@@ -865,6 +878,164 @@ class CosmoxMultisigRequestModel(BaseModel):
     status: str = "PENDING_MULTISIG"  # PENDING_MULTISIG, APPROVED_DISBURSED, REJECTED
     ledger_entry_id: str = ""
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+# --- Section 58 / Vertical 23: KARIS BorderX™ East African Customs & Trade Clearing Models ---
+class BorderXAccountModel(BaseModel):
+    account_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    identity_id: str
+    account_number: str
+    entity_type: str = "IMPORTER"  # IMPORTER, EXPORTER, CLEARING_AGENT, TRANSPORTER, FREIGHT_COMPANY, SHIPPING_LINE, CUSTOMS_OFFICER
+    kyc_status: str = "VERIFIED_TIER_3"
+    kes_wallet_id: str
+    ugx_wallet_id: str
+    tzs_wallet_id: str
+    rwf_wallet_id: str
+    bif_wallet_id: str
+    ssp_wallet_id: str
+    usd_wallet_id: str
+    eur_wallet_id: str
+    krt_wallet_id: str
+    customs_account_ref: str
+    reputation_score: int = 100
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BorderXDeclarationModel(BaseModel):
+    declaration_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    trader_account_id: str
+    agent_account_id: str
+    declaration_type: str = "IMPORTS"
+    origin_country_code: str = "CN"
+    destination_country_code: str = "KE"
+    border_post_code: str = "BUSIA_EAC"
+    hs_code: str
+    commodity_description: str
+    cif_value_usd: float
+    cif_value_kes: float
+    total_duty_assessed_kes: float
+    total_duty_assessed_krt: float
+    customs_risk_score: float = 15.0
+    status: str = "DECLARATION_FILED"
+    ledger_entry_id: str = ""
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BorderXDutyPaymentModel(BaseModel):
+    payment_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    declaration_id: str
+    trader_account_id: str
+    import_duty_kes: float = 0.0
+    export_duty_kes: float = 0.0
+    vat_kes: float = 0.0
+    excise_kes: float = 0.0
+    railway_levy_kes: float = 0.0
+    idf_kes: float = 0.0
+    rdl_kes: float = 0.0
+    port_charges_kes: float = 0.0
+    clearing_fees_kes: float = 0.0
+    agent_fees_kes: float = 0.0
+    inspection_fees_kes: float = 0.0
+    total_amount_kes: float
+    total_amount_krt: float
+    krt_fee_discount_pct: float = 0.0
+    settlement_currency: str = "KRT"
+    ledger_entry_id: str
+    settled_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BorderXShipmentModel(BaseModel):
+    shipment_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    declaration_id: str
+    transporter_account_id: str
+    transport_mode: str = "TRUCKS"
+    container_number: str
+    seal_number: str
+    seal_verification_status: str = "SEAL_INTACT_VERIFIED"
+    current_border_post: str = "BUSIA_EAC"
+    gps_coordinates: str = "0.4608° N, 34.0911° E"
+    ai_predicted_waiting_hours: float = 1.5
+    congestion_status: str = "MODERATE_CONGESTION"
+    ai_recommended_alternate_border: str = "MALABA_EAC"
+    status: str = "IN_TRANSIT_TO_BORDER"
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BorderXInspectionModel(BaseModel):
+    inspection_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    declaration_id: str
+    customs_officer_account_id: str
+    border_post: str
+    reason: str
+    ai_risk_flag_summary: str
+    inspection_status: str = "SCHEDULED_PENDING_INSPECTION"
+    officer_notes: str = ""
+    scheduled_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    completed_at: Optional[datetime] = None
+
+class BorderXTradeFinanceModel(BaseModel):
+    facility_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    borrower_account_id: str
+    facility_type: str = "WORKING_CAPITAL"
+    principal_amount_usd: float
+    principal_amount_krt: float
+    interest_rate_pct: float = 8.5
+    tenor_days: int = 90
+    credit_approval_status: str = "CREDIT_APPROVED"
+    disbursement_ledger_id: str = ""
+    repayment_ledger_id: str = ""
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BorderXMarketplaceListingModel(BaseModel):
+    listing_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    provider_account_id: str
+    listing_type: str = "TRUCK_AVAILABLE"
+    origin_corridor: str
+    destination_corridor: str
+    capacity_tons: float = 28.0
+    price_krt: float
+    status: str = "AVAILABLE"
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BorderXWarehouseItemModel(BaseModel):
+    warehouse_item_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    warehouse_account_id: str
+    declaration_id: str
+    warehouse_type: str = "BONDED_WAREHOUSE"
+    container_number: str
+    seal_number: str
+    storage_fee_daily_krt: float = 50.0
+    release_order_status: str = "BONDED_IN_CUSTODY"
+    stored_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    released_at: Optional[datetime] = None
+
+class BorderXDigitalDocumentModel(BaseModel):
+    document_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    declaration_id: str
+    document_type: str
+    document_title: str
+    payload_json: str
+    sha256_verification_hash: str
+    digital_signature: str
+    generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BorderXRiskLogModel(BaseModel):
+    log_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    trader_account_id: str
+    declaration_id: str = ""
+    fraud_type: str
+    detected_value_usd: float = 0.0
+    ai_risk_score: float
+    status: str = "FLAGGED_HIGH_RISK_BLOCKED"
+    audit_notes: str
+    logged_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BorderXTradeStatisticModel(BaseModel):
+    stat_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    region_corridor: str = "EAC_NORTHERN_CORRIDOR"
+    total_declarations_processed: int = 0
+    total_cif_value_usd: float = 0.0
+    total_duty_collected_kes: float = 0.0
+    total_duty_collected_krt: float = 0.0
+    avg_border_waiting_hours: float = 1.85
+    top_commodity_hs_code: str = "8517.13.00"
+    stat_period_date: str = "2026-07-17"
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 

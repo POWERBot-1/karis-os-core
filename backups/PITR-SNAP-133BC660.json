@@ -1,0 +1,11 @@
+{
+  "events": [],
+  "latest_event_id": "GENESIS",
+  "latest_ledger_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "ledger_entries": [],
+  "organization_id": "ORG-KARIS-RETAIL",
+  "snapshot_id": "PITR-SNAP-133BC660",
+  "snapshot_type": "POINT_IN_TIME_PITR",
+  "timestamp": "2026-07-17T12:08:51.774034+00:00",
+  "wallets": []
+}

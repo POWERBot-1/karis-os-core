@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BORDERX_DUTY_PAID_AND_SETTLED",
+  "description": "Event emitted when customs duty is calculated and double-entry settled via KRT or local currency per Rule 5 and Rule 9.",
+  "type": "object",
+  "properties": {
+    "payment_id": { "type": "string" },
+    "declaration_id": { "type": "string" },
+    "trader_account_id": { "type": "string" },
+    "total_amount_kes": { "type": "number" },
+    "total_amount_krt": { "type": "number" },
+    "krt_fee_discount_pct": { "type": "number" },
+    "settlement_currency": { "type": "string" },
+    "ledger_entry_id": { "type": "string" }
+  },
+  "required": ["payment_id", "declaration_id", "total_amount_kes", "ledger_entry_id"]
+}

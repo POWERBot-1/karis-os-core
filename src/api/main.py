@@ -89,12 +89,13 @@ from src.api.routers import (
     karis_academy,
     karisfx,
     cosmox,
+    borderx,
 )
 
 app = FastAPI(
     title=f"{config.PLATFORM_NAME} Enterprise API Gateway & Portal",
     version=config.PLATFORM_VERSION,
-    description="Unified Enterprise & Digital Economy Platform API Gateway. Enforces Section 1 to Section 57 & Rules 1 to 10 strictly including Karis Academy, KARISFX Global Financial Ecosystem, and COSMOX AI Universal Marketplace & KRT Economy Layer."
+    description="Unified Enterprise & Digital Economy Platform API Gateway. Enforces Section 1 to Section 58 & Rules 1 to 10 strictly including Karis Academy, KARISFX Global Financial Ecosystem, COSMOX AI Universal Marketplace, and KARIS BorderX East African Customs & Border Trade Clearing Engine."
 )
 
 # Attach rate-limiting, CORS, correlation ID, and security headers middleware
@@ -139,6 +140,7 @@ app.include_router(karis_loop.router)
 app.include_router(karis_academy.router)
 app.include_router(karisfx.router)
 app.include_router(cosmox.router)
+app.include_router(borderx.router)
 app.include_router(auth.router)
 app.include_router(audit.router)
 app.include_router(ai_rag.router)

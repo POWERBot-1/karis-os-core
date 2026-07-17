@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BORDERX_TRADE_FINANCE_DISBURSED",
+  "description": "Event emitted when trade finance is approved and double-entry disbursed strictly per Rule 3 and Rule 9.",
+  "type": "object",
+  "properties": {
+    "facility_id": { "type": "string" },
+    "borrower_account_id": { "type": "string" },
+    "facility_type": { "type": "string" },
+    "principal_amount_usd": { "type": "number" },
+    "principal_amount_krt": { "type": "number" },
+    "credit_approval_status": { "type": "string" },
+    "disbursement_ledger_id": { "type": "string" }
+  },
+  "required": ["facility_id", "borrower_account_id", "principal_amount_krt", "credit_approval_status", "disbursement_ledger_id"]
+}

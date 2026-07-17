@@ -148,6 +148,7 @@
         <button class="tab-btn" onclick="switchTab('tab-academy')">KARIS ACADEMY™ (Educational Ecosystem)</button>
         <button class="tab-btn" onclick="switchTab('tab-karisfx')">KARISFX™ (Global Financial & KRT Economy)</button>
         <button class="tab-btn" onclick="switchTab('tab-cosmox')">COSMOX™ (AI Marketplace & KRT Economy)</button>
+        <button class="tab-btn" onclick="switchTab('tab-borderx')">KARIS BorderX™ (East African Customs & Trade)</button>
     </nav>
 
     <main>
@@ -1731,6 +1732,55 @@
                 <div id="cosmox-output" style="background: #0F172A; color: #FBBF24; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #D97706;">[COSMOX ENGINE ACTIVE] -> Universal AI Marketplace & Route AI Online ... Click any button above to test 6 Universal Wallets, Escrow Hold, or Rule 4 Driver Release.</div>
             </div>
         </div>
+
+        <!-- TAB 45: KARIS BORDERX EAST AFRICAN CUSTOMS & TRADE CLEARING ENGINE (SECTION 58) -->
+        <div id="tab-borderx" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #8B5CF6;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: KARIS BorderX™ — East African Customs & Border Trade Clearing Engine</h2>
+                    <span class="badge badge-purple">Section 58 / Vertical 23 • 9 Regional Currencies • AI HS Classification</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>KARIS BorderX™</strong> is the next-generation digital customs, border trade, and logistics ecosystem across East Africa (`Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DR Congo, Ethiopia, COMESA, EAC, AfCFTA`). It unifies **9 Multi-Currency Trade Wallets (`KES, UGX, TZS, RWF, BIF, SSP, USD, EUR, KRT`)**, **AI HS Code Classification (`Rule 10`)**, **Smart Duty Calculator (with KRT Fee Discounts up to 50%)**, **Smart Border Queue Congestion Forecasts (`Busia vs Malaba`)**, **AI Customs Risk Engine catching Under-Valuation under Rule 10 mandatory inspection**, **Trade Finance (`Rule 3`)**, and **SHA-256 verified Digital Trade Certificates (`Rule 1 & Rule 6`)**.
+                </p>
+
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">🌍 Live KARIS BorderX™ East African Customs & Trade Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. Onboard 9 Multi-Currency Trade Wallets</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate onboarding Regional Importer across East Africa. Auto-creates `KES, UGX, TZS, RWF, BIF, SSP, USD, EUR, KRT` wallets + `CUSTOMS-ACCOUNT-REF` (`Rule 1 & Rule 6`).</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulateBorderXOnboard()">Onboard 9 Regional Trade Wallets</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. AI HS Classification & Smart Duty Calc</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate filing customs declaration for `$10,000 USD` Solar Inverters. AI classifies `HS Code 8517.13.00` & computes precise `import_duty, vat, idf, rdl` (`Rule 10 Advisory`).</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulateBorderXDeclaration()">Classify HS Code & Calculate Duty</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. Settle Duty with 25% KRT Fee Discount</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate settling customs duty via KRT Double-Entry Ledger (`Rule 5 & Rule 9`). Applies exactly **25% KRT discount on clearing/agent fees** and sets status to `DUTY_PAID_CLEARED`!</p>
+                            </div>
+                            <button class="btn" style="background: #8B5CF6; color: white;" onclick="simulateBorderXDutySettle()">Settle Duty via KRT Double-Entry</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">4. AI Risk Block (`Rule 10`) & Border Queue</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate under-valued declaration (`$3,000 CIF vs $10,000 benchmark`). AI Risk Engine assigns **Score 85.0 $\rightarrow$ HARD BLOCK $\rightarrow$ Rule 10 Physical Inspection**. Predicts Busia congestion (4.5 hrs).</p>
+                            </div>
+                            <button class="btn" style="background: #DC2626; color: white;" onclick="simulateBorderXRiskAndQueue()">Catch Under-Valuation (Rule 10 Gate)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="borderx-output" style="background: #0F172A; color: #C084FC; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #8B5CF6;">[BORDERX ENGINE ACTIVE] -> East African Customs & 9 Regional Currency Corridors Online ... Click any button above to onboard wallets, classify HS codes, settle duties, or test AI Risk gates.</div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -2545,6 +2595,30 @@
             const out = document.getElementById('cosmox-output');
             out.innerText = '[EXEC] Verifying Referral Network & Multi-Sig Treasury Gating (`Rule 10`)...\n';
             out.innerText += `\n🎁 [REFERRAL NETWORK REWARDS (` + `Section 57.7` + `)]\nReferrer Identity: REF-CMX-006 | Referred Merchant: REF-CMX-008 (` + `MERCHANT` + ` Tier)\nQualification: Verified Tier 3 KYC & First Sale | Reward Disbursed: +500.00 KRT_REWARDS via Double-Entry Ledger.\n\n🏛️ [MULTI-SIGNATURE TREASURY DISBURSEMENT (` + `Section 57.11 & Rule 10` + `)]\nRequest ID: REQ-CMX-MULTI-01 | Purpose: Ecosystem Liquidity Bootstrapping Grant | Amount: 250,000.00 KRT\nRequired Approvals: 2 Human Administrators (` + `Rule 10 High-Impact Gate` + `)\n• Approval 1: Admin CMX-012 -> 1/2 Quorum (Pending)\n• Approval 2: Admin CMX-013 -> 2/2 Quorum Satisfied (` + `APPROVED_DISBURSED` + `)\nUniversalLedgerEngine executed thread-safe double entry (+250,000.00 KRT to Beneficiary Wallet) under Rule 10!`;
+        }
+
+        async function simulateBorderXOnboard() {
+            const out = document.getElementById('borderx-output');
+            out.innerText = '[EXEC] Onboarding East African Regional Trader into 9 Multi-Currency Wallets...\n';
+            out.innerText += `\n🌍 [BORDERX 9 MULTI-CURRENCY TRADE WALLETS (` + `Section 58.4` + `)]\nEntity Identity: TRADER-EAC-001 | Entity Type: IMPORTER | KYC Tier: VERIFIED_TIER_3\n\n✔ [9 REGIONAL CURRENCY WALLETS CREATED (` + `Rule 1 & Rule 6` + `)]\n1. KES Wallet: +2,500,000.00 KES (Kenya Shilling)\n2. UGX Wallet: +74,000,000.00 UGX (Uganda Shilling)\n3. TZS Wallet: +52,000,000.00 TZS (Tanzania Shilling)\n4. RWF Wallet: +26,000,000.00 RWF (Rwandan Franc)\n5. BIF Wallet: +56,000,000.00 BIF (Burundi Franc)\n6. SSP Wallet: +20,000,000.00 SSP (South Sudanese Pound)\n7. USD Wallet: +20,000.00 USD\n8. EUR Wallet: +18,400.00 EUR\n9. KRT Wallet: +15,000.00 KRT\nCustoms Reference: CUSTOMS-ACCOUNT-REF-TRADER-EAC-001 | Compliance Tier: 100 points.`;
+        }
+
+        async function simulateBorderXDeclaration() {
+            const out = document.getElementById('borderx-output');
+            out.innerText = '[EXEC] Classifying HS Code via AI & Calculating Smart Duty Breakdown (`Section 58.2 & 58.3`)...\n';
+            out.innerText += `\n📦 [AI HS CODE CLASSIFICATION (` + `Section 58.2` + `)]\nCommodity: Huawei Carrier Solar Inverter Components | Category: ELECTRONICS\nClassified HS Code: 8517.13.00 | Confidence: 97.80% | Required Permits: CAK Equipment Homologation, KEBS Quality Inspection.\n\n🧮 [SMART DUTY CALCULATOR (` + `Section 58.3` + `)]\nDeclared CIF Value: $10,000.00 USD (KES 1,300,000.00 equivalent at 1 USD = 130 KES)\nDuty Breakdown: Import Duty (25% = 325K KES), VAT (16% = 260K KES), Railway Levy (1.5% = 19.5K KES), IDF (2.5% = 32.5K KES), RDL (1.5% = 19.5K KES).\nLogistics & Agency Fees: Port Charges (15K KES), Clearing Fees (12K KES), Agent Fees (10K KES), Inspection (3.5K KES).\nTotal Assessed: KES 697,000.00 (` + `Rule 10 Advisory Enforced` + `).`;
+        }
+
+        async function simulateBorderXDutySettle() {
+            const out = document.getElementById('borderx-output');
+            out.innerText = '[EXEC] Settling Customs Duty via KRT Double-Entry Accounting (`Rule 5 & Rule 9`)...\n';
+            out.innerText += `\n💳 [KRT CLEARING FEE DISCOUNT & DUTY SETTLEMENT (` + `Section 58.5` + `)]\nDeclaration ID: DECL-EAC-2026-881A | Settlement Currency: KRT Digital Utility Token\nBase Assessed Duty & Fees: 697,000.00 KRT equivalent (` + `1 KRT = 1 KES parity` + `)\n\n🎁 [25.0% KRT CLEARING FEE DISCOUNT APPLIED (` + `Rule 5 & Rule 9` + `)]\nClearing & Agent Fees discounted from 22,000 KRT -> 16,500 KRT (-5,500 KRT Savings!)\nUniversalLedgerEngine debited Trader KRT Wallet (-691,500.00 KRT) and credited Customs Revenue Pool (` + `POOL-BORDERX-REVENUE` + `).\nDeclaration Status: DUTY_PAID_CLEARED_FOR_ENTRY | Cryptographic Audit Anchor: SHA-256 Chained (` + `Rule 9` + `).`;
+        }
+
+        async function simulateBorderXRiskAndQueue() {
+            const out = document.getElementById('borderx-output');
+            out.innerText = '[EXEC] Running AI Customs Risk Engine (`Rule 10`) & Smart Border Queue Forecast (`Section 58.7 & 58.8`)...\n';
+            out.innerText += `\n🚨 [AI CUSTOMS RISK ENGINE (` + `Section 58.8 & Rule 10` + `)]\nDeclaration ID: DECL-EAC-RISK-09 | Commodity: High-End Telecom Switches | Declared CIF: $3,000.00 USD vs Regional Benchmark: $10,000.00 USD (< 60%)\nAI Customs Risk Score: 85.00 / 100.00 -> FLAGGED: UNDER_VALUATION OR TARIFF EVASION\nGuardrail Enforced: Duty settlement HARD-BLOCKED. Auto-scheduled physical inspection with Customs Officer (` + `OFFICER-KRA-EAC-01` + `) under Rule 10!\n\n🚛 [SMART BORDER QUEUE FORECAST (` + `Section 58.7` + `)]\nBorder Corridor: Busia Kenya-Uganda Border (` + `BUSIA_EAC` + `) | Congestion: HEAVY_CONGESTION\nPredicted Waiting Time: 4.50 Hours | AI Recommended Alternate Post: Malaba Border (` + `MALABA_EAC` + `) -> 1.20 Hours (Save 3.3 Hours transit time!).`;
         }
 
         // Auto load on boot

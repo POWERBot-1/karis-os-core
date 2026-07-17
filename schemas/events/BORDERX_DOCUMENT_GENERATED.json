@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BORDERX_DOCUMENT_GENERATED",
+  "description": "Event emitted when a cryptographic SHA-256 verified digital trade certificate is issued per Rule 1 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "document_id": { "type": "string" },
+    "declaration_id": { "type": "string" },
+    "document_type": { "type": "string" },
+    "document_title": { "type": "string" },
+    "sha256_verification_hash": { "type": "string" },
+    "digital_signature": { "type": "string" }
+  },
+  "required": ["document_id", "declaration_id", "document_type", "sha256_verification_hash"]
+}

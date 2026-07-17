@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BORDERX_DECLARATION_FILED",
+  "description": "Event emitted when a customs declaration is filed across East African regional corridors per Rule 1 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "declaration_id": { "type": "string" },
+    "trader_account_id": { "type": "string" },
+    "declaration_type": { "type": "string" },
+    "origin_country_code": { "type": "string" },
+    "destination_country_code": { "type": "string" },
+    "border_post_code": { "type": "string" },
+    "hs_code": { "type": "string" },
+    "cif_value_usd": { "type": "number" },
+    "customs_risk_score": { "type": "number" },
+    "status": { "type": "string" }
+  },
+  "required": ["declaration_id", "trader_account_id", "hs_code", "cif_value_usd", "status"]
+}

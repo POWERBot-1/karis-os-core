@@ -429,6 +429,19 @@ def build_docx():
         "5. Multi-Signature Treasury & Tokenomics: High-value treasury requests (`> 100,000 KRT` or `$10,000 USD`) require explicit multi-signature RBAC sign-off (`Rule 10`) before double-entry disbursement."
     )
 
+    h1_14 = doc.add_heading("14. SECTION 58 :: KARIS BORDERX™ EAST AFRICAN CUSTOMS & TRADE CLEARING ENGINE (VERTICAL 23)", level=1)
+    h1_14.style.font.name = 'Arial'
+    h1_14.style.font.color.rgb = RGBColor(0x0B, 0x25, 0x45)
+
+    doc.add_paragraph(
+        "KARIS BorderX™ (`Section 58 / Vertical 23`) is the authoritative digital customs, border trade, and logistics clearing ecosystem across East Africa (`Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DR Congo, Ethiopia, COMESA, EAC, AfCFTA`). Key systemic capabilities include:\n"
+        "1. 9 Multi-Currency Trade Wallets: Every regional trade entity (`IMPORTER, EXPORTER, CLEARING_AGENT, TRANSPORTER, etc.`) automatically receives 9 multi-currency wallets (`KES, UGX, TZS, RWF, BIF, SSP, USD, EUR, KRT`) plus a `CUSTOMS-ACCOUNT-REF` (`Rule 1 & Rule 6`).\n"
+        "2. AI HS Code Classification & Smart Duty Calculator: Automatically classifies commodities (`Electronics, Agriculture, Machinery, etc.`) under WCO/EAC Harmonized System (`HS Code`). Calculates exact duty breakdowns (`import_duty, vat, idf, rdl, railway_levy, clearing_fees, etc.`) and applies **up to 50% KRT clearing fee discounts** upon double-entry settlement (`Rule 5 & Rule 9`).\n"
+        "3. AI Customs Risk Engine (`Rule 10 Mandatory Gate`): Detects under-valuation (`cif_value < market_avg * 0.6`), smuggling patterns, fake invoices, and duplicate cargo. Any declaration with `customs_risk_score >= 75` is hard-blocked from green-channel settlement and mandates physical customs officer inspection under Rule 10.\n"
+        "4. Smart Border Queue & Trade Finance (`Rule 3`): Predicts real-time border post congestion and waiting times (`Busia vs Malaba vs Namanga`) while offering trade finance working capital facilities strictly verified under Rule 3 (`No Credit Approval -> No Credit Purchase`) and double-entry disbursed under Rule 9.\n"
+        "5. Document AI & Regional Trade Statistics: Automatically issues cryptographic SHA-256 verified digital trade certificates (`COMMERCIAL_INVOICE, PACKING_LIST, CERTIFICATE_OF_ORIGIN, BILL_OF_LADING, etc.`) while aggregating multi-corridor revenue read models for regional customs authorities (`KRA, URA, TRA, RRA`)."
+    )
+
     # Save document
     doc.save("/home/user/karis_os_enterprise_architecture_and_build_manual_v1.docx")
     print("Document successfully created at /home/user/karis_os_enterprise_architecture_and_build_manual_v1.docx")
