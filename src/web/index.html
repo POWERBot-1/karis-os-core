@@ -145,6 +145,9 @@
         <button class="tab-btn" onclick="switchTab('tab-expsuite')">KARIS INNOVATION SUITE (Pharma/Prop/Edu)</button>
         <button class="tab-btn" onclick="switchTab('tab-whitelabel')">White-Label Customization Engine</button>
         <button class="tab-btn" onclick="switchTab('tab-loop')">KARIS LOOP™ (Social Economy Layer)</button>
+        <button class="tab-btn" onclick="switchTab('tab-academy')">KARIS ACADEMY™ (Educational Ecosystem)</button>
+        <button class="tab-btn" onclick="switchTab('tab-karisfx')">KARISFX™ (Global Financial & KRT Economy)</button>
+        <button class="tab-btn" onclick="switchTab('tab-cosmox')">COSMOX™ (AI Marketplace & KRT Economy)</button>
     </nav>
 
     <main>
@@ -1579,6 +1582,155 @@
                 <div id="loop-output" style="background: #500724; color: #FBCFE8; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #831843;">[KARIS LOOP SOCIAL ENGINE ACTIVE] -> 7 Interconnected Graphs Online ... Click any button above to publish shoppable short-form videos, tip creators, and test Rule 10 AI Moderation.</div>
             </div>
         </div>
+
+        <!-- TAB 42: KARIS ACADEMY EDUCATIONAL ECOSYSTEM (SECTION 55) -->
+        <div id="tab-academy" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #1D4ED8;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: KARIS ACADEMY™ — AI-Powered Educational Ecosystem</h2>
+                    <span class="badge badge-blue">Section 55 / Vertical 20 • Concept Graphs • Rule 10 AI Copilot</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>KARIS Academy™</strong> is the world's most advanced AI-powered educational ecosystem, operating as a native service within KARIS OS™ (`Section 55 / Vertical 20`). It organizes learning into <strong>interconnected prerequisite concept graphs</strong> (`Linear Algebra -> Python -> AI RAG`), generates 14 original educational artifacts under **Rule 10 (`DRAFT_PENDING_EDUCATOR_APPROVAL`)**, records immutable academic transcripts (`Rule 9`), and automatically mints **`+250.00 KRT-EDU` utility reward tokens (`Rule 7 & Rule 9`)** directly to student wallets upon concept mastery!
+                </p>
+
+                <!-- Interactive Simulation Controls -->
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">🎓 Live KARIS Academy™ AI Education & Mastery Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. AI Artifact Generator & Rule 10 Human Gate</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate AI Education Engine generating a complete lesson note, practice quiz, and grading rubric for `Neural Network RAG Embeddings`. Auto-locked at `DRAFT_PENDING_EDUCATOR_APPROVAL` (`Rule 10`).</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulateAcademyArtifact()">Generate AI Artifact (Rule 10)</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. Human Faculty Review & Publish (`Rule 10`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate Dr. Omondi (`require_role('EDUCATOR_FACULTY')`) reviewing, editing, and approving the draft artifact. Sets status to `PUBLISHED_APPROVED` and emits `Rule 6` event.</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulateAcademyPublish()">Educator Sign-Off & Publish</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. Concept Mastery & KRT-EDU Reward Minting</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate Student Amina passing her final mock examination (`96.5% >= 85%`). Records immutable academic transcript (`Rule 9`) & auto-mints `+250.00 KRT-EDU` utility reward (`Rule 5 & 9`)!</p>
+                            </div>
+                            <button class="btn" style="background: #F59E0B; color: white;" onclick="simulateAcademyMastery()">Certify Mastery & Mint KRT-EDU</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">4. Institutional Scholarship Disbursement (`Rule 9`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate Machakos Institute of Technology disbursing a `5,000.00 KRT` living and tuition stipend directly to Student Amina's wallet via Universal Double-Entry Ledger (`Rule 5 & 9`).</p>
+                            </div>
+                            <button class="btn" style="background: #8B5CF6; color: white;" onclick="simulateAcademyScholarship()">Disburse Scholarship Stipend</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Monitoring Box -->
+                <div id="academy-output" style="background: #0F172A; color: #38BDF8; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #1D4ED8;">[KARIS ACADEMY ENGINE ACTIVE] -> Interconnected Concept Graphs & AI Tutors Online ... Click any button above to generate artifacts under Rule 10, certify student mastery, and disburse scholarships.</div>
+            </div>
+        </div>
+
+        <!-- TAB 43: KARISFX GLOBAL FINANCIAL ECOSYSTEM & KRT ECONOMY (SECTION 56) -->
+        <div id="tab-karisfx" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #059669;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: KARISFX™ — Global Financial Ecosystem & KRT Economy Layer</h2>
+                    <span class="badge badge-green">Section 56 / Vertical 21 • 16 Asset Classes • up to 60% Staking Discount</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>KARISFX™</strong> is the flagship global financial platform of KARIS OS™ (`Section 56 / Vertical 21`), where **KRT (Karis Token)** serves as the foundational economic layer. It unifies **16 global asset classes** (Forex, Stocks, Commodities, ETFs, Bonds, Futures, AI Portfolios, Social Copy-Trading), **13 AI Financial Services**, **KRT Staking modules (up to 60% fee discounts)**, Transparent Reward Engine with wash-trading checks (`Rule 1 & 6`), Strategy Marketplace (`85/15 split`), Decentralized Governance, and Zero-Trust AML screening (`CBK/FIU`).
+                </p>
+
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">💹 Live KARISFX™ Multi-Asset Trading & KRT Economy Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. Onboard KRT Foundation & 7 Wallets</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate onboarding Trader Alex Kamau into KARISFX. Auto-creates `KRT, KES, USD, EUR, GBP, Stablecoin, and Rewards` wallets + `TREASURY-ACCOUNT-REF` (`Rule 1 & Rule 6`).</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulateKarisFXOnboard()">Onboard KRT Foundation Wallets</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. Open KRT Staking Position (`GOLD Tier`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate locking 5,000 KRT into Staking Pool for 90 days. Unlocks 20% APY, **45% trading fee discount**, AI Priority, and +300 reputation (`Rule 5 & Rule 9`).</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulateKarisFXStaking()">Stake 5,000 KRT (Unlock 45% Discount)</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. Execute Multi-Asset Trade (45% Discount)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate buying 1,000 units of `KES/USD` Forex. Applies exactly 45% KRT staking fee discount and records double-entry settlement (`Rule 5 & Rule 9`).</p>
+                            </div>
+                            <button class="btn" style="background: #F59E0B; color: white;" onclick="simulateKarisFXTrade()">Execute Trade with 45% Fee Discount</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">4. AI Market Intelligence & Rule 10 Gate</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate querying `MARKET_INTELLIGENCE` and `PORTFOLIO_OPTIMIZATION`. Returns Sharpe 2.15 target with advisory requiring human trader review per `Rule 10`.</p>
+                            </div>
+                            <button class="btn" style="background: #8B5CF6; color: white;" onclick="simulateKarisFXAI()">Query AI Economy Engine (Rule 10)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="karisfx-output" style="background: #0F172A; color: #10B981; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #059669;">[KARISFX ENGINE ACTIVE] -> 16 Asset Classes & KRT Staking Pools Online ... Click any button above to onboard wallets, lock staking tiers, or execute discounted trades.</div>
+            </div>
+        </div>
+
+        <!-- TAB 44: COSMOX UNIVERSAL AI MARKETPLACE & KRT ECONOMY (SECTION 57) -->
+        <div id="tab-cosmox" class="tab-content">
+            <div class="panel-card" style="border-left: 5px solid #D97706;">
+                <div class="panel-header">
+                    <h2>KARIS OS :: COSMOX™ — Universal AI Marketplace & KRT Economy Layer</h2>
+                    <span class="badge badge-orange">Section 57 / Vertical 22 • 6 Universal Wallets • Rule 4 Delivery Release</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                    <strong>COSMOX™</strong> is an AI-powered universal marketplace (`Section 57 / Vertical 22`) where **KRT (Karis Token)** is the native utility token and primary mechanism for rewards, loyalty, referrals, and internal value exchange. It unifies **6 Universal Wallets (`fiat, krt, rewards, escrow, merchant, driver`)**, **7 AI Engine modules (dynamic pricing, route AI, translation, fraud detection)**, **Logistics strictly enforcing Rule 4 (`No Delivery Confirmation -> No Rider Payment`)**, **Referral Network (`INDIVIDUAL, MERCHANT, DELIVERY_PARTNER`)**, **Tokenomics Deflationary Burns (`burn_krt`)**, and **Multi-Signature Treasury Gating (`Rule 10`)**.
+                </p>
+
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy);">🌐 Live COSMOX™ AI Marketplace & KRT Economy Simulators</h3>
+                    <div class="sim-grid">
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">1. Onboard Universal Wallets & AI Pricing</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate onboarding Buyer and Merchant. Auto-creates `fiat, krt, rewards, escrow, merchant, driver` wallets. Creates product with **AI Scarcity Premium (+8%)**.</p>
+                            </div>
+                            <button class="btn btn-blue" onclick="simulateCosmoxOnboard()">Onboard Wallets & AI Dynamic Price</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">2. Order Checkout & Escrow Hold (`Rule 2`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate buyer checking out 5 bags of Machakos Coffee (1,000 KRT). Strictly locks KRT inside `escrow_wallet` (`Rule 2 & Rule 5 & Rule 9`).</p>
+                            </div>
+                            <button class="btn btn-green" onclick="simulateCosmoxOrder()">Execute Checkout & Lock Escrow</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">3. Route AI & Strict Rule 4 Delivery Release</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate driver dispatch and `DELIVERY_CONFIRMED` event. Releases 880 KRT to merchant, 120 KRT to treasury minus **2% deflationary burn**, and releases **+25 KRT driver bonus** under `Rule 4`!</p>
+                            </div>
+                            <button class="btn" style="background: #D97706; color: white;" onclick="simulateCosmoxDelivery()">Confirm Delivery & Release Escrow (Rule 4)</button>
+                        </div>
+                        <div class="sim-card">
+                            <div>
+                                <h4 style="margin-bottom: 0.4rem;">4. Multi-Sig Treasury & Referral Network (`Rule 10`)</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Simulate `MERCHANT` referral reward (`+500 KRT_REWARDS`) and high-value 250,000 KRT Treasury request requiring 2+ explicit human RBAC approvals (`Rule 10`).</p>
+                            </div>
+                            <button class="btn" style="background: #8B5CF6; color: white;" onclick="simulateCosmoxMultisig()">Verify Referrals & Multi-Sig Treasury</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cosmox-output" style="background: #0F172A; color: #FBBF24; padding: 1.2rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; min-height: 120px; border: 1px solid #D97706;">[COSMOX ENGINE ACTIVE] -> Universal AI Marketplace & Route AI Online ... Click any button above to test 6 Universal Wallets, Escrow Hold, or Rule 4 Driver Release.</div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -2321,6 +2473,78 @@
             const out = document.getElementById('loop-output');
             out.innerText = '[EXEC] Simulating AI Toxicity Evaluation on Toxic Comment (`Rule 10 Guardrail`)...\n';
             out.innerText += `\n🛡️ [AI MODERATION EVALUATION (` + `Section 54.6` + `)]\nEvaluated Text: "This product is a complete scam and fake!"\nFlagged Keywords: ['scam', 'fake'] | Calculated Toxicity Score: 70.0 / 100.0 (` + `> 60.0 maximum clean threshold` + `)\n\n🚨 [RULE 10 HUMAN REVIEW GATE ENFORCED]\nPost Status: FLAGGED_PENDING_HUMAN_REVIEW\nAction: Post automatically suppressed from public feeds and routed to human community moderator queue (` + `require_role('COMMUNITY_MODERATOR')` + `) for formal review and appeals processing.`;
+        }
+
+        async function simulateAcademyArtifact() {
+            const out = document.getElementById('academy-output');
+            out.innerText = '[EXEC] Generating AI Educational Artifact (`Neural Network RAG Embeddings`) under Rule 10...\n';
+            out.innerText += `\n🤖 [AI EDUCATION ENGINE (` + `Section 55.3` + `)]\nArtifact ID: ART-8F21A0C4 | Type: LESSON_NOTE_AND_QUIZ | Version: 1\nTopic Title: Neural Network RAG Embeddings & Vector Search\n\n🚨 [RULE 10 HUMAN APPROVAL GATE ENFORCED]\nGenerated Status: DRAFT_PENDING_EDUCATOR_APPROVAL\nGuardrail: Artifact strictly locked against public publishing until reviewed, edited, and signed off by a human faculty educator (`require_role('EDUCATOR_FACULTY')`).`;
+        }
+
+        async function simulateAcademyPublish() {
+            const out = document.getElementById('academy-output');
+            out.innerText = '[EXEC] Human Faculty Review & Publish (`Rule 10 -> PUBLISHED_APPROVED`)...\n';
+            out.innerText += `\n👨‍🏫 [EDUCATOR REVIEW & SIGN-OFF (` + `Rule 10` + `)]\nEducator Identity: Dr. Omondi (` + `EDUCATOR_FACULTY` + `) | Artifact ID: ART-8F21A0C4\nAction: Reviewed worked examples and cosine similarity quiz questions. Approved for release.\n\n✔ [ARTIFACT PUBLISHED]\nNew Status: PUBLISHED_APPROVED | Version: 2\nEvent Emitted: ACADEMY_LESSON_OR_QUIZ_PUBLISHED (` + `Rule 6 & Rule 8` + `). Available across Web, Mobile & Offline PWA.`;
+        }
+
+        async function simulateAcademyMastery() {
+            const out = document.getElementById('academy-output');
+            out.innerText = '[EXEC] Certifying Student Mastery (`96.5%`) & Auto-Minting KRT-EDU Rewards (`Rule 5, 7 & 9`)...\n';
+            out.innerText += `\n🎓 [STUDENT CONCEPT MASTERY CERTIFIED (` + `Section 55.5` + `)]\nStudent Identity: User Amina (` + `USER-AMINA-777` + `) | Concept: Neural Network RAG Embeddings (` + `CONCEPT-AI-201` + `)\nExam Score: 96.50% (` + `>= 85.0% Mastery Threshold` + `) | Status: MASTERY_CERTIFIED\n\n🎉 [KRT-EDU UTILITY REWARD MINTED (` + `Rule 7 & Rule 9` + `)]\nUniversalLedgerEngine debited Treasury Reward Pool (-250.00 KRT) and credited Student Amina KRT Wallet (+250.00 KRT-EDU)!\nTranscript Record: REC-ACADEMY-2026-991A | Reconciled Audit Hash: SHA-256 Chained (` + `Rule 9` + `).`;
+        }
+
+        async function simulateAcademyScholarship() {
+            const out = document.getElementById('academy-output');
+            out.innerText = '[EXEC] Disbursing Institutional Scholarship Stipend via Universal Double-Entry Ledger (`Rule 5 & 9`)...\n';
+            out.innerText += `\n💰 [INSTITUTIONAL SCHOLARSHIP DISBURSED (` + `Section 55.6` + `)]\nInstitution: Machakos Institute of Technology (` + `ORG-COLLEGE-MACHAKOS` + `) | Student: User Amina (` + `USER-AMINA-777` + `)\nDisbursement Type: LIVING_STIPEND_AND_TUITION | Amount: 5,000.00 KRT\n\n✔ [DOUBLE-ENTRY LEDGER SETTLEMENT (` + `Rule 5 & Rule 9` + `)]\nDebited: Scholarship Pool (` + `POOL-ACADEMY-SCHOLARSHIP-01` + `) (-5,000.00 KRT)\nCredited: Student Amina KRT Wallet (+5,000.00 KRT)\nAudit Hash: 7b31e840a92d11f62... | Event Published: ACADEMY_SCHOLARSHIP_DISBURSED.`;
+        }
+
+        async function simulateKarisFXOnboard() {
+            const out = document.getElementById('karisfx-output');
+            out.innerText = '[EXEC] Onboarding Trader Alex Kamau into KARISFX KRT Foundation...\n';
+            out.innerText += `\n🏦 [KARISFX KRT FOUNDATION ONBOARDED (` + `Section 56.2` + `)]\nIdentity: Alex Kamau (` + `TRADER-KE-001` + `) | Account Number: KFX-8819A0E2 | KYC Status: VERIFIED_TIER_3\n\n✔ [7 MULTI-ASSET WALLETS & TREASURY REF CREATED (` + `Rule 1 & Rule 6` + `)]\n1. KRT Wallet: +2,500.00 KRT\n2. KES Wallet: +325,000.00 KES\n3. USD Wallet: +10,000.00 USD\n4. EUR Wallet: +9,200.00 EUR\n5. GBP Wallet: +7,900.00 GBP\n6. Stablecoin Wallet (USDT): +10,000.00 USDT\n7. Rewards Wallet: +100.00 KRT_REWARDS\nTreasury Reference: TREASURY-ACCOUNT-REF-TRADER-KE-001 | Reputation: 100 points.`;
+        }
+
+        async function simulateKarisFXStaking() {
+            const out = document.getElementById('karisfx-output');
+            out.innerText = '[EXEC] Locking 5,000 KRT into Staking Pool for 90 Days (`GOLD Tier -> 45% Fee Discount`)...\n';
+            out.innerText += `\n🔒 [KRT STAKING POSITION OPENED (` + `Section 56.5` + `)]\nAccount: Alex Kamau (` + `TRADER-KE-001` + `) | Staking ID: STK-2026-881B | Tier: GOLD\nStaked Amount: 5,000.00 KRT | Lockup: 90 Days | APY: 20.00% | Voting Power: 8,660.25 KRT\n\n🎯 [UNLOCKED BENEFITS (` + `Rule 5 & Rule 9` + `)]\n• Trading Fee Discount: EXACTLY 45.00% OFF across all 16 Asset Classes!\n• AI Premium Features: UNLOCKED across all 13 AI Financial Services.\n• Reputation Boost: +300 Points (Total Reputation: 400). Double-Entry Ledger Hash: SHA-256 Chained.`;
+        }
+
+        async function simulateKarisFXTrade() {
+            const out = document.getElementById('karisfx-output');
+            out.innerText = '[EXEC] Executing Multi-Asset Trade (`KES/USD` Forex) with 45% Staking Fee Discount...\n';
+            out.innerText += `\n📈 [MULTI-ASSET TRADE EXECUTED (` + `Section 56.3` + `)]\nTrade ID: TRD-9912C0D4 | Asset Class: FOREX | Symbol: KES/USD | Side: BUY | Units: 1,000.00\nExecution Price: 1.0000 USD | Total Value: $1,000.00 USD | Base Fee: 195.00 KRT\n\n💸 [STAKING DISCOUNT APPLIED (` + `Rule 5 & Rule 9` + `)]\nApplied Discount: 45.00% (Gold Tier Active)\nFinal Fee Debited from KRT Wallet: EXACTLY 107.25 KRT (-87.75 KRT Savings!)\nDouble-Entry Ledger recorded fee settlement to Platform Treasury (` + `ORG-TREASURY-MAIN` + `). Auto-rewarded +15.00 KRT_REWARDS (` + `Rule 1 & Rule 6` + `).`;
+        }
+
+        async function simulateKarisFXAI() {
+            const out = document.getElementById('karisfx-output');
+            out.innerText = '[EXEC] Querying AI Economy Engine (`MARKET_INTELLIGENCE` & `PORTFOLIO_OPTIMIZATION`)...\n';
+            out.innerText += `\n🤖 [KARIS AI ECONOMY ENGINE (` + `Section 56.4` + `)]\nServices Processed: MARKET_INTELLIGENCE & PORTFOLIO_OPTIMIZATION | Confidence Score: 94.20%\nMarket Sentiment: BULLISH_CONSOLIDATION | Sharpe Estimate: 2.15 (Premium Allocation Active)\nAllocation Advice: Forex KES/USD (30%), Stablecoin Yield (25%), KRT Staking Gold Tier (25%), Tokenized Bonds (20%).\n\n🚨 [RULE 10 HUMAN REVIEW GATE ENFORCED]\nAdvisory: AI assists with market patterns and risk analysis. Exact trade execution requiring capital deployment or margin leverage strictly mandates human/trader approval per Rule 10.`;
+        }
+
+        async function simulateCosmoxOnboard() {
+            const out = document.getElementById('cosmox-output');
+            out.innerText = '[EXEC] Onboarding Universal Wallets & AI Dynamic Pricing (`Section 57.2 & 57.4`)...\n';
+            out.innerText += `\n🌐 [COSMOX UNIVERSAL WALLET ONBOARDED (` + `Section 57.2` + `)]\nBuyer Identity: BUYER-CMX-002 | Account Type: BUYER | KYC Status: VERIFIED_TIER_3\n6 Universal Wallets Created: Fiat (+50,000.00 KES), KRT (+5,000.00 KRT), Rewards (+100.00 KRT_REWARDS), Escrow (+0.00 KRT), Merchant (+0.00 KRT), Driver (+0.00 KES).\n\n🏷️ [AI DYNAMIC PRICING ENGINE (` + `Section 57.4` + `)]\nProduct: Solar Home Inverter Kit 3KVA | Base Price: 1,000.00 KRT | Inventory: 10 units (Low Stock)\nAI Scarcity Adjustment: +8.0% | Recommended Dynamic Price: 1,080.00 KRT (` + `Rule 10 Advisory Enforced` + `).`;
+        }
+
+        async function simulateCosmoxOrder() {
+            const out = document.getElementById('cosmox-output');
+            out.innerText = '[EXEC] Executing Marketplace Checkout & Escrow Hold (`Rule 2 & Rule 5 & Rule 9`)...\n';
+            out.innerText += `\n🛒 [COSMOX ORDER CHECKOUT (` + `Section 57.5` + `)]\nOrder ID: CMX-ORD-7711B0E1 | Product: Machakos Coffee Beans (25kg Bag) | Quantity: 5 Bags\nUnit Price: 200.00 KRT | Total Checkout: 1,000.00 KRT | Split Breakdown: 88% Seller Payout (880.00 KRT) + 12% Platform Commission (120.00 KRT).\n\n🔒 [UNIVERSAL ESCROW HOLD (` + `Rule 2 & Rule 9` + `)]\nUniversalLedgerEngine debited Buyer KRT Wallet (-1,000.00 KRT) and strictly locked funds inside Order Escrow Wallet (` + `ESCROWED_PENDING_DELIVERY` + `) per Rule 2 (` + `No Delivery Confirmation -> No Seller Payment` + `).`;
+        }
+
+        async function simulateCosmoxDelivery() {
+            const out = document.getElementById('cosmox-output');
+            out.innerText = '[EXEC] Route AI Dispatch & Strict Rule 4 Delivery Escrow Release...\n';
+            out.innerText += `\n🚚 [ROUTE AI & STRICT RULE 4 ESCROW RELEASE (` + `Section 57.8` + `)]\nDelivery ID: CMX-DEL-2026-991C | Route AI: A104 Express from Nairobi Coffee Hub to Mlolongo Supermarket (25.0 km, 42 mins).\nDriver Fiat Payout: 1,250.00 KES | Driver KRT Bonus: +25.00 KRT (Held in Main Escrow Pool under Rule 4).\n\n🎉 [DELIVERY CONFIRMED & DOUBLE-ENTRY SETTLEMENT (` + `Rule 4, 5 & 9` + `)]\n1. Seller Payout Released: +880.00 KRT credited directly to Seller Merchant Wallet.\n2. Deflationary Burn (` + `Section 57.10` + `): 2.0% of platform commission (2.40 KRT) permanently BURNED to ` + `POOL-COSMOX-BURN` + ` (` + `Rule 9` + `).\n3. Buyer Cashback: +15.00 KRT_REWARDS auto-credited to Buyer Rewards Wallet.\n4. Strict Rule 4 Driver Release: +25.00 KRT bonus released from Escrow to Driver KRT Wallet strictly upon confirmed delivery!`;
+        }
+
+        async function simulateCosmoxMultisig() {
+            const out = document.getElementById('cosmox-output');
+            out.innerText = '[EXEC] Verifying Referral Network & Multi-Sig Treasury Gating (`Rule 10`)...\n';
+            out.innerText += `\n🎁 [REFERRAL NETWORK REWARDS (` + `Section 57.7` + `)]\nReferrer Identity: REF-CMX-006 | Referred Merchant: REF-CMX-008 (` + `MERCHANT` + ` Tier)\nQualification: Verified Tier 3 KYC & First Sale | Reward Disbursed: +500.00 KRT_REWARDS via Double-Entry Ledger.\n\n🏛️ [MULTI-SIGNATURE TREASURY DISBURSEMENT (` + `Section 57.11 & Rule 10` + `)]\nRequest ID: REQ-CMX-MULTI-01 | Purpose: Ecosystem Liquidity Bootstrapping Grant | Amount: 250,000.00 KRT\nRequired Approvals: 2 Human Administrators (` + `Rule 10 High-Impact Gate` + `)\n• Approval 1: Admin CMX-012 -> 1/2 Quorum (Pending)\n• Approval 2: Admin CMX-013 -> 2/2 Quorum Satisfied (` + `APPROVED_DISBURSED` + `)\nUniversalLedgerEngine executed thread-safe double entry (+250,000.00 KRT to Beneficiary Wallet) under Rule 10!`;
         }
 
         // Auto load on boot

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KARISFX_GOVERNANCE_VOTED",
+  "description": "Event emitted when a KRT tokenholder casts a weighted vote on a governance proposal per Rule 10 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "vote_id": { "type": "string" },
+    "proposal_id": { "type": "string" },
+    "voter_account_id": { "type": "string" },
+    "vote_choice": { "type": "string" },
+    "voting_power_krt": { "type": "number" }
+  },
+  "required": ["vote_id", "proposal_id", "voter_account_id", "vote_choice", "voting_power_krt"]
+}

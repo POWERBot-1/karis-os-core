@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KARISFX_REWARD_DISTRIBUTED",
+  "description": "Event emitted when the Reward Engine distributes KRT to a user after anti-abuse wash-trading verification per Rule 1 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "reward_id": { "type": "string" },
+    "account_id": { "type": "string" },
+    "activity_type": { "type": "string" },
+    "reward_amount_krt": { "type": "number" },
+    "anti_abuse_status": { "type": "string" },
+    "verification_hash": { "type": "string" }
+  },
+  "required": ["reward_id", "account_id", "activity_type", "reward_amount_krt", "anti_abuse_status"]
+}

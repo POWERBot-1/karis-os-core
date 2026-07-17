@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 KARIS OS™ Automated Database Migration Engine.
-Executes all 15 production DDL scripts sequentially and verifies schema integrity.
+Executes all 56 production DDL scripts sequentially and verifies schema integrity.
 Run: python3 -m src.db.migrator --migrate
 """
 
@@ -18,7 +18,7 @@ MIGRATIONS_DIR = Path(__file__).resolve().parent.parent.parent / "db" / "migrati
 def run_migrations():
     print("=" * 80)
     print("      KARIS OS™ PRODUCTION DATABASE MIGRATION ENGINE")
-    print("      Executing Schema Migrations (001 -> 053) and Verifying Rule 9 Immutability")
+    print("      Executing Schema Migrations (001 -> 056) and Verifying Rule 9 Immutability")
     print("=" * 80)
 
     if not MIGRATIONS_DIR.exists():
@@ -101,7 +101,7 @@ def run_migrations():
             conn.commit()
             print("✔ SUCCESS")
 
-    print("\n  ✔ ALL 53 MIGRATIONS EXECUTED & SCHEMA TRACKED IN schema_migrations!")
+    print("\n  ✔ ALL 56 MIGRATIONS EXECUTED & SCHEMA TRACKED IN schema_migrations!")
     print("=" * 80 + "\n")
 
 if __name__ == "__main__":

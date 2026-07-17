@@ -26,7 +26,8 @@ class VerticalRegistryEngine:
             ("KARIS_PHARMA", "KARIS HEALTH & PHARMA-TRACE™", "Cold-chain pharmaceutical telemetry (<8°C), dispensary stockout forecasting & locking"),
             ("KARIS_PROP_SHARE", "KARIS PROP-SHARE & FRAC-EQUITY™", "Fractional real estate syndication, automated rental dividend distributions in KRT via double entry"),
             ("KARIS_EDU_PAY", "KARIS EDU-PAY & CAMPUS GRID™", "Tuition installment schedules, +150 KRT-EDU scholarship awards & campus cafeteria KDS checkouts"),
-            ("KARIS_LOOP", "Karis Loop™ Social Intelligence Layer", "Unified 7-Graph social economy combining shoppable video checkouts, KRT tipping, multi-priority feeds & AI moderation")
+            ("KARIS_LOOP", "Karis Loop™ Social Intelligence Layer", "Unified 7-Graph social economy combining shoppable video checkouts, KRT tipping, multi-priority feeds & AI moderation"),
+            ("KARIS_ACADEMY", "Karis Academy™ AI Educational Ecosystem", "Interconnected concept graphs, 14 AI artifacts under Rule 10, 7 AI tutors, immutable academic transcripts & KRT-EDU rewards")
         ]
         for code, name, desc in defaults:
             self.registered_verticals[code] = {

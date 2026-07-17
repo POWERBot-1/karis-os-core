@@ -1,0 +1,260 @@
+{
+  "events": [
+    {
+      "actor_identity_id": "CREATOR-DAVID-01",
+      "correlation_id": "7f7b311e-3b37-495f-b857-42636514f811",
+      "cryptographic_hash": "677c00e14755760082faa0d866d884410901a36de9f269cb4d97d290d83ad907",
+      "event_category": "SOCIAL",
+      "event_id": "709e98ce-71c2-4581-9d71-bc3d53930963",
+      "event_type": "LOOP_COMMUNITY_CREATED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "community_id": "7f7b311e-3b37-495f-b857-42636514f811",
+        "community_type": "GUILD",
+        "created_at": "2026-07-17T10:58:01.879543Z",
+        "creator_identity_id": "CREATOR-DAVID-01",
+        "member_count": 1,
+        "moderation_mode": "AI_ASSISTED_HUMAN_REVIEW",
+        "name": "Agri Creators",
+        "organization_id": "ORG-KARIS-RETAIL",
+        "region_county": "Machakos",
+        "treasury_krt_pool": 0.0
+      },
+      "source_module": "KARIS_LOOP_ENGINE",
+      "timestamp": "2026-07-17T10:58:01.879561Z"
+    },
+    {
+      "actor_identity_id": "CREATOR-DAVID-01",
+      "correlation_id": "6dd9c3c0-af68-4e2f-b552-aa58c07aa335",
+      "cryptographic_hash": "f15ef139663d462344cc89b7b3c4846a6160eb4357c256fb48cc613bcb5ae48a",
+      "event_category": "SOCIAL",
+      "event_id": "ff3fa71f-ca72-4b28-bb52-8b4ddd7e8d34",
+      "event_type": "LOOP_CONTENT_POSTED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "ai_moderation_status": "APPROVED_CLEAN",
+        "caption_text": "Great harvest update!",
+        "content_type": "SHORT_VIDEO",
+        "creator_identity_id": "CREATOR-DAVID-01",
+        "linked_product_id": "PROD-AVO-01",
+        "post_id": "6dd9c3c0-af68-4e2f-b552-aa58c07aa335",
+        "shoppable_price_kes": 350.0
+      },
+      "source_module": "KARIS_LOOP_ENGINE",
+      "timestamp": "2026-07-17T10:58:01.879689Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "28a1dbc4-63ef-43b8-aece-67fa55cc6973",
+      "cryptographic_hash": "8be9bc01904adcc2313814929842c9f39862167d3ad375dcfe3745eb8440eabb",
+      "event_category": "TREASURY",
+      "event_id": "bd9d30f8-9be4-4216-9d20-b5e7a126e8c4",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "amount": 50.0,
+        "asset_type": "KRT",
+        "audit_hash": "1646fa3743b4d401de4b98c9deef774c57849cbbebd612b2cbc6ae6d466c9bec",
+        "credit_wallet_id": "37a3866b-9814-40ba-aa1a-4e19da636553",
+        "currency": "KRT",
+        "debit_wallet_id": "e798996e-aa30-49d9-8847-992b17412226",
+        "description": "Karis Loop Creator Tip (50.0 KRT) for post 6dd9c3c0-af68-4e2f-b552-aa58c07aa335",
+        "entry_id": "a3b3180b-4dd1-4bab-98c6-b45ff1304d4c",
+        "transaction_id": "28a1dbc4-63ef-43b8-aece-67fa55cc6973"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-17T10:58:01.879769Z"
+    },
+    {
+      "actor_identity_id": "USER-AMINA-777",
+      "correlation_id": "28a1dbc4-63ef-43b8-aece-67fa55cc6973",
+      "cryptographic_hash": "fce65a8ec4739d557d04e9acaf4ed3715c49650706c54273579a8ffc2fabd5c4",
+      "event_category": "SOCIAL",
+      "event_id": "588f7b4a-abf5-472f-b93b-3ba7a49bb246",
+      "event_type": "LOOP_CREATOR_TIPPED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "amount_krt": 50.0,
+        "creator_identity_id": "CREATOR-DAVID-01",
+        "post_id": "6dd9c3c0-af68-4e2f-b552-aa58c07aa335",
+        "reference_transaction_id": "28a1dbc4-63ef-43b8-aece-67fa55cc6973",
+        "tip_id": "4c544439-4e19-45e2-b4a4-792e65b46c96",
+        "tipper_identity_id": "USER-AMINA-777"
+      },
+      "source_module": "KARIS_LOOP_ENGINE",
+      "timestamp": "2026-07-17T10:58:01.879831Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "ee149fa2-2e79-48fb-9662-abd4c43fc591",
+      "cryptographic_hash": "01f7a03d3a59244a1c65f0516d2d327d549ddd96bd956c8ea5d4c923e40b8f1b",
+      "event_category": "TREASURY",
+      "event_id": "e05f9258-eb9c-4df8-a889-6dad90bc1228",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "amount": 350.0,
+        "asset_type": "KRT",
+        "audit_hash": "3fe69c48f0710a6402b458d0ed8b7f0227afd3e52b0eb92305f9088d208e0dba",
+        "credit_wallet_id": "9f167598-171f-4f35-a7e0-f42703b2c148",
+        "currency": "KRT",
+        "debit_wallet_id": "e798996e-aa30-49d9-8847-992b17412226",
+        "description": "Karis Loop Shoppable Checkout (350.0 KRT) for product PROD-AVO-01",
+        "entry_id": "86ec9329-695c-4f64-905e-dc7d3f5991db",
+        "transaction_id": "ee149fa2-2e79-48fb-9662-abd4c43fc591"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-17T10:58:01.879900Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "43f2a91f-f097-4ddb-b5f1-924b3d199032",
+      "cryptographic_hash": "09548928eb1021e98b3ff889a31cc66db0bf9a3afda0024df917c5cbd3011e05",
+      "event_category": "TREASURY",
+      "event_id": "24091a33-dea4-493d-bf25-e74bc0a764c8",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "amount": 17.5,
+        "asset_type": "KRT",
+        "audit_hash": "55c0f25bcc69fe67e359a31c3f24998ebcbb84860d444650485c1f7c499c8486",
+        "credit_wallet_id": "e798996e-aa30-49d9-8847-992b17412226",
+        "currency": "KRT",
+        "debit_wallet_id": "2670ec5f-07d0-47e1-8e91-d26fde45a5d5",
+        "description": "Karis Loop Shoppable Loyalty Reward (+5% KRT)",
+        "entry_id": "aac5eed3-342c-4e3a-9ed7-923a4e4e6fbb",
+        "transaction_id": "43f2a91f-f097-4ddb-b5f1-924b3d199032"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-17T10:58:01.879958Z"
+    },
+    {
+      "actor_identity_id": "USER-AMINA-777",
+      "correlation_id": "ee149fa2-2e79-48fb-9662-abd4c43fc591",
+      "cryptographic_hash": "a2b552068f07d00c5860f24abaebcfc641fa9a5303409eacd04bfec1dc783d90",
+      "event_category": "SOCIAL",
+      "event_id": "46667e36-9df8-4b1f-95c6-c9a81aa72ec2",
+      "event_type": "LOOP_SHOPPABLE_CHECKOUT_COMPLETED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "amount_kes_or_krt": 350.0,
+        "buyer_identity_id": "USER-AMINA-777",
+        "linked_product_id": "PROD-AVO-01",
+        "merchant_organization_id": "ORG-KARIS-RETAIL",
+        "payment_method": "KRT_WALLET",
+        "post_id": "6dd9c3c0-af68-4e2f-b552-aa58c07aa335"
+      },
+      "source_module": "KARIS_LOOP_ENGINE",
+      "timestamp": "2026-07-17T10:58:01.879983Z"
+    },
+    {
+      "actor_identity_id": "USER-TOXIC-01",
+      "correlation_id": "57813a7f-a784-4923-890e-df2b0784492c",
+      "cryptographic_hash": "437e2ee08a847f9f529976e1bd5e65053da4d0fceb5477136c5c5c75e08a8737",
+      "event_category": "SOCIAL",
+      "event_id": "39b28690-2233-4a0a-bdaf-692d110af80f",
+      "event_type": "LOOP_CONTENT_POSTED",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "payload": {
+        "ai_moderation_status": "FLAGGED_PENDING_HUMAN_REVIEW",
+        "caption_text": "This product is a complete scam and fake!",
+        "content_type": "TEXT",
+        "creator_identity_id": "USER-TOXIC-01",
+        "linked_product_id": "NONE",
+        "post_id": "57813a7f-a784-4923-890e-df2b0784492c",
+        "shoppable_price_kes": 0.0
+      },
+      "source_module": "KARIS_LOOP_ENGINE",
+      "timestamp": "2026-07-17T10:58:01.880036Z"
+    }
+  ],
+  "latest_event_id": "39b28690-2233-4a0a-bdaf-692d110af80f",
+  "latest_ledger_hash": "55c0f25bcc69fe67e359a31c3f24998ebcbb84860d444650485c1f7c499c8486",
+  "ledger_entries": [
+    {
+      "amount": 50.0,
+      "asset_type": "KRT",
+      "audit_hash": "1646fa3743b4d401de4b98c9deef774c57849cbbebd612b2cbc6ae6d466c9bec",
+      "credit_wallet_id": "37a3866b-9814-40ba-aa1a-4e19da636553",
+      "currency": "KRT",
+      "debit_wallet_id": "e798996e-aa30-49d9-8847-992b17412226",
+      "entry_id": "a3b3180b-4dd1-4bab-98c6-b45ff1304d4c",
+      "event_id": "TIP-6dd9c3c0",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "timestamp": "2026-07-17T10:58:01.879737Z",
+      "transaction_id": "28a1dbc4-63ef-43b8-aece-67fa55cc6973"
+    },
+    {
+      "amount": 350.0,
+      "asset_type": "KRT",
+      "audit_hash": "3fe69c48f0710a6402b458d0ed8b7f0227afd3e52b0eb92305f9088d208e0dba",
+      "credit_wallet_id": "9f167598-171f-4f35-a7e0-f42703b2c148",
+      "currency": "KRT",
+      "debit_wallet_id": "e798996e-aa30-49d9-8847-992b17412226",
+      "entry_id": "86ec9329-695c-4f64-905e-dc7d3f5991db",
+      "event_id": "LOOP-BUY-6dd9c3c0",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "timestamp": "2026-07-17T10:58:01.879873Z",
+      "transaction_id": "ee149fa2-2e79-48fb-9662-abd4c43fc591"
+    },
+    {
+      "amount": 17.5,
+      "asset_type": "KRT",
+      "audit_hash": "55c0f25bcc69fe67e359a31c3f24998ebcbb84860d444650485c1f7c499c8486",
+      "credit_wallet_id": "e798996e-aa30-49d9-8847-992b17412226",
+      "currency": "KRT",
+      "debit_wallet_id": "2670ec5f-07d0-47e1-8e91-d26fde45a5d5",
+      "entry_id": "aac5eed3-342c-4e3a-9ed7-923a4e4e6fbb",
+      "event_id": "LOOP-LOYALTY-6dd9c3c0",
+      "organization_id": "ORG-KARIS-RETAIL",
+      "timestamp": "2026-07-17T10:58:01.879932Z",
+      "transaction_id": "43f2a91f-f097-4ddb-b5f1-924b3d199032"
+    }
+  ],
+  "organization_id": "ORG-KARIS-RETAIL",
+  "snapshot_id": "PITR-SNAP-E67F4CB3",
+  "snapshot_type": "POINT_IN_TIME_PITR",
+  "timestamp": "2026-07-17T10:58:01.881904+00:00",
+  "wallets": [
+    {
+      "asset_type": "KRT",
+      "balance": 999982.5,
+      "identity_id": "ORG-TREASURY-MAIN",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "2670ec5f-07d0-47e1-8e91-d26fde45a5d5",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 117.5,
+      "identity_id": "USER-AMINA-777",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "e798996e-aa30-49d9-8847-992b17412226",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 50.0,
+      "identity_id": "CREATOR-DAVID-01",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "37a3866b-9814-40ba-aa1a-4e19da636553",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 350.0,
+      "identity_id": "ORG-KARIS-RETAIL",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARIS-RETAIL",
+      "status": "ACTIVE",
+      "wallet_id": "9f167598-171f-4f35-a7e0-f42703b2c148",
+      "wallet_type": "KRT_WALLET"
+    }
+  ]
+}

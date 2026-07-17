@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COSMOX_REFERRAL_REWARDED",
+  "description": "Event emitted when the Referral Network distributes KRT across INDIVIDUAL, MERCHANT, or DELIVERY_PARTNER tiers per Rule 1 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "referral_id": { "type": "string" },
+    "referrer_account_id": { "type": "string" },
+    "referred_account_id": { "type": "string" },
+    "referral_type": { "type": "string" },
+    "reward_krt": { "type": "number" },
+    "status": { "type": "string" }
+  },
+  "required": ["referral_id", "referrer_account_id", "referral_type", "reward_krt", "status"]
+}

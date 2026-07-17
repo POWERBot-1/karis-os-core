@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACADEMY_CONCEPT_NODE_CREATED",
+  "description": "Event emitted when an interconnected knowledge concept node and its prerequisite pathways are mapped (`Section 55.2`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["ACADEMY_CONCEPT_NODE_CREATED"] },
+    "event_category": { "type": "string", "enum": ["EDUCATION"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "concept_id": { "type": "string" },
+        "institution_id": { "type": "string" },
+        "title": { "type": "string" },
+        "category_domain": { "type": "string" },
+        "mastery_threshold_pct": { "type": "number", "minimum": 0 },
+        "krt_reward_on_mastery": { "type": "number", "minimum": 0 }
+      },
+      "required": ["concept_id", "institution_id", "title"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

@@ -99,6 +99,16 @@ class KarisOsClient:
         async with httpx.AsyncClient(transport=self.transport) as client:
             res = await client.post(f"{self.base_url}/api/v1/karis-loop/shoppable-checkout", json={"buyer_identity_id": buyer_id, "post_id": post_id, "linked_product_id": prod_id, "amount_kes_or_krt": amount}, headers=self.headers)
             return res.json()
+
+    async def record_student_mastery(self, student_id: str, inst_id: str, concept_id: str, score: float) -> Dict[str, Any]:
+        async with httpx.AsyncClient(transport=self.transport) as client:
+            res = await client.post(f"{self.base_url}/api/v1/karis-academy/mastery", json={"student_identity_id": student_id, "institution_id": inst_id, "concept_id": concept_id, "mastery_score_pct": score}, headers=self.headers)
+            return res.json()
+
+    async def disburse_academy_scholarship(self, student_id: str, inst_id: str, amount_krt: float) -> Dict[str, Any]:
+        async with httpx.AsyncClient(transport=self.transport) as client:
+            res = await client.post(f"{self.base_url}/api/v1/karis-academy/scholarship", json={"student_identity_id": student_id, "institution_id": inst_id, "amount_krt": amount_krt}, headers=self.headers)
+            return res.json()
 '''
         from pathlib import Path
         sdk_dir = Path(__file__).resolve().parent.parent.parent / "sdk"
@@ -111,8 +121,8 @@ class KarisOsClient:
             "requested_by_identity_id": requested_by_identity_id,
             "sdk_language": "PYTHON_ASYNC_SYNC",
             "platform_version": "1.0.0-PROD-V1",
-            "total_endpoints_wrapped": 54,
-            "total_domain_models_exported": 35,
+            "total_endpoints_wrapped": 58,
+            "total_domain_models_exported": 40,
             "package_filename": "karis_os_client.py",
             "generated_code_preview": code_str,
             "generated_at": datetime.now(timezone.utc).isoformat()
@@ -130,7 +140,7 @@ class KarisOsClient:
                 "generation_id": gen_id,
                 "sdk_language": "PYTHON_ASYNC_SYNC",
                 "platform_version": "1.0.0-PROD-V1",
-                "total_endpoints_wrapped": 54,
+                "total_endpoints_wrapped": 58,
                 "package_filename": "karis_os_client.py"
             }
         )
@@ -250,6 +260,22 @@ export class KarisOsClient {
     });
     return res.json();
   }
+
+  async recordStudentMastery(studentId: string, instId: string, conceptId: string, score: number) {
+    const res = await fetch(`${this.baseUrl}/api/v1/karis-academy/mastery`, {
+      method: "POST", headers: this.headers,
+      body: JSON.stringify({ student_identity_id: studentId, institution_id: instId, concept_id: conceptId, mastery_score_pct: score })
+    });
+    return res.json();
+  }
+
+  async disburseAcademyScholarship(studentId: string, instId: string, amountKrt: number) {
+    const res = await fetch(`${this.baseUrl}/api/v1/karis-academy/scholarship`, {
+      method: "POST", headers: this.headers,
+      body: JSON.stringify({ student_identity_id: studentId, institution_id: instId, amount_krt: amountKrt })
+    });
+    return res.json();
+  }
 }
 '''
         from pathlib import Path
@@ -263,8 +289,8 @@ export class KarisOsClient {
             "requested_by_identity_id": requested_by_identity_id,
             "sdk_language": "TYPESCRIPT_NODE_BROWSER",
             "platform_version": "1.0.0-PROD-V1",
-            "total_endpoints_wrapped": 54,
-            "total_domain_models_exported": 35,
+            "total_endpoints_wrapped": 58,
+            "total_domain_models_exported": 40,
             "package_filename": "karis-os-sdk.ts",
             "generated_code_preview": code_str,
             "generated_at": datetime.now(timezone.utc).isoformat()
@@ -282,7 +308,7 @@ export class KarisOsClient {
                 "generation_id": gen_id,
                 "sdk_language": "TYPESCRIPT_NODE_BROWSER",
                 "platform_version": "1.0.0-PROD-V1",
-                "total_endpoints_wrapped": 54,
+                "total_endpoints_wrapped": 58,
                 "package_filename": "karis-os-sdk.ts"
             }
         )

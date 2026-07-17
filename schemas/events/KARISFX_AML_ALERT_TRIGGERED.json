@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KARISFX_AML_ALERT_TRIGGERED",
+  "description": "Event emitted when Zero Trust transaction monitoring detects high velocity or volume exceeding FIU thresholds per Rule 6 and Compliance rules.",
+  "type": "object",
+  "properties": {
+    "log_id": { "type": "string" },
+    "account_id": { "type": "string" },
+    "transaction_amount_usd": { "type": "number" },
+    "aml_risk_score": { "type": "number" },
+    "cbk_fiu_flagged": { "type": "boolean" },
+    "audit_notes": { "type": "string" }
+  },
+  "required": ["log_id", "account_id", "transaction_amount_usd", "aml_risk_score", "cbk_fiu_flagged"]
+}

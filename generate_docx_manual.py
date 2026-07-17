@@ -212,7 +212,8 @@ def build_docx():
         ("PalPlus Hosted Payment Links Engine", "Active Temporary Checkout URL", "Enforces Section 51 / Section 34.5. Integrates universal hosted checkout URLs (`https://link.palpluss.com/6e8de0bc-1284-4bba-a5de-f886665bf18f`). Allows merchants, prediction leagues, and PAYG solar invoices to generate or attach hosted payment links. Reconciles M-Pesa Express webhooks (`Rule 2 & Rule 9`), triggering exact double-entry KES settlement and loyalty reward token minting (`Rule 5, 6 & 7`)."),
         ("KARIS Innovation Expansion Suite", "Pharma-Trace / Prop-Share / Edu-Pay", "Enforces Section 52 / Verticals 16, 17, 18. **Pharma-Trace** monitors cold-chain drug deliveries (`< 8°C`) and auto-locks breached batches (`Rule 1 & 6`). **Prop-Share** manages commercial real estate syndication (`Section 35.3`) and executes atomic double-entry monthly rental dividend distributions (`Rule 5 & Rule 9`). **Edu-Pay** digitizes student tuition fee installments, awarding **+150 KRT-EDU scholarship bonus tokens** (`Rule 7 & Rule 9`) upon payment verification."),
         ("White-Label Customization Engine", "Dynamic Multi-Tenant Branding", "Enforces Section 53 / Frontier D. Allows commercial partners (`Safaricom M-Pesa Enterprise`, `Equity Bank Fintech Hub`, `PalPlus Global Checkout OS`) to dynamically reconfigure platform metadata, color palettes (`#10B981 Green`), active payment links (`6e8de0bc...`), and default currencies (`KES/USD/UGX`) without modifying core operating system kernel code (`Rule 7 & Rule 9`)."),
-        ("Karis Loop™ Social Intelligence Layer", "7 Graphs & Shoppable Checkouts", "Enforces Section 54 / Vertical 19. Unifies 7 interconnected graphs (`Social, Interest, Creator, Business, Community, Knowledge, Commerce`), 14 content types, multi-priority feed ranking (`Rule 7`), and creator KRT tipping (`Rule 5 & Rule 9 double entry`). Features **AI Content Assistant (`Swahili/Sheng RAG captions & moderation per Rule 10`)** and instant shoppable video checkouts (`One Wallet Economy`).")
+        ("Karis Loop™ Social Intelligence Layer", "7 Graphs & Shoppable Checkouts", "Enforces Section 54 / Vertical 19. Unifies 7 interconnected graphs (`Social, Interest, Creator, Business, Community, Knowledge, Commerce`), 14 content types, multi-priority feed ranking (`Rule 7`), and creator KRT tipping (`Rule 5 & Rule 9 double entry`). Features **AI Content Assistant (`Swahili/Sheng RAG captions & moderation per Rule 10`)** and instant shoppable video checkouts (`One Wallet Economy`)."),
+        ("KARIS Academy™ Educational Ecosystem", "Concept Graphs & Rule 10 Copilot", "Enforces Section 55 / Vertical 20. Organizes learning into interconnected concept graphs (`Linear Algebra -> Python -> AI RAG`), generates 14 original educational artifacts under **Rule 10 (`DRAFT_PENDING_EDUCATOR_APPROVAL`)**, records immutable academic transcripts (`Rule 9`), and automatically mints **`+250.00 KRT-EDU` utility reward tokens (`Rule 7 & Rule 9`)** directly to student wallets upon concept mastery.")
     ]
 
     tbl_comp = doc.add_table(rows=len(data) + 1, cols=3)
@@ -375,6 +376,57 @@ def build_docx():
         "requiring human community supervisor RBAC sign-off before post removal (`Rule 10`).\n"
         "4. Shoppable Video Checkouts (`One Wallet Economy`): Every short video or story post can link directly to a physical product (`Grade-A Avocados`), "
         "service (`Telemedicine`), or PAYG solar pump (`SOLAR-01`). Customers tap 'Buy Now' to check out instantaneously via KES/KRT double-entry settlement!"
+    )
+
+    doc.add_paragraph() # Spacing
+
+    # --- SECTION 11: KARIS ACADEMY EDUCATIONAL ECOSYSTEM ---
+    h1_11 = doc.add_heading("11. SECTION 55 :: KARIS ACADEMY™ EDUCATIONAL ECOSYSTEM (VERTICAL 20)", level=1)
+    h1_11.style.font.name = 'Arial'
+    h1_11.style.font.color.rgb = RGBColor(0x0B, 0x25, 0x45)
+    
+    doc.add_paragraph(
+        "KARIS Academy™ operates as Vertical 20 (`Section 55`) of KARIS OS™, establishing the world's most advanced AI-powered educational ecosystem. "
+        "It integrates across 4 core capabilities:\n"
+        "1. Knowledge Engine & Concept Graphs: Organizes learning into directional prerequisite concept pathways (`Linear Algebra -> Python -> AI RAG`) "
+        "rather than isolated courses. Mappings support multiple frameworks (`KENYA_CBC, TVET, CAMBRIDGE_IGCSE, UNIVERSITY_DEGREE`).\n"
+        "2. AI Education Engine (`Rule 10 Human Gate`): Auto-generates 14 original educational artifacts (`Lesson notes, Quizzes, Rubrics, Certificates`). "
+        "Every generated item strictly locks at `DRAFT_PENDING_EDUCATOR_APPROVAL` (`Rule 10`) until reviewed, edited, and signed off by human faculty.\n"
+        "3. Concept Mastery & KRT-EDU Utility Rewards: When a student passes final mastery evaluation (`score >= 85%`), the UniversalLedgerEngine "
+        "records an immutable academic transcript (`Rule 9`) and automatically debits the Treasury Reward Pool to credit the student's KRT wallet with "
+        "`+250.00 KRT-EDU` utility reward tokens (`Rule 5 & Rule 9 double-entry accounting`).\n"
+        "4. Institutional Scholarship Disbursements: Institutional scholarship pools (`POOL-ACADEMY-SCHOLARSHIP-01`) disburse tuition and living stipends "
+        "directly to student wallets via double-entry accounting (`Rule 5 & Rule 9`), ensuring 100% transparent educational financing across Africa."
+    )
+
+    h1_12 = doc.add_heading("12. SECTION 56 :: KARISFX™ GLOBAL FINANCIAL ECOSYSTEM & KRT ECONOMY (VERTICAL 21)", level=1)
+    h1_12.style.font.name = 'Arial'
+    h1_12.style.font.color.rgb = RGBColor(0x0B, 0x25, 0x45)
+
+    doc.add_paragraph(
+        "KARISFX™ (`Section 56 / Vertical 21`) is the flagship global financial platform of KARIS OS™, powered by the KRT (Karis Token) Economy Layer. "
+        "It unifies 16 global asset classes (`Forex, Stocks, Commodities, ETFs, Bonds, Futures, Options, Money Markets, Mutual Funds, Tokenized Assets, AI Portfolios, Social Trading, Copy Trading`) "
+        "into one shared double-entry financial ecosystem (`Rule 5 & Rule 9`). Key pillars include:\n"
+        "1. KRT Foundation & Multi-Asset Wallets: Every onboarded user automatically receives a KRT Wallet, multi-currency wallets (`KES, USD, EUR, GBP, Stablecoin`), "
+        "a Rewards Wallet (`AssetType.KRT_REWARDS`), and a unique Treasury Reference (`TREASURY-ACCOUNT-REF`). All fee settlements and KRT movements record immutable double-entry hash chains (`Rule 9`).\n"
+        "2. KRT Staking Modules (Up to 60% Fee Discounts): Staking KRT into lockup pools (`30, 90, 180, 365 days`) unlocks tiered APY (`12% - 25%`), VIP trading execution, AI priority, and **up to 60% trading fee discounts**.\n"
+        "3. AI Economy Engine (`Rule 10`): Delivers 13 AI financial services (`Market Intelligence, Portfolio Optimization, Strategy Builder, Risk Analysis, Trade Journal, AI Mentor, etc.`). All outputs mandate Rule 10 human/trader review for actual capital deployment.\n"
+        "4. Transparent Reward Engine & Wash-Trading Guardrails: Rewards 10 platform activities (`Trading, Learning, Strategies, Referrals, Bug Reports, etc.`). Enforces velocity checks and wash-trading detection (`Rule 1 & Rule 6`).\n"
+        "5. Strategy Marketplace & Decentralized Governance: Allows creators to publish strategies/bots with 85/15 split double-entry settlement, while KRT tokenholders vote on platform proposals under Rule 10 AI impact analysis."
+    )
+
+    h1_13 = doc.add_heading("13. SECTION 57 :: COSMOX™ UNIVERSAL AI MARKETPLACE & KRT ECONOMY (VERTICAL 22)", level=1)
+    h1_13.style.font.name = 'Arial'
+    h1_13.style.font.color.rgb = RGBColor(0x0B, 0x25, 0x45)
+
+    doc.add_paragraph(
+        "COSMOX™ (`Section 57 / Vertical 22`) is an AI-powered universal marketplace where KRT is the native utility token and primary mechanism for rewards, loyalty, and internal value exchange. "
+        "It operates seamlessly across local fiat currencies (`KES, USD, EUR`) and multi-channel payment gateways (`M-Pesa Daraja, PalPlus, Cards, Bank Transfers`). Key capabilities include:\n"
+        "1. Universal Wallets: Onboarded users receive 6 unified wallets (`fiat, krt, rewards, escrow, merchant, driver`) supporting instant transfers, cashback, loyalty rewards, and merchant settlements (`Rule 5 & Rule 9`).\n"
+        "2. AI Engine (7 Modules): Powers personalized shopping recommendations, elasticity-adjusted dynamic merchant pricing, inventory forecasting, multi-lingual translation (`SW, SHENG, EN, FR, AR`), fraud velocity detection, customer support, and governance advisory (`Rule 10`).\n"
+        "3. Escrow Checkout & Strict Rule 4 Logistics Release: Buyer checkout locks KRT inside the Order Escrow Wallet (`Rule 2`). Driver delivery dispatch locks rider KRT bonus in Main Escrow (`Rule 4`). Upon `DELIVERY_CONFIRMED`, the engine strictly releases 88% to the seller, 12% to treasury minus **2% deflationary burn (`burn_krt`)**, +1.5% cashback to the buyer, and +25 KRT bonus to the driver (`Rule 4 & Rule 9`).\n"
+        "4. Referral Network & Digital Services: Disburses transparent rewards across `INDIVIDUAL (+100 KRT)`, `MERCHANT (+500 KRT)`, and `DELIVERY_PARTNER (+250 KRT)` tiers (`Rule 1 & Rule 6`), while enabling developer AI tool/software checkouts with 85/15 split settlement.\n"
+        "5. Multi-Signature Treasury & Tokenomics: High-value treasury requests (`> 100,000 KRT` or `$10,000 USD`) require explicit multi-signature RBAC sign-off (`Rule 10`) before double-entry disbursement."
     )
 
     # Save document

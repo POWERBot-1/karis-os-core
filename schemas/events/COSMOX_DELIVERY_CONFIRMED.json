@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COSMOX_DELIVERY_CONFIRMED",
+  "description": "Event emitted when a logistics delivery is confirmed, strictly triggering driver escrow release per Rule 4.",
+  "type": "object",
+  "properties": {
+    "delivery_id": { "type": "string" },
+    "order_id": { "type": "string" },
+    "driver_account_id": { "type": "string" },
+    "driver_payout_fiat": { "type": "number" },
+    "driver_bonus_krt": { "type": "number" },
+    "status": { "type": "string" },
+    "escrow_ledger_hash": { "type": "string" }
+  },
+  "required": ["delivery_id", "order_id", "driver_account_id", "status", "escrow_ledger_hash"]
+}

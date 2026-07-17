@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACADEMY_INSTITUTION_REGISTERED",
+  "description": "Event emitted when a school, technical college, or university registers on KARIS Academy (`Section 55`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["ACADEMY_INSTITUTION_REGISTERED"] },
+    "event_category": { "type": "string", "enum": ["EDUCATION"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "institution_id": { "type": "string" },
+        "organization_id": { "type": "string" },
+        "name": { "type": "string" },
+        "institution_type": { "type": "string" },
+        "curriculum_framework": { "type": "string" }
+      },
+      "required": ["institution_id", "name", "institution_type", "curriculum_framework"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

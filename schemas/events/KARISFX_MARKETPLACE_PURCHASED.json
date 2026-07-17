@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KARISFX_MARKETPLACE_PURCHASED",
+  "description": "Event emitted when a strategy or AI model is purchased on KARISFX Marketplace with split double-entry settlement per Rule 5 and Rule 9.",
+  "type": "object",
+  "properties": {
+    "purchase_id": { "type": "string" },
+    "item_id": { "type": "string" },
+    "buyer_account_id": { "type": "string" },
+    "price_paid_krt": { "type": "number" },
+    "creator_payout_krt": { "type": "number" },
+    "treasury_fee_krt": { "type": "number" },
+    "ledger_entry_id": { "type": "string" }
+  },
+  "required": ["purchase_id", "item_id", "buyer_account_id", "price_paid_krt", "ledger_entry_id"]
+}

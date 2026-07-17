@@ -78,3 +78,13 @@ class KarisOsClient:
         async with httpx.AsyncClient(transport=self.transport) as client:
             res = await client.post(f"{self.base_url}/api/v1/karis-loop/shoppable-checkout", json={"buyer_identity_id": buyer_id, "post_id": post_id, "linked_product_id": prod_id, "amount_kes_or_krt": amount}, headers=self.headers)
             return res.json()
+
+    async def record_student_mastery(self, student_id: str, inst_id: str, concept_id: str, score: float) -> Dict[str, Any]:
+        async with httpx.AsyncClient(transport=self.transport) as client:
+            res = await client.post(f"{self.base_url}/api/v1/karis-academy/mastery", json={"student_identity_id": student_id, "institution_id": inst_id, "concept_id": concept_id, "mastery_score_pct": score}, headers=self.headers)
+            return res.json()
+
+    async def disburse_academy_scholarship(self, student_id: str, inst_id: str, amount_krt: float) -> Dict[str, Any]:
+        async with httpx.AsyncClient(transport=self.transport) as client:
+            res = await client.post(f"{self.base_url}/api/v1/karis-academy/scholarship", json={"student_identity_id": student_id, "institution_id": inst_id, "amount_krt": amount_krt}, headers=self.headers)
+            return res.json()

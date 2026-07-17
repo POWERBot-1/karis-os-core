@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KARISFX_COPY_TRADE_EXECUTED",
+  "description": "Event emitted when a master trade is synchronized and executed across follower copy-trading links per Rule 1 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "copy_link_id": { "type": "string" },
+    "follower_account_id": { "type": "string" },
+    "master_trader_account_id": { "type": "string" },
+    "copied_trade_id": { "type": "string" },
+    "follower_trade_id": { "type": "string" },
+    "allocation_krt": { "type": "number" }
+  },
+  "required": ["copy_link_id", "follower_account_id", "master_trader_account_id", "copied_trade_id"]
+}

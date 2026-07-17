@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COSMOX_ACCOUNT_ONBOARDED",
+  "description": "Event emitted when a user receives their 6 Universal Wallets on COSMOX per Rule 1 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "account_id": { "type": "string" },
+    "identity_id": { "type": "string" },
+    "account_number": { "type": "string" },
+    "account_type": { "type": "string" },
+    "fiat_wallet_id": { "type": "string" },
+    "krt_wallet_id": { "type": "string" },
+    "rewards_wallet_id": { "type": "string" },
+    "escrow_wallet_id": { "type": "string" },
+    "merchant_wallet_id": { "type": "string" },
+    "driver_wallet_id": { "type": "string" }
+  },
+  "required": ["account_id", "identity_id", "krt_wallet_id", "escrow_wallet_id"]
+}

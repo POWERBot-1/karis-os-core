@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COSMOX_ORDER_SETTLED",
+  "description": "Event emitted when an escrowed order is released to the seller/merchant wallet via double-entry settlement per Rule 5 and Rule 9.",
+  "type": "object",
+  "properties": {
+    "order_id": { "type": "string" },
+    "seller_account_id": { "type": "string" },
+    "seller_payout_krt": { "type": "number" },
+    "platform_commission_krt": { "type": "number" },
+    "cashback_reward_krt": { "type": "number" },
+    "ledger_entry_id": { "type": "string" }
+  },
+  "required": ["order_id", "seller_account_id", "seller_payout_krt", "ledger_entry_id"]
+}

@@ -1,0 +1,358 @@
+{
+  "events": [
+    {
+      "actor_identity_id": "VOTER-007",
+      "correlation_id": "e0e50527-6082-4108-9496-34efccd5e5c1",
+      "cryptographic_hash": "3bbda9cb8270e2cbf2bfcf3440ef55108713932ef20c99f772dd1b30826199ba",
+      "event_category": "FINANCIAL_MARKETS",
+      "event_id": "a71d281a-1536-4ce3-ba92-c772d1c75140",
+      "event_type": "KARISFX_ACCOUNT_CREATED",
+      "organization_id": "ORG-KARISFX-MAIN",
+      "payload": {
+        "account_id": "32f45502-eb47-4c8c-9cc9-e52052e04026",
+        "account_number": "KFX-45B79993",
+        "account_tier": "STANDARD",
+        "eur_wallet_id": "0c730f52-042c-4bb7-a2ad-3398eb7abc97",
+        "gbp_wallet_id": "05ce8da4-898b-408b-9d25-4698cfee7769",
+        "identity_id": "VOTER-007",
+        "kes_wallet_id": "078856ae-9f06-46cc-bfae-922bd898c368",
+        "krt_wallet_id": "b15d910d-9de0-4dee-a3a1-51902331019f",
+        "kyc_status": "VERIFIED_TIER_3",
+        "reputation_score": 100,
+        "rewards_wallet_id": "41d0906e-7de3-4113-bb67-8d969fb78183",
+        "stablecoin_wallet_id": "8784b45d-2379-43e4-8ef7-69fda5610491",
+        "treasury_account_ref": "TREASURY-ACCOUNT-REF-VOTER-007",
+        "usd_wallet_id": "a3663eec-b2be-49fc-8661-a363173203bb"
+      },
+      "source_module": "karisfx",
+      "timestamp": "2026-07-17T11:05:10.426625Z"
+    },
+    {
+      "actor_identity_id": "SYSTEM_LEDGER_ENGINE",
+      "correlation_id": "872c8c59-3b89-4bcd-b20c-a13d080489db",
+      "cryptographic_hash": "a884a7e64b9a44890b422ab63edb1b5146cf8008678023477e4bdb12b04130be",
+      "event_category": "TREASURY",
+      "event_id": "0b995932-3075-4561-abe9-6d2c42f58e75",
+      "event_type": "LEDGER_ENTRY_RECORDED",
+      "organization_id": "ORG-KARISFX-MAIN",
+      "payload": {
+        "amount": 20.0,
+        "asset_type": "KRT",
+        "audit_hash": "adad538972ad9fe23ea75fbc070cf2f599b78a10cdd5979273d330c6544b024b",
+        "credit_wallet_id": "b15d910d-9de0-4dee-a3a1-51902331019f",
+        "currency": "KRT",
+        "debit_wallet_id": "6410ee1e-67f9-484e-aad9-62244a088e53",
+        "description": "KARISFX Reward Engine Payout (ECOSYSTEM_PARTICIPATION): 20.0 KRT",
+        "entry_id": "89a2be33-2adf-473c-92ad-ce8f8c41b823",
+        "transaction_id": "872c8c59-3b89-4bcd-b20c-a13d080489db"
+      },
+      "source_module": "UNIVERSAL_LEDGER_ENGINE",
+      "timestamp": "2026-07-17T11:05:10.426795Z"
+    },
+    {
+      "actor_identity_id": "VOTER-007",
+      "correlation_id": "815c603a-b911-4843-8268-35917457205a",
+      "cryptographic_hash": "5b6c496a02ce8afc28d6fe38db47382fc227f583e43faf7c9869d8ddda382380",
+      "event_category": "REWARDS",
+      "event_id": "72b27bc2-b2fc-43b7-a641-ddf4e79198f6",
+      "event_type": "KARISFX_REWARD_DISTRIBUTED",
+      "organization_id": "ORG-KARISFX-MAIN",
+      "payload": {
+        "account_id": "32f45502-eb47-4c8c-9cc9-e52052e04026",
+        "activity_type": "ECOSYSTEM_PARTICIPATION",
+        "anti_abuse_status": "VERIFIED_CLEAN",
+        "reward_amount_krt": 20.0,
+        "reward_id": "872c8c59-3b89-4bcd-b20c-a13d080489db",
+        "verification_hash": "2a443a482a9b5bf25bf64956949e2ce7d1c24da2a6aca40dc385d7b6608fe4c1"
+      },
+      "source_module": "karisfx",
+      "timestamp": "2026-07-17T11:05:10.426838Z"
+    },
+    {
+      "actor_identity_id": "VOTER-007",
+      "correlation_id": "cf84ce9f-d349-41ae-b1e0-865a952d5dcc",
+      "cryptographic_hash": "9fd0d08386e39e9edf0976433dbb1e93eb0d07f60641c5b5602a2430a186ed5c",
+      "event_category": "GOVERNANCE_VOTING",
+      "event_id": "206ccfb7-2c5b-4b67-9c93-563db2850891",
+      "event_type": "KARISFX_GOVERNANCE_VOTED",
+      "organization_id": "ORG-KARISFX-MAIN",
+      "payload": {
+        "proposal_id": "3c1321ec-b049-4f04-ba86-0c205cc8f209",
+        "vote_choice": "FOR",
+        "vote_id": "1fd2d745-35e1-4b83-ab1f-98296c6ea799",
+        "voter_account_id": "32f45502-eb47-4c8c-9cc9-e52052e04026",
+        "voting_power_krt": 2000.0
+      },
+      "source_module": "karisfx",
+      "timestamp": "2026-07-17T11:05:10.426873Z"
+    },
+    {
+      "actor_identity_id": "MASTER-008",
+      "correlation_id": "ef89b528-66b2-4634-bc78-f1249729b253",
+      "cryptographic_hash": "dde89fb748da19619706ba8f736d55e5d0c07b6b1f0ec4882bcbb4759b687ab1",
+      "event_category": "FINANCIAL_MARKETS",
+      "event_id": "3ee3fba5-bda8-4b1e-a4c7-3916a2f30a5e",
+      "event_type": "KARISFX_ACCOUNT_CREATED",
+      "organization_id": "ORG-KARISFX-MAIN",
+      "payload": {
+        "account_id": "e6a4ddba-1a80-462c-a3b8-2b7e7a73eeab",
+        "account_number": "KFX-A0D92DDA",
+        "account_tier": "STANDARD",
+        "eur_wallet_id": "88723167-ce74-4f66-8c80-2e327f420f3d",
+        "gbp_wallet_id": "120afeec-f142-4823-a70c-813f5477fd7d",
+        "identity_id": "MASTER-008",
+        "kes_wallet_id": "5f69833c-d3bd-48b3-b529-8774b186b1da",
+        "krt_wallet_id": "800ce64a-47da-487c-af75-1ba95480faed",
+        "kyc_status": "VERIFIED_TIER_3",
+        "reputation_score": 100,
+        "rewards_wallet_id": "93f66294-3805-4cb5-a921-9cd55c5a8a2a",
+        "stablecoin_wallet_id": "b83789c2-c48c-4ea2-afb6-7a5b087bf614",
+        "treasury_account_ref": "TREASURY-ACCOUNT-REF-MASTER-008",
+        "usd_wallet_id": "ae5514e4-7948-4fe1-b3b1-ec5855a14d63"
+      },
+      "source_module": "karisfx",
+      "timestamp": "2026-07-17T11:05:10.426963Z"
+    },
+    {
+      "actor_identity_id": "VOTER-007",
+      "correlation_id": "56ed5b4b-3c86-47dd-b648-482cf148812f",
+      "cryptographic_hash": "311adaacc1c194f1e5cf40b40861fb7df798384fe83a059569518f93fb10d1d2",
+      "event_category": "SOCIAL",
+      "event_id": "60a0a302-5131-4f97-b498-6ca1c20a1257",
+      "event_type": "KARISFX_COPY_TRADE_EXECUTED",
+      "organization_id": "ORG-KARISFX-MAIN",
+      "payload": {
+        "allocation_krt": 1000.0,
+        "copied_trade_id": "INIT-COPY-7f442eb7-4db9-46d5-8a33-69ddeedcfe60",
+        "copy_link_id": "7f442eb7-4db9-46d5-8a33-69ddeedcfe60",
+        "follower_account_id": "32f45502-eb47-4c8c-9cc9-e52052e04026",
+        "follower_trade_id": "INIT-COPY-7f442eb7-4db9-46d5-8a33-69ddeedcfe60",
+        "master_trader_account_id": "e6a4ddba-1a80-462c-a3b8-2b7e7a73eeab"
+      },
+      "source_module": "karisfx",
+      "timestamp": "2026-07-17T11:05:10.427013Z"
+    },
+    {
+      "actor_identity_id": "VOTER-007",
+      "correlation_id": "ccb917d4-7ee5-4626-87f2-6df5af8d3147",
+      "cryptographic_hash": "e57fab1847adf66c55c03cc617093a0d8b171c1c73002b30b2c66c4e45194caa",
+      "event_category": "GOVERNANCE",
+      "event_id": "7f2529e2-0cea-4c27-8c9b-e17443842c49",
+      "event_type": "KARISFX_AML_ALERT_TRIGGERED",
+      "organization_id": "ORG-KARISFX-MAIN",
+      "payload": {
+        "account_id": "32f45502-eb47-4c8c-9cc9-e52052e04026",
+        "aml_risk_score": 85.0,
+        "audit_notes": "ALERT: High value transaction (15000.0 USD) exceeds CBK/FIU $10,000 reporting threshold. Mandates KYC Tier 3 audit verification.",
+        "cbk_fiu_flagged": true,
+        "log_id": "09d476a4-f11b-4d25-bf61-4955d842bd16",
+        "transaction_amount_usd": 15000.0
+      },
+      "source_module": "karisfx",
+      "timestamp": "2026-07-17T11:05:10.427088Z"
+    }
+  ],
+  "latest_event_id": "7f2529e2-0cea-4c27-8c9b-e17443842c49",
+  "latest_ledger_hash": "adad538972ad9fe23ea75fbc070cf2f599b78a10cdd5979273d330c6544b024b",
+  "ledger_entries": [
+    {
+      "amount": 20.0,
+      "asset_type": "KRT",
+      "audit_hash": "adad538972ad9fe23ea75fbc070cf2f599b78a10cdd5979273d330c6544b024b",
+      "credit_wallet_id": "b15d910d-9de0-4dee-a3a1-51902331019f",
+      "currency": "KRT",
+      "debit_wallet_id": "6410ee1e-67f9-484e-aad9-62244a088e53",
+      "entry_id": "89a2be33-2adf-473c-92ad-ce8f8c41b823",
+      "event_id": "REWARD-DISBURSE-872c8c59-3b89-4bcd-b20c-a13d080489db",
+      "organization_id": "ORG-KARISFX-MAIN",
+      "timestamp": "2026-07-17T11:05:10.426760Z",
+      "transaction_id": "872c8c59-3b89-4bcd-b20c-a13d080489db"
+    }
+  ],
+  "organization_id": "ORG-KARIS-RETAIL",
+  "snapshot_id": "PITR-SNAP-4B51091F",
+  "snapshot_type": "POINT_IN_TIME_PITR",
+  "timestamp": "2026-07-17T11:05:10.429072+00:00",
+  "wallets": [
+    {
+      "asset_type": "KRT",
+      "balance": 10000000.0,
+      "identity_id": "POOL-KARISFX-STAKING",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "b1311bbf-3aec-4984-9e91-60b8f9a455b6",
+      "wallet_type": "STAKING_POOL"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 4999980.0,
+      "identity_id": "POOL-KARISFX-REWARDS",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "6410ee1e-67f9-484e-aad9-62244a088e53",
+      "wallet_type": "REWARD_POOL"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 25000000.0,
+      "identity_id": "POOL-KARISFX-LIQUIDITY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "4f1af10e-4aae-4815-9693-76e30f6d8fbe",
+      "wallet_type": "RESERVE_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 10000000.0,
+      "identity_id": "POOL-KARISFX-TREASURY",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "a41112b6-7d0b-40b7-aa42-d0c14180f5a7",
+      "wallet_type": "TREASURY_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 4020.0,
+      "identity_id": "VOTER-007-krt",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "b15d910d-9de0-4dee-a3a1-51902331019f",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 520000.0,
+      "identity_id": "VOTER-007-kes",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "078856ae-9f06-46cc-bfae-922bd898c368",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "USD",
+      "balance": 5000.0,
+      "identity_id": "VOTER-007-usd",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "a3663eec-b2be-49fc-8661-a363173203bb",
+      "wallet_type": "USD_WALLET"
+    },
+    {
+      "asset_type": "EUR",
+      "balance": 4600.0,
+      "identity_id": "VOTER-007-eur",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "0c730f52-042c-4bb7-a2ad-3398eb7abc97",
+      "wallet_type": "EUR_WALLET"
+    },
+    {
+      "asset_type": "GBP",
+      "balance": 3950.0,
+      "identity_id": "VOTER-007-gbp",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "05ce8da4-898b-408b-9d25-4698cfee7769",
+      "wallet_type": "GBP_WALLET"
+    },
+    {
+      "asset_type": "USDT",
+      "balance": 5000.0,
+      "identity_id": "VOTER-007-stable",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "8784b45d-2379-43e4-8ef7-69fda5610491",
+      "wallet_type": "STABLECOIN_WALLET"
+    },
+    {
+      "asset_type": "KRT_REWARDS",
+      "balance": 100.0,
+      "identity_id": "VOTER-007-rewards",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "41d0906e-7de3-4113-bb67-8d969fb78183",
+      "wallet_type": "REWARDS_WALLET"
+    },
+    {
+      "asset_type": "KRT",
+      "balance": 1000.0,
+      "identity_id": "MASTER-008-krt",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "800ce64a-47da-487c-af75-1ba95480faed",
+      "wallet_type": "KRT_WALLET"
+    },
+    {
+      "asset_type": "KES",
+      "balance": 130000.0,
+      "identity_id": "MASTER-008-kes",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "5f69833c-d3bd-48b3-b529-8774b186b1da",
+      "wallet_type": "KES_WALLET"
+    },
+    {
+      "asset_type": "USD",
+      "balance": 5000.0,
+      "identity_id": "MASTER-008-usd",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "ae5514e4-7948-4fe1-b3b1-ec5855a14d63",
+      "wallet_type": "USD_WALLET"
+    },
+    {
+      "asset_type": "EUR",
+      "balance": 4600.0,
+      "identity_id": "MASTER-008-eur",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "88723167-ce74-4f66-8c80-2e327f420f3d",
+      "wallet_type": "EUR_WALLET"
+    },
+    {
+      "asset_type": "GBP",
+      "balance": 3950.0,
+      "identity_id": "MASTER-008-gbp",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "120afeec-f142-4823-a70c-813f5477fd7d",
+      "wallet_type": "GBP_WALLET"
+    },
+    {
+      "asset_type": "USDT",
+      "balance": 5000.0,
+      "identity_id": "MASTER-008-stable",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "b83789c2-c48c-4ea2-afb6-7a5b087bf614",
+      "wallet_type": "STABLECOIN_WALLET"
+    },
+    {
+      "asset_type": "KRT_REWARDS",
+      "balance": 100.0,
+      "identity_id": "MASTER-008-rewards",
+      "locked_balance": 0.0,
+      "organization_id": "ORG-KARISFX-MAIN",
+      "status": "ACTIVE",
+      "wallet_id": "93f66294-3805-4cb5-a921-9cd55c5a8a2a",
+      "wallet_type": "REWARDS_WALLET"
+    }
+  ]
+}

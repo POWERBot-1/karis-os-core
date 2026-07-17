@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KARISFX_STAKING_POSITION_OPENED",
+  "description": "Event emitted when KRT is staked to unlock fee discounts, AI priority and governance rights per Rule 5 and Rule 9.",
+  "type": "object",
+  "properties": {
+    "staking_id": { "type": "string" },
+    "account_id": { "type": "string" },
+    "staking_tier": { "type": "string" },
+    "staked_amount_krt": { "type": "number" },
+    "lockup_duration_days": { "type": "integer" },
+    "apy_pct": { "type": "number" },
+    "fee_discount_pct": { "type": "number" },
+    "ai_premium_unlocked": { "type": "boolean" }
+  },
+  "required": ["staking_id", "account_id", "staking_tier", "staked_amount_krt", "apy_pct"]
+}

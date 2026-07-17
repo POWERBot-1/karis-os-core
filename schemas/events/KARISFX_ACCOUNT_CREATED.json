@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KARISFX_ACCOUNT_CREATED",
+  "description": "Event emitted when a unified KARISFX multi-asset trading account is onboarded per Rule 1 and Rule 6.",
+  "type": "object",
+  "properties": {
+    "account_id": { "type": "string" },
+    "identity_id": { "type": "string" },
+    "account_number": { "type": "string" },
+    "account_tier": { "type": "string" },
+    "kyc_status": { "type": "string" },
+    "krt_wallet_id": { "type": "string" },
+    "kes_wallet_id": { "type": "string" },
+    "usd_wallet_id": { "type": "string" },
+    "eur_wallet_id": { "type": "string" },
+    "gbp_wallet_id": { "type": "string" },
+    "stablecoin_wallet_id": { "type": "string" },
+    "rewards_wallet_id": { "type": "string" },
+    "treasury_account_ref": { "type": "string" },
+    "reputation_score": { "type": "number" }
+  },
+  "required": ["account_id", "identity_id", "krt_wallet_id", "treasury_account_ref"]
+}

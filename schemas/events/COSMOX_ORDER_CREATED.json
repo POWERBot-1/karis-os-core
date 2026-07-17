@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COSMOX_ORDER_CREATED",
+  "description": "Event emitted when a buyer checks out and funds are held inside the Escrow Wallet per Rule 2 and Rule 5.",
+  "type": "object",
+  "properties": {
+    "order_id": { "type": "string" },
+    "buyer_account_id": { "type": "string" },
+    "seller_account_id": { "type": "string" },
+    "product_id": { "type": "string" },
+    "total_price_krt": { "type": "number" },
+    "seller_payout_krt": { "type": "number" },
+    "platform_commission_krt": { "type": "number" },
+    "escrow_status": { "type": "string" },
+    "ledger_entry_id": { "type": "string" }
+  },
+  "required": ["order_id", "buyer_account_id", "seller_account_id", "total_price_krt", "escrow_status"]
+}

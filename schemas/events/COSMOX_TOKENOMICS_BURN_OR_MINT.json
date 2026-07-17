@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COSMOX_TOKENOMICS_BURN_OR_MINT",
+  "description": "Event emitted when the Tokenomics Engine executes a reserve grant release or deflationary KRT burn per Rule 5 and Rule 9.",
+  "type": "object",
+  "properties": {
+    "action_type": { "type": "string" },
+    "amount_krt": { "type": "number" },
+    "target_account_id": { "type": "string" },
+    "reason": { "type": "string" },
+    "ledger_entry_id": { "type": "string" }
+  },
+  "required": ["action_type", "amount_krt", "target_account_id", "ledger_entry_id"]
+}

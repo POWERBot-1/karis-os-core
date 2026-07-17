@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACADEMY_LESSON_OR_QUIZ_PUBLISHED",
+  "description": "Event emitted when an AI-generated educational artifact is reviewed, approved, and published by a human educator (`Rule 10 & Rule 6`).",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "type": "string", "enum": ["ACADEMY_LESSON_OR_QUIZ_PUBLISHED"] },
+    "event_category": { "type": "string", "enum": ["EDUCATION", "GOVERNANCE"] },
+    "actor_identity_id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "source_module": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "item_id": { "type": "string" },
+        "concept_id": { "type": "string" },
+        "institution_id": { "type": "string" },
+        "item_type": { "type": "string" },
+        "title": { "type": "string" },
+        "version_number": { "type": "integer", "minimum": 1 },
+        "ai_generated_status": { "type": "string" }
+      },
+      "required": ["item_id", "concept_id", "institution_id", "title", "ai_generated_status"]
+    }
+  },
+  "required": ["event_id", "event_type", "event_category", "actor_identity_id", "timestamp", "payload"]
+}

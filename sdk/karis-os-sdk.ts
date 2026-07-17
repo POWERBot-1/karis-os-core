@@ -105,4 +105,20 @@ export class KarisOsClient {
     });
     return res.json();
   }
+
+  async recordStudentMastery(studentId: string, instId: string, conceptId: string, score: number) {
+    const res = await fetch(`${this.baseUrl}/api/v1/karis-academy/mastery`, {
+      method: "POST", headers: this.headers,
+      body: JSON.stringify({ student_identity_id: studentId, institution_id: instId, concept_id: conceptId, mastery_score_pct: score })
+    });
+    return res.json();
+  }
+
+  async disburseAcademyScholarship(studentId: string, instId: string, amountKrt: number) {
+    const res = await fetch(`${this.baseUrl}/api/v1/karis-academy/scholarship`, {
+      method: "POST", headers: this.headers,
+      body: JSON.stringify({ student_identity_id: studentId, institution_id: instId, amount_krt: amountKrt })
+    });
+    return res.json();
+  }
 }
